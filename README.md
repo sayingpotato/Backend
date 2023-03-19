@@ -1,2 +1,0 @@
-# Backend
-Backend for sayingpotato

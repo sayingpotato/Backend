@@ -1,12 +1,3 @@
-     ---
-name: pull request template
-about: default pull request template
-title: ''
-labels: ''
-assignees: ''
-
----
-
 ## 🔢 이슈 번호
 -
 

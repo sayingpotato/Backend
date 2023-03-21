@@ -11,6 +11,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Order -> OrderItem = 1 : N
+ * Order -> Review = 1 : N
+ */
 @Entity
 @Table(name = "orders")
 @Getter

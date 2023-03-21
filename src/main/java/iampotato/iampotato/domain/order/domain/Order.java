@@ -22,7 +22,6 @@ public class Order {
     private Long id;
 
     @OneToMany
-    @JoinColumn(name = "order_item_id")
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY)

@@ -43,5 +43,5 @@ public class Order {
     private LocalDateTime modifiedDate;
 
     @Enumerated(EnumType.STRING)
-    private OrderStatus orderStatus; // 주문 상태 [ORDER, WAITQR, FINISH]
+    private OrderStatus orderStatus; // 주문 상태 [ORDER, WAIT_QR, FINISH]
 }

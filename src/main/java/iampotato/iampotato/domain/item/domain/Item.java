@@ -1,6 +1,7 @@
 package iampotato.iampotato.domain.item.domain;
 
 import iampotato.iampotato.domain.itemoption.domain.ItemOption;
+import iampotato.iampotato.domain.store.domain.Store;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ import java.util.List;
 
 /**
  * Item -> ItemOption = 1 : N
+ * Item <-> Store = N : 1
  */
 @Entity
 @Getter
@@ -23,7 +25,11 @@ public class Item {
     private Long id;
 
     @OneToMany
-    private List<ItemOption> itemOption = new ArrayList<>();
+    private List<ItemOption> itemOptions = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "store_id")
+    private Store store;
 
     private String category;
 

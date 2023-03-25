@@ -3,6 +3,7 @@ package iampotato.iampotato.domain.owner.domain;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -21,7 +22,12 @@ public class Owner {
     private String nickname;
 
     @Enumerated(EnumType.STRING)
-    private OwnerStatus ownerStatus;
+    private OwnerStatus ownerStatus;    //회원 가입 상태 [COMPLETE, UNAUTHORIZED]
 
+    private LocalDateTime createdDate;
+
+    private LocalDateTime modifiedDate;
+
+    private String ownerBusinessNumber;
 
 }

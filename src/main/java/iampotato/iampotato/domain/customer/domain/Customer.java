@@ -3,6 +3,7 @@ package iampotato.iampotato.domain.customer.domain;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -22,5 +23,19 @@ public class Customer {
 
     @Enumerated(EnumType.STRING)
     private CustomerStatus customerStatus;  //회원 가입 상태 [COMPLETE, UNAUTHORIZED]
+
+    private LocalDateTime createdDate;
+
+    private LocalDateTime modifiedDate;
+
+    private String customerImage;
+
+    private String customerNumber;
+
+    private String customerDept;
+
+    private String customerCollege;
+
+    private String customerGrade;
 
 }

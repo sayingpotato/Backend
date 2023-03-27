@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Item -> ItemOption = 1 : N
  * Item <-> Store = N : 1
  */
 @Entity
@@ -23,9 +22,6 @@ public class Item {
     @Id @GeneratedValue
     @Column(name = "item_id")
     private Long id;
-
-    @OneToMany
-    private List<ItemOption> itemOptions = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")

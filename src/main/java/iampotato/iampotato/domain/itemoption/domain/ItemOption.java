@@ -24,7 +24,7 @@ public class ItemOption {
     @Column(name = "item_id")
     private Item item;
 
-    private String category; // 사이즈, 토핑추가, 맵기정도 등 카테고리 구분하기 위함
+    private ItemOptionCategory category; // 사이즈, 토핑추가, 맵기정도 등 카테고리 구분하기 위함
 
     private String name;
 

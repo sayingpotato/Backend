@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * Store <-> Item = 1 : N
- * Store -> Discount = 1 : N
+ * Store <-> Discount = 1 : N
  * Store -> Review = 1 : N
  */
 @Entity
@@ -30,13 +30,13 @@ public class Store {
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<Item> items = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "store")
     private List<Discount> discounts = new ArrayList<>();
 
     @OneToMany
     private List<Review> reviews = new ArrayList<>();
 
-    private String category;
+    private StoreCategory category;
 
     private String name;
 
@@ -63,7 +63,8 @@ public class Store {
 
     // 여기서 부터는 가게 세부정보 입니다.
     // ===============================
-    private int consentNum;
+    private int outletNum;
+
 
     // ===============================
     private LocalDateTime createdDate;

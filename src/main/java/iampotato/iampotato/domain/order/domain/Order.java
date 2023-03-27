@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Order -> OrderItem = 1 : N
- * Order -> Review = 1 : N
+ * Order <-> OrderItem = 1 : N
+ * Order -> Review = 1 : 1
  */
 @Entity
 @Table(name = "orders")
@@ -25,7 +25,7 @@ public class Order {
     @Column(name = "order_id")
     private Long id;
 
-    @OneToMany
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY)

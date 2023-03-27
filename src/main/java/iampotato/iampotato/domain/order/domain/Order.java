@@ -1,5 +1,6 @@
 package iampotato.iampotato.domain.order.domain;
 
+import iampotato.iampotato.domain.customer.domain.Customer;
 import iampotato.iampotato.domain.orderitem.domain.OrderItem;
 import iampotato.iampotato.domain.review.domain.Review;
 import lombok.AccessLevel;
@@ -14,6 +15,7 @@ import java.util.List;
 /**
  * Order <-> OrderItem = 1 : N
  * Order -> Review = 1 : 1
+ * Order -> Customer = N : 1
  */
 @Entity
 @Table(name = "orders")
@@ -27,6 +29,10 @@ public class Order {
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "review_id")

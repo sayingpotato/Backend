@@ -8,9 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-/**
- * review - order = 1 : 1
- */
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -20,8 +17,6 @@ public class Review {
     @Column(name = "review_id")
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private Order order;
 
     // 여기서부터는 리뷰 내용들 입니다.
     // =============================
@@ -29,7 +24,7 @@ public class Review {
 
     private int greatBeverage;
 
-    private int many_consent;
+    private int manyOutlet;
     // =============================
 
     private LocalDateTime createdDate;

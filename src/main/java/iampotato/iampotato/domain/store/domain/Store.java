@@ -36,6 +36,8 @@ public class Store {
     @OneToMany
     private List<Review> reviews = new ArrayList<>();
 
+    private String category;
+
     private String name;
 
     @Enumerated(EnumType.STRING)

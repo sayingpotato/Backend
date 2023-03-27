@@ -1,13 +1,16 @@
 package iampotato.iampotato.domain.sideowner.domain;
 
 import iampotato.iampotato.domain.owner.domain.Owner;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class SideOwner {
 
     @Id @GeneratedValue

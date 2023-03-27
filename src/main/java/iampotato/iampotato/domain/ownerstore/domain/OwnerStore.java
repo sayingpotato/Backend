@@ -2,12 +2,15 @@ package iampotato.iampotato.domain.ownerstore.domain;
 
 import iampotato.iampotato.domain.owner.domain.Owner;
 import iampotato.iampotato.domain.store.domain.Store;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OwnerStore {
 
     @Id @GeneratedValue

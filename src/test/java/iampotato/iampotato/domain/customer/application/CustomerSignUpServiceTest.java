@@ -51,5 +51,18 @@ public class CustomerSignUpServiceTest {
     }
 
 
+    @Test(expected = IllegalStateException.class)
+    public void 중복_닉네임_예외() throws Exception {
+        //given
+        Customer customer1 = Customer.createCustomer("test1", "123", "로건");
+        Customer customer2 = Customer.createCustomer("test2", "123", "로건");
+
+        //when
+        customerSignUpService.signUp(customer1);
+        customerSignUpService.signUp(customer2);
+
+        //then
+        fail("예외가 발생해야 한다.");
+    }
 
 }

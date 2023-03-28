@@ -36,6 +36,7 @@ public class Store {
     @OneToMany
     private List<Review> reviews = new ArrayList<>();
 
+    @Enumerated(EnumType.STRING)
     private StoreCategory category;
 
     private String name;
@@ -72,8 +73,39 @@ public class Store {
     private LocalDateTime modifiedDate;
 
     @Enumerated(EnumType.STRING)
+    private StoreSalesType salesType;
+
+    @Enumerated(EnumType.STRING)
     private StoreStatus storeStatus;
 
     @Enumerated(EnumType.STRING)
     private StoreDiscountInfo discountInfo;
+
+    public static Store createStoreWithRequiredValue(String name,
+                                                     StoreCategory category,
+                                                     StorePaymentType paymentType,
+                                                     StoreSalesType storeSalesType,
+                                                     Address address,
+                                                     String phone,
+                                                     StoreStatus storeStatus,
+                                                     StoreDiscountInfo discountInfo) {
+
+        Store store = new Store();
+        store.name = name;
+        store.category = category;
+        store.paymentType = paymentType;
+        store.salesType = storeSalesType;
+        store.address = address;
+        store.phone = phone;
+
+        // 가게 추가 필드
+        // =============
+        store.outletNum = 0;
+
+        // =============
+        store.storeStatus = storeStatus;
+        store.discountInfo = discountInfo;
+
+        return store;
+    }
 }

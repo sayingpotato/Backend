@@ -17,18 +17,21 @@ public class CustomerSignUpService {
 
     @Transactional
     public Long signUp(Customer customer) {
-        validateDuplicatedCustomer(customer);
+        validateDuplicatedCustomerByLoginId(customer);
+        validateDuplicatedCustomerByNickname(customer);
         customerRepository.save(customer);
         return customer.getId();
     }
 
-    private void validateDuplicatedCustomer(Customer customer) {
+    private void validateDuplicatedCustomerByLoginId(Customer customer) {
         List<Customer> findCustomersByLoginId = customerRepository.findByLoginId(customer.getLoginId());
-        List<Customer> findCustomersByNickname = customerRepository.findByNickname(customer.getNickname());
-
         if (!findCustomersByLoginId.isEmpty()) {
             throw new IllegalStateException("이미 존재하는 아이디입니다.");
         }
+    }
+
+    private void validateDuplicatedCustomerByNickname(Customer customer) {
+        List<Customer> findCustomersByNickname = customerRepository.findByNickname(customer.getNickname());
 
         if (!findCustomersByNickname.isEmpty()) {
             throw new IllegalStateException("이미 존재하는 닉네임입니다.");

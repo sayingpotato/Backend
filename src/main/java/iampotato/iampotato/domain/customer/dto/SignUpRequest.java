@@ -3,9 +3,7 @@ package iampotato.iampotato.domain.customer.dto;
 import lombok.Data;
 
 @Data
-public class SignUpRequest {
-    private Long id;
-
+public class SignUpRequest {    //회원 가입시 RequestBody
     private String loginId;
 
     private String password;

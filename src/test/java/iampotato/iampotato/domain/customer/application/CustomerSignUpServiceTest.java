@@ -10,6 +10,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)    //spring이랑 완전히 integration해서 테스트 하기 위해
@@ -36,6 +37,35 @@ public class CustomerSignUpServiceTest {
         assertEquals(customer, customerRepository.findOne(saveId));
     }
 
+    @Test
+    public void 중복_아이디_예외() throws Exception {
+        //given
+        Customer customer1 = Customer.createCustomer("test1", "123", "로건");
+        Customer customer2 = Customer.createCustomer("test1", "123", "루루");
 
+        //when
+        customerSignUpService.signUp(customer1);
+        assertThatThrownBy(() -> customerSignUpService.signUp(customer2))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining("아이디");
+
+        //then
+    }
+
+
+    @Test
+    public void 중복_닉네임_예외() throws Exception {
+        //given
+        Customer customer1 = Customer.createCustomer("test1", "123", "로건");
+        Customer customer2 = Customer.createCustomer("test2", "123", "로건");
+
+        //when
+        customerSignUpService.signUp(customer1);
+        assertThatThrownBy(() -> customerSignUpService.signUp(customer2))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining("닉네임");
+
+        //then
+    }
 
 }

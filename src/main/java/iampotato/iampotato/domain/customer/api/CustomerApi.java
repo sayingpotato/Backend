@@ -16,7 +16,7 @@ public class CustomerApi {
 
     private final CustomerSignUpService customerSignUpService;
 
-    @PostMapping("/api/v1/members")
+    @PostMapping("/api/v1/customers")
     public SignUpResponse signUp(@RequestBody SignUpRequest signUpRequest) {    //회원 가입하는 POST API
         //Spring security로 Password Hash 암호화 로직 추가하기
         Customer customer = Customer.createCustomer(signUpRequest.getLoginId(), signUpRequest.getPassword(), signUpRequest.getNickname());

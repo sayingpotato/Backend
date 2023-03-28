@@ -17,9 +17,25 @@ public class CustomerSignUpService {
 
     @Transactional
     public Long signUp(Customer customer) {
-        //여기에 중복 회원 검증 추가할 것
+        validateDuplicatedCustomerByLoginId(customer);
+        validateDuplicatedCustomerByNickname(customer);
         customerRepository.save(customer);
         return customer.getId();
+    }
+
+    private void validateDuplicatedCustomerByLoginId(Customer customer) {
+        List<Customer> findCustomersByLoginId = customerRepository.findByLoginId(customer.getLoginId());
+        if (!findCustomersByLoginId.isEmpty()) {
+            throw new IllegalStateException("이미 존재하는 아이디입니다.");
+        }
+    }
+
+    private void validateDuplicatedCustomerByNickname(Customer customer) {
+        List<Customer> findCustomersByNickname = customerRepository.findByNickname(customer.getNickname());
+
+        if (!findCustomersByNickname.isEmpty()) {
+            throw new IllegalStateException("이미 존재하는 닉네임입니다.");
+        }
     }
 
     //손님 전체 조회

@@ -23,7 +23,16 @@ public class CustomerSignUpService {
     }
 
     private void validateDuplicatedCustomer(Customer customer) {
-        
+        List<Customer> findCustomersByLoginId = customerRepository.findByLoginId(customer.getLoginId());
+        List<Customer> findCustomersByNickname = customerRepository.findByNickname(customer.getNickname());
+
+        if (!findCustomersByLoginId.isEmpty()) {
+            throw new IllegalStateException("이미 존재하는 아이디입니다.");
+        }
+
+        if (!findCustomersByNickname.isEmpty()) {
+            throw new IllegalStateException("이미 존재하는 닉네임입니다.");
+        }
     }
 
     //손님 전체 조회

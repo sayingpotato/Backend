@@ -12,6 +12,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Customer {
 
+    //==정적 팩토리 메서드==//
+    public static Customer createCustomer(String loginId, String password, String nickname) {
+        Customer customer = new Customer();
+        customer.loginId = loginId;
+        customer.password = password;
+        customer.nickname = nickname;
+        return customer;
+    }
     @Id @GeneratedValue
     @Column(name = "customer_id")
     private Long id;

@@ -18,6 +18,8 @@ public class Customer {
         customer.loginId = loginId;
         customer.password = password;
         customer.nickname = nickname;
+        customer.createdDate = LocalDateTime.now();
+        customer.modifiedDate = LocalDateTime.now();
         return customer;
     }
     @Id @GeneratedValue

@@ -17,7 +17,7 @@ public class CustomerSignUpService {
 
     @Transactional
     public Long signUp(Customer customer) {
-        //여기에 중복 회원 검증 추가할 것
+        validateDuplicatedCustomer(customer);
         customerRepository.save(customer);
         return customer.getId();
     }

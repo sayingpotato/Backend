@@ -36,6 +36,20 @@ public class CustomerSignUpServiceTest {
         assertEquals(customer, customerRepository.findOne(saveId));
     }
 
+    @Test(expected = IllegalStateException.class)
+    public void 중복_아이디_예외() throws Exception {
+        //given
+        Customer customer1 = Customer.createCustomer("test1", "123", "로건");
+        Customer customer2 = Customer.createCustomer("test1", "123", "루루");
+
+        //when
+        customerSignUpService.signUp(customer1);
+        customerSignUpService.signUp(customer2);
+
+        //then
+        fail("예외가 발생해야 한다.");
+    }
+
 
 
 }

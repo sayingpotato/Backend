@@ -22,6 +22,10 @@ public class CustomerSignUpService {
         return customer.getId();
     }
 
+    private void validateDuplicatedCustomer(Customer customer) {
+        
+    }
+
     //손님 전체 조회
     public List<Customer> findCustomers() {
         return customerRepository.findAll();

@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://database-mysql:3306/iampotato
+    username: root
+    password: 1q2w3e4r1!

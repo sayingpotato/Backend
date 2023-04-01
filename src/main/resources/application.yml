@@ -11,6 +11,7 @@ spring:
       hibernate:
         #          show_sql: true #밑에 org.hivernate.SQL과 겹치는데 얘는 System.out으로 찍는 거고 밑에는 로그로 찍는거. 얘를 안쓰는 걸 추천
         format_sql: true
+    database-platform: org.hibernate.spatial.dialect.mysql.MySQL56InnoDBSpatialDialect # 위도 경도 계산을 위해 추가
 
 logging: #로그 레벨을 정하는 것
   level:

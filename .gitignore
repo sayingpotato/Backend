@@ -7,7 +7,6 @@ build/**
 !build/libs/mysql-init.d/
 !build/libs/mysql-init.d/init.sql
 !build/libs/Dockerfile
-!build/libs/iampotato*.jar
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/

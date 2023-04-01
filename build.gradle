@@ -37,5 +37,10 @@ dependencies {
 }
 
 tasks.named('test') {
-	useJUnitPlatform()s
+	useJUnitPlatform()
+}
+
+tasks.bootJar {
+	mainClass = "iampotato.iampotato.IampotatoApplication"
+	archiveFileName.set("iampotato.jar")
 }

@@ -2,14 +2,12 @@ package iampotato.iampotato.domain.store.dao;
 
 import iampotato.iampotato.domain.store.domain.Location;
 import iampotato.iampotato.domain.store.domain.Store;
-import iampotato.iampotato.domain.store.dto.StoreMapResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor
@@ -46,8 +44,6 @@ public class StoreRepository {
                         + "WHERE MBRCONTAINS(ST_LINESTRINGFROMTEXT(" + pointFormat + "), s.location)", Store.class)
                 .setMaxResults(10);
 
-
-        // 비어있으면?
         return query.getResultList();
     }
 }

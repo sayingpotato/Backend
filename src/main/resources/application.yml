@@ -17,3 +17,20 @@ logging: #로그 레벨을 정하는 것
   level:
     org.hibernate.SQL: debug #JPA 하이버네이트가 생성하는 SQL이 다 보인다
     org.hibernate.type: trace
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui
+    disable-swagger-default-url: true
+    display-request-duration: true
+    tags-sorter: alpha
+    operations-sorter: alpha
+    doc-expansion: none
+    syntax-highlight:
+      theme: nord
+    urls-primary-name: TEST API
+    persist-authorization: true
+    query-config-enabled: true
+  pre-loading-enabled: true

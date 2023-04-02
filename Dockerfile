@@ -10,7 +10,7 @@ RUN ./gradlew -x test build
 FROM adoptopenjdk/openjdk11:latest
 ENV ARTIFACT_NAME=iampotato.jar
 ENV APP_HOME=/usr/app/
-#ENV PROFILE dev
+
 WORKDIR $APP_HOME
 COPY --from=TEMP_BUILD_IMAGE $APP_HOME/build/libs/$ARTIFACT_NAME .
 

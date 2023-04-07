@@ -18,5 +18,4 @@ public class CustomerImage {
     private String customerStoredImage;
 
     private Long fileSize;
-
 }

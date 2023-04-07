@@ -50,4 +50,6 @@ public class Customer {
 
     private String customerGrade;
 
+    @Embedded
+    private CustomerImage customerImage;
 }

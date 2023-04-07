@@ -42,10 +42,6 @@ public class Customer {
 
     private LocalDateTime modifiedDate;
 
-    private String customerOriginalImage;
-
-    private String customerStoredImage;
-
     private String customerNumber;
 
     private String customerDept;

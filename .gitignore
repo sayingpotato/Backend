@@ -43,3 +43,6 @@ out/
 .vscode/
 
 .DS_Store
+
+### IMAGE FILE ###
+src/main/resources/images/

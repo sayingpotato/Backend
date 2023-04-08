@@ -58,7 +58,15 @@ public class Customer {
     @Embedded
     private CustomerImage customerImage;
 
-    public static Customer parseImageInfo(Long customerId, MultipartFile multipartFile) throws Exception {
+    //==비즈니스 로직==//
+    /*
+    customerImage(학생증 이미지) 업로드
+     */
+    public void updateCustomerImage(CustomerImage customerImage) {
+        this.customerImage = customerImage;
+    }
+
+    public static CustomerImage parseImageInfo(MultipartFile multipartFile) throws Exception {
         if (multipartFile.isEmpty()) {  //들어오는 이미지 파일이 비어있으면 예외 메세지 출력하고 상위 호출 메서드로 예외를 던짐
             throw new IllegalStateException("이미지 파일이 비어있습니다.");
         }
@@ -103,13 +111,9 @@ public class Customer {
                 .fileSize(multipartFile.getSize())
                 .build();
 
-        Customer customer = Customer.builder()
-                .customerImage(customerImage)
-                .build();
-
         file = new File(absolutePath + path + newFileName);
         multipartFile.transferTo(file); //multipartFile을 실제로 application단에 업로드 하기 위함
 
-        return customer;
+        return customerImage;
     }
 }

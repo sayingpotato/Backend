@@ -21,7 +21,7 @@ public class CustomerApi {
     private final CustomerImageService customerImageService;
 
     @PostMapping("/api/v1/customers")
-    public SignUpResponse signUp(@RequestBody SignUpRequest signUpRequest) {    //회원 가입하는 POST API
+    public SignUpResponse signUp(@RequestBody SignUpRequest signUpRequest) throws Exception{    //회원 가입하는 POST API
         //Spring security로 Password Hash 암호화 로직 추가하기
         Customer customer = Customer.builder()
                 .loginId(signUpRequest.getLoginId())

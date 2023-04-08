@@ -5,6 +5,7 @@ import iampotato.iampotato.domain.customer.application.CustomerSignUpService;
 import iampotato.iampotato.domain.customer.domain.Customer;
 import iampotato.iampotato.domain.customer.dto.SignUpRequest;
 import iampotato.iampotato.domain.customer.dto.SignUpResponse;
+import iampotato.iampotato.domain.customer.dto.UploadImageResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

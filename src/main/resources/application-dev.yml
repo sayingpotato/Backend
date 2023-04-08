@@ -13,6 +13,11 @@ spring:
         format_sql: true
     database-platform: org.hibernate.spatial.dialect.mysql.MySQL56InnoDBSpatialDialect # 위도 경도 계산을 위해 추가
 
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 20MB
+
 logging: #로그 레벨을 정하는 것
     level:
       org.hibernate.SQL: debug #JPA 하이버네이트가 생성하는 SQL이 다 보인다

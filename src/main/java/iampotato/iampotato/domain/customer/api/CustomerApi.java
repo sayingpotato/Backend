@@ -32,8 +32,8 @@ public class CustomerApi {
         return new SignUpResponse(id);
     }
 
-    @PutMapping("/api/v1/customers/{id}/image")
-    public UploadImageResponse uploadImage(@PathVariable("id") Long customerId, MultipartFile multipartFile) throws Exception {
+    @PutMapping("/api/v1/customers/{id}/image") //MultipartFile을 처리하기 위해서 @RequestParam을 사용했다. 따라서 {image:이미지파일} 꼴로 넘겨 받아야한다.
+    public UploadImageResponse uploadImage(@PathVariable("id") Long customerId, @RequestParam(value="image", required=false) MultipartFile multipartFile) throws Exception {
         Customer customer = customerImageService.uploadImage(customerId, multipartFile);
         return new UploadImageResponse(customerId, customer.getCustomerImage());
     }

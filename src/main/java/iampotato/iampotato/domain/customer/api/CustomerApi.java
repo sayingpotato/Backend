@@ -8,10 +8,16 @@ import iampotato.iampotato.domain.customer.dto.SignUpResponse;
 import iampotato.iampotato.domain.customer.dto.UploadImageResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
@@ -37,4 +43,34 @@ public class CustomerApi {
         Customer customer = customerImageService.uploadImage(customerId, multipartFile);
         return new UploadImageResponse(customerId, customer.getCustomerImage());
     }
+
+    @GetMapping(value = "/image/view", produces = {"image/jpeg", "image/png", "image/gif"})
+    public @ResponseBody byte[] getImage(@RequestParam("customerStoredImage") String customerStoredImage) throws IOException {
+        FileInputStream fis = null; //파일로부터 바이트로 입력받기
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        try {
+            fis = new FileInputStream(customerStoredImage); //화면에 출력하고자 하는 이미지 파일을 fis에 넣어주기
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        int readCount = 0;
+        byte[] buffer = new byte[1024];
+        byte[] fileArray = null;
+
+        try {
+            while ((readCount = fis.read(buffer)) != -1) {  //fis가 파일 내용을 한번에 모두 읽어서 buffer에 저장
+                baos.write(buffer, 0, readCount);   //baos에 offset인 0부터 readCount만큼 한번에 buffer 바이트 배열에서 데이터를 읽어 쓴다
+            }
+            fileArray = baos.toByteArray(); //baos를 바이트 배열로 변환
+            fis.close();
+            baos.close();
+        } catch (IOException e) {
+            throw new RuntimeException("File Error");
+        }
+        return fileArray;   //바이트 배열로 리턴
+    }
+
+
 }

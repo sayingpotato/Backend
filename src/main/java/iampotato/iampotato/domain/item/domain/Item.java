@@ -27,6 +27,7 @@ public class Item {
     @JoinColumn(name = "store_id")
     private Store store;
 
+    @Enumerated(EnumType.STRING)
     private ItemCategory category;
 
     private String name;

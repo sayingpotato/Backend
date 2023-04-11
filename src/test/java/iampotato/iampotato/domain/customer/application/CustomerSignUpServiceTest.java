@@ -46,15 +46,15 @@ public class CustomerSignUpServiceTest {
         //given
         Customer customer1 = Customer.builder()
                 .loginId("test1")
-                        .password("123")
-                                .nickname("로건")
-                                        .build();
+                .password("123")
+                .nickname("로건")
+                .build();
 
         Customer customer2 = Customer.builder()
                 .loginId("test1")
-                        .password("123")
-                                .nickname("루루")
-                                        .build();
+                .password("123")
+                .nickname("루루")
+                .build();
 
         //when
         customerSignUpService.signUp(customer1);
@@ -71,15 +71,15 @@ public class CustomerSignUpServiceTest {
         //given
         Customer customer1 = Customer.builder()
                 .loginId("test1")
-                        .password("123")
-                                .nickname("로건")
-                                        .build();
+                .password("123")
+                .nickname("로건")
+                .build();
 
         Customer customer2 = Customer.builder()
                 .loginId("test2")
-                        .password("123")
-                                .nickname("로건")
-                                        .build();
+                .password("123")
+                .nickname("로건")
+                .build();
 
         //when
         customerSignUpService.signUp(customer1);

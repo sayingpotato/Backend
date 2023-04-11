@@ -3,14 +3,10 @@ package iampotato.iampotato.domain.store.api;
 import iampotato.iampotato.domain.store.application.StoreService;
 import iampotato.iampotato.domain.store.domain.Location;
 import iampotato.iampotato.domain.store.domain.Store;
-import iampotato.iampotato.domain.store.dto.StoreMapRequest;
-import iampotato.iampotato.domain.store.dto.StoreMapResponse;
-import iampotato.iampotato.domain.store.dto.StoreRegistrationResponse;
+import iampotato.iampotato.domain.store.dto.*;
+import iampotato.iampotato.global.util.Result;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,14 +38,35 @@ public class StoreApi {
      * 마커클릭시 띄워주는 info 창 정보까지만 반환합니다.
      */
     @GetMapping("api/v1/stores/nearby")
-    public List<StoreMapResponse> findStoresByLocation(StoreMapRequest storeMapRequest) {
+    public Result<List<StoreMapResponse>> findStoresByLocation(StoreMapRequest storeMapRequest) {
 
         Location location = new Location(storeMapRequest.getLatitude(), storeMapRequest.getLongitude());
         List<Store> stores = storeService.findStoresByLocation(location);
 
-        return stores.stream()
+        List<StoreMapResponse> storeMapResponses = stores.stream()
                 .map(StoreMapResponse::new)
                 .collect(Collectors.toList());
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, storeMapResponses);
+    }
+
+    /**
+     * 위치정보를 받으면 해당 위치에서 특정반경 이내에 있는 가게정보를 반환합니다.
+     * 리스트보기 클릭시 띄워주는 상세정보를 반환합니다.
+     */
+    @GetMapping("api/v1/stores/nearby/list")
+    public Result<List<StoreMapListResponse>> findStoresByLocationWithList(StoreMapListRequest storeMapListRequest,
+                                                                           @RequestParam(value = "offset", defaultValue = "0") int offset,
+                                                                           @RequestParam(value = "limit", defaultValue = "100") int limit) {
+
+        Location location = new Location(storeMapListRequest.getLatitude(), storeMapListRequest.getLongitude());
+        List<Store> stores = storeService.findStoresListByLocation(location, offset, limit);
+
+        List<StoreMapListResponse> storeMapListResponse = stores.stream()
+                .map(StoreMapListResponse::new)
+                .collect(Collectors.toList());
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, storeMapListResponse);
     }
 
 }

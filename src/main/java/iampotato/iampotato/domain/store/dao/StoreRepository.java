@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor
@@ -44,6 +45,23 @@ public class StoreRepository {
                         + "WHERE MBRCONTAINS(ST_LINESTRINGFROMTEXT(" + pointFormat + "), s.location)", Store.class)
                 .setMaxResults(10);
 
+
         return query.getResultList();
+    }
+
+    public List<Store> findByLocationWithList(Location northeast, Location southwest, int offset, int limit) {
+
+        List<Store> stores = findByLocation(northeast, southwest);
+        List<Long> storeIds = stores.stream()
+                .map(Store::getId)
+                .collect(Collectors.toList());
+
+        return em.createQuery("select s from Store s" +
+                        " join fetch s.discounts d" +
+                        " where s.id in (:storeIds)", Store.class)
+                .setParameter("storeIds", storeIds)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
     }
 }

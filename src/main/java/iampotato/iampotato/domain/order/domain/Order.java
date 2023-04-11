@@ -34,7 +34,8 @@ public class Order {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    // cascade 를 설정해줘야 review 를 지워줄 수 있습니다. review 의 경우 Order 에 제약조건이 있어, review 단독으로 drop 이 불가능합니다.
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "review_id")
     private Review review;
 

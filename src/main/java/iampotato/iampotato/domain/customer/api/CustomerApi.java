@@ -45,7 +45,7 @@ public class CustomerApi {
     }
 
     @GetMapping(value = "/image/view", produces = {"image/jpeg", "image/png", "image/gif"})
-    public @ResponseBody byte[] getImage(@RequestParam("customerStoredImage") String customerStoredImage) throws IOException {
+    public byte[] getImage(@RequestParam("customerStoredImage") String customerStoredImage) throws IOException {
         FileInputStream fis = null; //파일로부터 바이트로 입력받기
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 

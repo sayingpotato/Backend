@@ -41,4 +41,23 @@ public class StoreService {
         return storeRepository.findByLocation(northeast, southwest);
     }
 
+    public List<Store> findStoresListByLocation(Location location, int offset, int limit) {
+
+        Location northeast = StoreMapDistance.aroundCustomerNortheastDot(location);
+        Location southwest = StoreMapDistance.aroundCustomerSouthwestDot(location);
+
+        List<Store> stores = storeRepository.findByLocationWithList(northeast, southwest, offset, limit);
+        sortStoresByDistance(stores, location);
+
+        return stores;
+    }
+
+    /**
+     * 할인지도 페이지에서 리스트로 보여줄때, 가장 가까운순으로 정렬합니다.
+     * 정렬 기준이 추가된다면 strategy 패턴으로 만들려고 합니다.
+     */
+    private void sortStoresByDistance(List<Store> stores, Location location) {
+
+        stores.sort((o1, o2) -> (int) (StoreMapDistance.calculateDistance(location, o1) - StoreMapDistance.calculateDistance(location, o2)));
+    }
 }

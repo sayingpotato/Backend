@@ -1,6 +1,7 @@
 package iampotato.iampotato.domain.store.application;
 
 import iampotato.iampotato.domain.store.domain.Location;
+import iampotato.iampotato.domain.store.domain.Store;
 
 
 /**
@@ -31,5 +32,16 @@ public class StoreMapDistance {
         double nowLongitude = customerLocation.getLongitude(); // 현재 경도 = x 좌표
 
         return GeometryUtil.calculateByDirection(nowLatitude, nowLongitude, SEARCH_DISTANCE, Direction.SOUTHWEST.getBearing());
+    }
+
+    public static double calculateDistance(Location customerLocation, Store store) {
+
+        double nowLatitude = customerLocation.getLatitude(); // 현재 위도 = y 좌표
+        double nowLongitude = customerLocation.getLongitude(); // 현재 경도 = x 좌표
+
+        double storeLatitude = store.getLocation().getY(); // 현재 위도 = y 좌표
+        double storeLongitude = store.getLocation().getX(); // 현재 경도 = x 좌표
+
+        return GeometryUtil.calculateDistance(nowLatitude, nowLongitude, storeLatitude, storeLongitude);
     }
 }

@@ -26,6 +26,15 @@ public class GeometryUtil {
         return new Location(toDegree(latitude), toDegree(longitude));
     }
 
+    public static double calculateDistance(Double lat1, Double lon1, Double lat2, Double lon2) {
+        double dLat = toRadian(lat2 - lat1);
+        double dLon = toRadian(lon2 - lon1);
+
+        double a = sin(dLat / 2) * sin(dLat / 2) + Math.cos(toRadian(lat1)) * cos(toRadian(lat2)) * sin(dLon / 2) * sin(dLon / 2);
+        double b = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return EARTH_RADIUS * b * 1000; //m
+    }
+
     private static Double toRadian(Double coordinate) {
         return coordinate * Math.PI / 180.0;
     }

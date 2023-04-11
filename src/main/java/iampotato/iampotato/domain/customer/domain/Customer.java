@@ -6,9 +6,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Random;
 
 @Entity
 @Getter
@@ -103,15 +107,26 @@ public class Customer {
             }
         }
 
-        //저장하는 파일의 이름이 겹치면 안되므로 나노 초를 활용하여 임의이 이름 지정
+        //저장하는 파일의 이름이 겹치면 안되므로 나노 초를 활용하여 임의이 이름 지정 +++ 추가적으로 더 파일 중복을 막기 위해 3자리 수의 난수를 섞어 만듬
         String newFileName = System.nanoTime() + fileExtension;
+        String filePath = absolutePath + path + newFileName;
+        Path pathInstance = Paths.get(filePath);
+        if(Files.exists(pathInstance)) {    //나노 타임으로 해싱한 이름 조차도 이미 존재하는지 중복 여부를 검사
+            String numRandom = "";
+            for(int i=0; i<3; i++) {
+                char ch = (char)((int)(Math.random()*10)+48);   //세자리 난수를 생성
+                numRandom += ch;
+            }
+            newFileName = numRandom + newFileName.substring(3); //세자리 난수를 섞어 파일명 재정의
+        }
+
         CustomerImage customerImage = CustomerImage.builder()
                 .customerOriginalImage(multipartFile.getOriginalFilename())
                 .customerStoredImage(absolutePath + path + newFileName)
                 .fileSize(multipartFile.getSize())
                 .build();
 
-        file = new File(absolutePath + path + newFileName);
+        file = new File(filePath);
         multipartFile.transferTo(file); //multipartFile을 실제로 application단에 업로드 하기 위함
 
         return customerImage;

@@ -14,9 +14,9 @@ import javax.persistence.Embeddable;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class StoreTopReview {
 
-    private String firstGradeReview;
-    private String secondGradeReview;
-    private String thirdGradeReview;
+    private String firstGradeReviewName;
+    private String secondGradeReviewName;
+    private String thirdGradeReviewName;
 
     @ColumnDefault("0")
     private int firstGradeReviewNumber;

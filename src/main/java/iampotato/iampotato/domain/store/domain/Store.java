@@ -32,10 +32,10 @@ public class Store {
     private List<Item> items = new ArrayList<>();
 
     @BatchSize(size = 100)
-    @OneToMany(mappedBy = "store")
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<Discount> discounts = new ArrayList<>();
 
-    @OneToMany(mappedBy = "store")
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)

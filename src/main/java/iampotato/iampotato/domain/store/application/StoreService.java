@@ -38,7 +38,7 @@ public class StoreService {
         Location northeast = StoreMapDistance.aroundCustomerNortheastDot(location);
         Location southwest = StoreMapDistance.aroundCustomerSouthwestDot(location);
 
-        return storeRepository.findByLocation(northeast, southwest);
+        return storeRepository.findStoresByLocation(northeast, southwest);
     }
 
     public List<Store> findStoresListByLocation(Location location, int offset, int limit) {
@@ -46,7 +46,7 @@ public class StoreService {
         Location northeast = StoreMapDistance.aroundCustomerNortheastDot(location);
         Location southwest = StoreMapDistance.aroundCustomerSouthwestDot(location);
 
-        List<Store> stores = storeRepository.findByLocationWithList(northeast, southwest, offset, limit);
+        List<Store> stores = storeRepository.findStoresListByLocation(northeast, southwest, offset, limit);
         sortStoresByDistance(stores, location);
 
         return stores;

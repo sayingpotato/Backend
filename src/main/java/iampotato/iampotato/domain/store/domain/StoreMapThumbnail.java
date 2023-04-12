@@ -17,7 +17,7 @@ public class StoreMapThumbnail {
     /**
      * DEFAULT_THUMBNAIL_URL 는 저장된 이미지 없을시 띄워주는 사진 URL 입니다.
      */
-    private static final String DEFAULT_THUMBNAIL_URL = "aa";
+    private static final String DEFAULT_THUMBNAIL_URL = "'aa'";
     protected StoreMapThumbnail(){}
 
     @ColumnDefault(DEFAULT_THUMBNAIL_URL)

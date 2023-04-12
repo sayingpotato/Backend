@@ -28,7 +28,11 @@ public class CustomerSignUpServiceTest {
     @Test
     public void 회원가입() throws Exception {
         //given
-        Customer customer = Customer.createCustomer("test1", "1q2w3e4r1!", "로건");
+        Customer customer = Customer.builder()
+                .loginId("test1")
+                .password("1q2w3e4r1!")
+                .nickname("로건")
+                .build();
 
         //when
         Long saveId = customerSignUpService.signUp(customer);
@@ -40,8 +44,17 @@ public class CustomerSignUpServiceTest {
     @Test
     public void 중복_아이디_예외() throws Exception {
         //given
-        Customer customer1 = Customer.createCustomer("test1", "123", "로건");
-        Customer customer2 = Customer.createCustomer("test1", "123", "루루");
+        Customer customer1 = Customer.builder()
+                .loginId("test1")
+                .password("123")
+                .nickname("로건")
+                .build();
+
+        Customer customer2 = Customer.builder()
+                .loginId("test1")
+                .password("123")
+                .nickname("루루")
+                .build();
 
         //when
         customerSignUpService.signUp(customer1);
@@ -56,8 +69,17 @@ public class CustomerSignUpServiceTest {
     @Test
     public void 중복_닉네임_예외() throws Exception {
         //given
-        Customer customer1 = Customer.createCustomer("test1", "123", "로건");
-        Customer customer2 = Customer.createCustomer("test2", "123", "로건");
+        Customer customer1 = Customer.builder()
+                .loginId("test1")
+                .password("123")
+                .nickname("로건")
+                .build();
+
+        Customer customer2 = Customer.builder()
+                .loginId("test2")
+                .password("123")
+                .nickname("로건")
+                .build();
 
         //when
         customerSignUpService.signUp(customer1);

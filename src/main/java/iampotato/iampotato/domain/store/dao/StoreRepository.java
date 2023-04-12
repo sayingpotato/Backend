@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor
@@ -31,7 +32,7 @@ public class StoreRepository {
     /**
      * MySQL 의 MBR 기능을 사용하기위해 nativeQuery 로 작성
      */
-    public List<Store> findByLocation(Location northeast, Location southwest) {
+    public List<Store> findStoresByLocation(Location northeast, Location southwest) {
 
         // NativeQuery 로 보내기위해 북동쪽, 남서쪽 거리를 String 으로 반환 (x y, x y) 좌표로 보내며 x 가 Longitude, y 가 Latitude 입니다.
         String pointFormat = String.format(
@@ -44,6 +45,23 @@ public class StoreRepository {
                         + "WHERE MBRCONTAINS(ST_LINESTRINGFROMTEXT(" + pointFormat + "), s.location)", Store.class)
                 .setMaxResults(10);
 
+
         return query.getResultList();
+    }
+
+    public List<Store> findStoresListByLocation(Location northeast, Location southwest, int offset, int limit) {
+
+        List<Store> stores = findStoresByLocation(northeast, southwest);
+        List<Long> storeIds = stores.stream()
+                .map(Store::getId)
+                .collect(Collectors.toList());
+
+        return em.createQuery("select s from Store s" +
+                        " join fetch s.discounts d" +
+                        " where s.id in (:storeIds)", Store.class)
+                .setParameter("storeIds", storeIds)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
     }
 }

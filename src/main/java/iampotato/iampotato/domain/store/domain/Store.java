@@ -6,17 +6,17 @@ import iampotato.iampotato.domain.review.domain.Review;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.BatchSize;
 import org.locationtech.jts.geom.Point;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Store <-> Item = 1 : N
  * Store <-> Discount = 1 : N
- * Store -> Review = 1 : N
+ * Store <-> Review = 1 : N
  */
 @Entity
 @Getter
@@ -31,10 +31,11 @@ public class Store {
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<Item> items = new ArrayList<>();
 
-    @OneToMany(mappedBy = "store")
+    @BatchSize(size = 100)
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<Discount> discounts = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
@@ -50,6 +51,15 @@ public class Store {
 
     @Embedded
     private Address address;
+
+    @Embedded
+    private StoreMapThumbnail storeMapThumbnail;
+
+    @Embedded
+    private StoreTopReview storeTopReview;
+
+    @Embedded
+    private StoreTopItem storeTopItem;
 
     private String storeImg;
 
@@ -139,4 +149,5 @@ public class Store {
 
         return store;
     }
+
 }

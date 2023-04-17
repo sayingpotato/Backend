@@ -6,7 +6,7 @@ spring:
     password: sayingpotato1!
   jpa:
     hibernate:
-      ddl-auto: none #create로 하면 애플리케이션 실행 시점에 내가 가지고 있는 테이블을 다 지운 다음에 엔티티 정보를 보고 테이블을 자동으로 만들어 줌
+      ddl-auto: create #create로 하면 애플리케이션 실행 시점에 내가 가지고 있는 테이블을 다 지운 다음에 엔티티 정보를 보고 테이블을 자동으로 만들어 줌
     properties:
       hibernate:
         #          show_sql: true #밑에 org.hivernate.SQL과 겹치는데 얘는 System.out으로 찍는 거고 밑에는 로그로 찍는거. 얘를 안쓰는 걸 추천

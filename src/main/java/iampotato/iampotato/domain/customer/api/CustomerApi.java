@@ -40,9 +40,9 @@ public class CustomerApi {
     }
 
     @PutMapping("/api/v1/customers/{id}/image") //MultipartFile을 처리하기 위해서 @RequestParam을 사용했다. 따라서 {image:이미지파일} 꼴로 넘겨 받아야한다.
-    public UploadImageResponse uploadImage(@PathVariable("id") Long customerId, @RequestParam(value="image", required=false) MultipartFile multipartFile) throws Exception {
+    public Result<UploadImageResponse> uploadImage(@PathVariable("id") Long customerId, @RequestParam(value="image", required=false) MultipartFile multipartFile) throws Exception {
         Customer customer = customerImageService.uploadImage(customerId, multipartFile);
-        return new UploadImageResponse(customerId, customer.getCustomerImage());
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, new UploadImageResponse(customerId, customer.getCustomerImage()));
     }
 
     @GetMapping(value = "/image/view", produces = {"image/jpeg", "image/png", "image/gif"})

@@ -19,8 +19,8 @@ COVID-19 사태와 인플레이션으로 많은 어려움을 겪고 있는 업�
 <img width="1685" alt="7" src="https://user-images.githubusercontent.com/77658361/232473032-06af219f-4b78-477b-8ad0-4f80d47c9c1d.png">
 
 ### 🧑‍🤝‍🧑 맴버구성
-- @xylogan - 회원 인증 및 로그인 등과 같은 회원과 관련된 비즈니스 로직 개발, CI/CD 구축, Docker 및 Kubernetes 기반의 Cloud Native 배포 
-- @jinhoon227 - 가게 정보, 요일 별 할인 페이지, 리뷰 등 메인 비즈니스 로직 개발, Docker 및 Kubernetes 기반의 Cloud Native 배포
+- [xylogan](https://github.com/xylogan) - 회원 인증 및 로그인 등과 같은 회원과 관련된 비즈니스 로직 개발, CI/CD 구축, Docker 및 Kubernetes 기반의 Cloud Native 배포 
+- [jinhoon227](https://github.com/jinhoon227) - 가게 정보, 요일 별 할인 페이지, 리뷰 등 메인 비즈니스 로직 개발, Docker 및 Kubernetes 기반의 Cloud Native 배포
 
 ### ⚙️ 개발 환경
 - **Java Platform** : `OpenJDK 11`

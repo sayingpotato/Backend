@@ -1,5 +1,6 @@
 package iampotato.iampotato.domain.store.api;
 
+import iampotato.iampotato.domain.discount.domain.DiscountDay;
 import iampotato.iampotato.domain.store.application.StoreService;
 import iampotato.iampotato.domain.store.domain.Location;
 import iampotato.iampotato.domain.store.domain.Store;
@@ -69,4 +70,22 @@ public class StoreApi {
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, storeMapListResponse);
     }
 
+
+    /**
+     * 요일을 받으면 해당 요일에 할인하는 가게정보를 가져옵니다.
+     * DiscountDay 에 없는 요일이 들어올시 예외가 발생합니다.
+     * 해당 예외처리는 아직 안된상태이며 추후 예외처리 로직에 대해 상의하고 결정합니다.
+     */
+    @GetMapping("api/v1/stores/discount")
+    public Result<List<StoreTodayDiscountResponse>> findTodayDiscountStores(StoreTodayDiscountRequest storeTodayDiscountRequest) {
+
+        DiscountDay discountDay = DiscountDay.valueOf(storeTodayDiscountRequest.getDay());
+        List<Store> todayDiscountStores = storeService.findTodayDiscountStores(discountDay);
+
+        List<StoreTodayDiscountResponse> storeTodayDiscountResponses = todayDiscountStores.stream()
+                .map(StoreTodayDiscountResponse::new)
+                .collect(Collectors.toList());
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, storeTodayDiscountResponses);
+    }
 }

@@ -64,9 +64,9 @@ public class StoreService {
     }
 
 
-    public List<Store> findTodayDiscountStores(DiscountDay discountDay) {
+    public List<Store> findStoresByDiscountDay(DiscountDay discountDay) {
 
-        List<Store> todayDiscountStores = storeRepository.findTodayDiscountStores(discountDay);
+        List<Store> todayDiscountStores = storeRepository.findStoresByDiscountDay(discountDay);
         sortStoresByName(todayDiscountStores);
 
         return todayDiscountStores;

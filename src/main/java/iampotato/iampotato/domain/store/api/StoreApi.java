@@ -39,7 +39,7 @@ public class StoreApi {
      * 마커클릭시 띄워주는 info 창 정보까지만 반환합니다.
      */
     @GetMapping("api/v1/stores/nearby")
-    public Result<List<StoreMapResponse>> findStoresByLocation(StoreMapRequest storeMapRequest) {
+    public Result<List<StoreMapResponse>> findStoresByLocationForDiscountMap(StoreMapRequest storeMapRequest) {
 
         Location location = new Location(storeMapRequest.getLatitude(), storeMapRequest.getLongitude());
         List<Store> stores = storeService.findStoresByLocation(location);
@@ -56,7 +56,7 @@ public class StoreApi {
      * 리스트보기 클릭시 띄워주는 상세정보를 반환합니다.
      */
     @GetMapping("api/v1/stores/nearby/list")
-    public Result<List<StoreMapListResponse>> findStoresByLocationWithList(StoreMapListRequest storeMapListRequest,
+    public Result<List<StoreMapListResponse>> findStoresByLocationForDiscountMapList(StoreMapListRequest storeMapListRequest,
                                                                            @RequestParam(value = "offset", defaultValue = "0") int offset,
                                                                            @RequestParam(value = "limit", defaultValue = "100") int limit) {
 
@@ -77,10 +77,10 @@ public class StoreApi {
      * 해당 예외처리는 아직 안된상태이며 추후 예외처리 로직에 대해 상의하고 결정합니다.
      */
     @GetMapping("api/v1/stores/discount")
-    public Result<List<StoreTodayDiscountResponse>> findTodayDiscountStores(StoreTodayDiscountRequest storeTodayDiscountRequest) {
+    public Result<List<StoreTodayDiscountResponse>> findStoresByDiscountDayForTodayDiscount(StoreTodayDiscountRequest storeTodayDiscountRequest) {
 
         DiscountDay discountDay = DiscountDay.valueOf(storeTodayDiscountRequest.getDay());
-        List<Store> todayDiscountStores = storeService.findTodayDiscountStores(discountDay);
+        List<Store> todayDiscountStores = storeService.findStoresByDiscountDay(discountDay);
 
         List<StoreTodayDiscountResponse> storeTodayDiscountResponses = todayDiscountStores.stream()
                 .map(StoreTodayDiscountResponse::new)

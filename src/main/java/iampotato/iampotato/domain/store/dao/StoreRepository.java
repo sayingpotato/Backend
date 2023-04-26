@@ -68,7 +68,7 @@ public class StoreRepository {
                 .getResultList();
     }
 
-    public List<Store> findTodayDiscountStores(DiscountDay discountDay) {
+    public List<Store> findStoresByDiscountDay(DiscountDay discountDay) {
         return em.createQuery("select distinct s from Store s" +
                         " join fetch s.discounts d" +
                         " where s.storeStatus = :storeStatus" +

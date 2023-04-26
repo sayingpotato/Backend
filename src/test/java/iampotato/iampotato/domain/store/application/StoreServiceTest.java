@@ -173,7 +173,7 @@ class StoreServiceTest {
         discountService.registerDiscount(discount2);
         discountService.registerDiscount(discount3);
 
-        List<Store> result = storeService.findTodayDiscountStores(DiscountDay.MON);
+        List<Store> result = storeService.findStoresByDiscountDay(DiscountDay.MON);
         assertThat(result).containsExactly(store3, store2, store1);
     }
 }

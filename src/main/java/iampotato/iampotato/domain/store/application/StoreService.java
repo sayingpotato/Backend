@@ -1,5 +1,6 @@
 package iampotato.iampotato.domain.store.application;
 
+import iampotato.iampotato.domain.discount.domain.DiscountDay;
 import iampotato.iampotato.domain.store.dao.StoreRepository;
 import iampotato.iampotato.domain.store.domain.Location;
 import iampotato.iampotato.domain.store.domain.Store;
@@ -7,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -59,5 +61,19 @@ public class StoreService {
     private void sortStoresByDistance(List<Store> stores, Location location) {
 
         stores.sort((o1, o2) -> (int) (StoreMapDistance.calculateDistance(location, o1) - StoreMapDistance.calculateDistance(location, o2)));
+    }
+
+
+    public List<Store> findStoresByDiscountDay(DiscountDay discountDay) {
+
+        List<Store> todayDiscountStores = storeRepository.findStoresByDiscountDay(discountDay);
+        sortStoresByName(todayDiscountStores);
+
+        return todayDiscountStores;
+    }
+
+    private void sortStoresByName(List<Store> stores) {
+
+        stores.sort(Comparator.comparing(Store::getName));
     }
 }

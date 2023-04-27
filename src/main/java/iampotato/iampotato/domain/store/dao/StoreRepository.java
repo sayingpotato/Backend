@@ -1,7 +1,10 @@
 package iampotato.iampotato.domain.store.dao;
 
+import iampotato.iampotato.domain.discount.domain.DiscountDay;
 import iampotato.iampotato.domain.store.domain.Location;
 import iampotato.iampotato.domain.store.domain.Store;
+import iampotato.iampotato.domain.store.domain.StoreDiscountInfo;
+import iampotato.iampotato.domain.store.domain.StoreStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -62,6 +65,18 @@ public class StoreRepository {
                 .setParameter("storeIds", storeIds)
                 .setFirstResult(offset)
                 .setMaxResults(limit)
+                .getResultList();
+    }
+
+    public List<Store> findStoresByDiscountDay(DiscountDay discountDay) {
+        return em.createQuery("select distinct s from Store s" +
+                        " join fetch s.discounts d" +
+                        " where s.storeStatus = :storeStatus" +
+                        " and s.discountInfo = :discountInfo" +
+                        " and d.discountDay = :discountDay" , Store.class)
+                .setParameter("storeStatus", StoreStatus.OPEN)
+                .setParameter("discountInfo", StoreDiscountInfo.TODAY_DISCOUNT)
+                .setParameter("discountDay", discountDay)
                 .getResultList();
     }
 }

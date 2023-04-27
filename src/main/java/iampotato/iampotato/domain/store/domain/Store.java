@@ -3,10 +3,10 @@ package iampotato.iampotato.domain.store.domain;
 import iampotato.iampotato.domain.discount.domain.Discount;
 import iampotato.iampotato.domain.item.domain.Item;
 import iampotato.iampotato.domain.review.domain.Review;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 import org.locationtech.jts.geom.Point;
 
 import javax.persistence.*;
@@ -20,8 +20,13 @@ import java.util.*;
  */
 @Entity
 @Getter
+@Builder
+@DynamicInsert
+@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Store {
+
+    private static final String DEFAULT_STORE_URL = "'aa'";
 
     @Id @GeneratedValue
     @Column(name = "store_id")
@@ -61,6 +66,7 @@ public class Store {
     @Embedded
     private StoreTopItem storeTopItem;
 
+    @ColumnDefault(DEFAULT_STORE_URL)
     private String storeImg;
 
     private String description;
@@ -91,63 +97,5 @@ public class Store {
 
     @Enumerated(EnumType.STRING)
     private StoreDiscountInfo discountInfo;
-
-    public static Store createStoreWithRequiredValue(String name,
-                                                     StoreCategory category,
-                                                     StorePaymentType paymentType,
-                                                     StoreSalesType storeSalesType,
-                                                     Address address,
-                                                     String phone,
-                                                     StoreStatus storeStatus,
-                                                     StoreDiscountInfo discountInfo) {
-
-        Store store = new Store();
-        store.name = name;
-        store.category = category;
-        store.paymentType = paymentType;
-        store.salesType = storeSalesType;
-        store.address = address;
-        store.phone = phone;
-
-        // 가게 추가 필드
-        // =============
-        store.outletNum = 0;
-
-        // =============
-        store.storeStatus = storeStatus;
-        store.discountInfo = discountInfo;
-
-        return store;
-    }
-
-    public static Store createStoreWithRequiredValueWithLocation(String name,
-                                                     StoreCategory category,
-                                                     StorePaymentType paymentType,
-                                                     StoreSalesType storeSalesType,
-                                                     Point location,
-                                                     Address address,
-                                                     String phone,
-                                                     StoreStatus storeStatus,
-                                                     StoreDiscountInfo discountInfo) {
-
-        Store store = new Store();
-        store.name = name;
-        store.category = category;
-        store.paymentType = paymentType;
-        store.salesType = storeSalesType;
-        store.location = location;
-        store.address = address;
-        store.phone = phone;
-
-        // 가게 추가 필드
-        // =============
-        store.outletNum = 0;
-
-        // =============
-        store.storeStatus = storeStatus;
-        store.discountInfo = discountInfo;
-
-        return store;
-    }
 
 }

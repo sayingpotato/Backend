@@ -1,9 +1,7 @@
 package iampotato.iampotato.domain.discount.domain;
 
 import iampotato.iampotato.domain.store.domain.Store;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,7 +11,9 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Getter
+@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class Discount {
 
     @Id @GeneratedValue
@@ -28,7 +28,8 @@ public class Discount {
 
     private int discountRatio;
 
-    private String day; // 할인하는 요일
+    @Enumerated(EnumType.STRING)
+    private DiscountDay discountDay; // 할인하는 요일
 
     private LocalDateTime createdDate;
 

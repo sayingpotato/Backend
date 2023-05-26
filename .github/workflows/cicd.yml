@@ -20,8 +20,8 @@ on:
       - main
 
 env:
-  PROJECT_ID: iampotato
-  GCE_INSTANCE: iampotato-be-cos # TODO: update to instance name
+  PROJECT_ID: iampotato-387813
+  GCE_INSTANCE: iampotato-backend # TODO: update to instance name
   GCE_INSTANCE_ZONE: asia-northeast3-a # TODO: update to instance zone
           
 jobs:

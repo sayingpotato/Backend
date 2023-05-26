@@ -27,6 +27,17 @@ public class StoreRepository {
         return em.find(Store.class, id);
     }
 
+    public Store findByIdV2(Long id, int offset, int limit) {
+
+        return em.createQuery("select s from Store s" +
+                        " left join fetch s.items.items i" +
+                        " where s.id = :storeId", Store.class)
+                .setParameter("storeId", id)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getSingleResult();
+    }
+
     public List<Store> findAll() {
         return em.createQuery("select s from Store s", Store.class)
                 .getResultList();
@@ -60,7 +71,7 @@ public class StoreRepository {
                 .collect(Collectors.toList());
 
         return em.createQuery("select s from Store s" +
-                        " join fetch s.discounts d" +
+                        " join fetch s.discounts.discounts d" +
                         " where s.id in (:storeIds)", Store.class)
                 .setParameter("storeIds", storeIds)
                 .setFirstResult(offset)
@@ -70,7 +81,7 @@ public class StoreRepository {
 
     public List<Store> findStoresByDiscountDay(DiscountDay discountDay) {
         return em.createQuery("select distinct s from Store s" +
-                        " join fetch s.discounts d" +
+                        " join fetch s.discounts.discounts d" +
                         " where s.storeStatus = :storeStatus" +
                         " and s.discountInfo = :discountInfo" +
                         " and d.discountDay = :discountDay" , Store.class)

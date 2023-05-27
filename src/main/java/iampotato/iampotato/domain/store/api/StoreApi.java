@@ -1,6 +1,5 @@
 package iampotato.iampotato.domain.store.api;
 
-import iampotato.iampotato.domain.discount.domain.DiscountDay;
 import iampotato.iampotato.domain.store.application.StoreService;
 import iampotato.iampotato.domain.store.domain.Location;
 import iampotato.iampotato.domain.store.domain.Store;
@@ -87,8 +86,7 @@ public class StoreApi {
     @GetMapping("api/v1/stores/discount")
     public Result<List<StoreTodayDiscountResponse>> findStoresByDiscountDayForTodayDiscount(StoreTodayDiscountRequest storeTodayDiscountRequest) {
 
-        DiscountDay discountDay = DiscountDay.valueOf(storeTodayDiscountRequest.getDay());
-        List<Store> todayDiscountStores = storeService.findStoresByDiscountDay(discountDay);
+        List<Store> todayDiscountStores = storeService.findStoresByDiscountDay(storeTodayDiscountRequest.getDay());
 
         List<StoreTodayDiscountResponse> storeTodayDiscountResponses = todayDiscountStores.stream()
                 .map(StoreTodayDiscountResponse::new)

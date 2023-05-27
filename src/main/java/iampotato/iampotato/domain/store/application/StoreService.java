@@ -4,12 +4,15 @@ import iampotato.iampotato.domain.discount.domain.DiscountDay;
 import iampotato.iampotato.domain.store.dao.StoreRepository;
 import iampotato.iampotato.domain.store.domain.Location;
 import iampotato.iampotato.domain.store.domain.Store;
+import iampotato.iampotato.domain.store.exception.StoreException;
+import iampotato.iampotato.domain.store.exception.StoreExceptionGroup;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -30,7 +33,10 @@ public class StoreService {
     }
 
     public Store findByIdV2(Long storeId, int offset, int limit) {
-        return storeRepository.findByIdV2(storeId, offset, limit);
+
+        Optional<Store> OptionalStore = storeRepository.findByIdV2(storeId, offset, limit);
+
+        return OptionalStore.orElseThrow(() -> new StoreException(StoreExceptionGroup.STORE_NULL));
     }
 
 

@@ -1,6 +1,5 @@
-package iampotato.iampotato.domain.store.dto;
+package iampotato.iampotato.domain.store.dto.register;
 
-import iampotato.iampotato.domain.store.domain.*;
 import lombok.Data;
 
 @Data

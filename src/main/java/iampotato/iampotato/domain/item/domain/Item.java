@@ -2,9 +2,7 @@ package iampotato.iampotato.domain.item.domain;
 
 import iampotato.iampotato.domain.itemoption.domain.ItemOption;
 import iampotato.iampotato.domain.store.domain.Store;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,9 +11,12 @@ import java.util.List;
 
 /**
  * Item <-> Store = N : 1
+ * Item <-> ItemOption = N : 1
  */
 @Entity
 @Getter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Item {
 
@@ -26,6 +27,9 @@ public class Item {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
     private Store store;
+
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    private List<ItemOption> itemOptions = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     private ItemCategory category;

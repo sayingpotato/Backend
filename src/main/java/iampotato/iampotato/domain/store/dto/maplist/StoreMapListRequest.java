@@ -1,4 +1,4 @@
-package iampotato.iampotato.domain.store.dto;
+package iampotato.iampotato.domain.store.dto.maplist;
 
 import lombok.Data;
 

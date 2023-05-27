@@ -1,10 +1,7 @@
 package iampotato.iampotato.domain.review.domain;
 
-import iampotato.iampotato.domain.order.domain.Order;
 import iampotato.iampotato.domain.store.domain.Store;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,6 +10,8 @@ import java.time.LocalDateTime;
  * Review <-> Store = N : 1
  */
 @Entity
+@Builder
+@AllArgsConstructor
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Review {

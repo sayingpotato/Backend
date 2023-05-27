@@ -1,12 +1,17 @@
 package iampotato.iampotato.domain.customer.application;
 
 import iampotato.iampotato.domain.customer.dao.CustomerRepository;
+import iampotato.iampotato.domain.customer.domain.Customer;
 import iampotato.iampotato.domain.customer.dto.TokenResponse;
 import iampotato.iampotato.domain.customer.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -19,6 +24,27 @@ public class CustomerSignInService {
 
     @Transactional
     public TokenResponse signIn(String loginId, String password) {
+        List<Customer> findCustomersByLoginId = customerRepository.findByLoginId(loginId);
+        if (findCustomersByLoginId.isEmpty()) {
+            throw new IllegalStateException("존재하지 않는 아이디입니다.");
+        }
 
+        Customer customer = findCustomersByLoginId.get(0);
+        if (customer.getPassword() != password) {
+            throw new IllegalStateException("비밀번호가 일치하지 않습니다.");
+        }
+
+        // 1. Login ID/PW 를 기반으로 Authentication 객체 생성
+        // 이때 authentication 는 인증 여부를 확인하는 authenticated 값이 false
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginId, loginId);
+
+        // 2. 실제 검증 (사용자 비밀번호 체크)이 이루어지는 부분
+        // authenticate 매서드가 실행될 때 CustomUserDetailsService 에서 만든 loadUserByUsername 메서드가 실행
+        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+
+        // 3. 인증 정보를 기반으로 JWT 토큰 생성
+        TokenResponse tokenResponse = jwtTokenProvider.generateToken(authentication);
+
+        return tokenResponse;
     }
 }

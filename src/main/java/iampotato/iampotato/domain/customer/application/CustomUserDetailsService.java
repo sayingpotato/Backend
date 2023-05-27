@@ -26,9 +26,9 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     private UserDetails createUserDetails(iampotato.iampotato.domain.customer.domain.Customer user) {
-//        System.out.println(user.getUsername());
+//        System.out.println(user.getLoginId());
 //        System.out.println(user.getPassword());
-//        System.out.println(user.getRoles());
+//        System.out.println(user.getNickname());
 
         return User.builder()
                 .username(user.getUsername())

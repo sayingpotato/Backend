@@ -78,6 +78,4 @@ public class CustomerApi {
         }
         return fileArray;   //바이트 배열로 리턴
     }
-
-
 }

@@ -1,4 +1,4 @@
-package iampotato.iampotato.domain.store.dto;
+package iampotato.iampotato.domain.store.dto.maplist;
 
 import iampotato.iampotato.domain.store.domain.*;
 import lombok.Data;
@@ -33,8 +33,8 @@ public class StoreMapListResponse {
         this.storeMapThumbnail = store.getStoreMapThumbnail();
         this.location = new Location(store.getLocation().getY(), store.getLocation().getX());
 
-        this.discounts = store.getDiscounts().stream()
-                .map(discount -> new StoreMapListDiscount(discount.getPeople(), discount.getDiscountRatio()))
+        this.discounts = store.getDiscounts().getDiscounts().stream()
+                .map(StoreMapListDiscount::new)
                 .collect(Collectors.toList());
 
         this.storeTopItem = store.getStoreTopItem();

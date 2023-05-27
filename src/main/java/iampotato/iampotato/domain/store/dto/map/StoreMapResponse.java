@@ -1,4 +1,4 @@
-package iampotato.iampotato.domain.store.dto;
+package iampotato.iampotato.domain.store.dto.map;
 
 import iampotato.iampotato.domain.store.domain.*;
 import lombok.Data;
@@ -21,12 +21,6 @@ public class StoreMapResponse {
         // Point 자료형은 json 인식이 불가능하기때문에 Location 자료형으로 변환해주어야 합니다.
         this.location = new Location(store.getLocation().getY(), store.getLocation().getX());
 
-        markerInfo = new StoreMarkerInfo(store.getCategory(),
-                store.getAddress(),
-                store.getOperationHour(),
-                store.getClosedDay(),
-                store.getPhone(),
-                store.getStoreStatus(),
-                store.getDiscountInfo());
+        markerInfo = new StoreMarkerInfo(store);
     }
 }

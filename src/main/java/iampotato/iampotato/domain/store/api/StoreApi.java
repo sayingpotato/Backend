@@ -4,8 +4,16 @@ import iampotato.iampotato.domain.discount.domain.DiscountDay;
 import iampotato.iampotato.domain.store.application.StoreService;
 import iampotato.iampotato.domain.store.domain.Location;
 import iampotato.iampotato.domain.store.domain.Store;
-import iampotato.iampotato.domain.store.dto.*;
+import iampotato.iampotato.domain.store.dto.detail.StoreDetailRequest;
+import iampotato.iampotato.domain.store.dto.detail.StoreDetailResponse;
+import iampotato.iampotato.domain.store.dto.map.StoreMapRequest;
+import iampotato.iampotato.domain.store.dto.map.StoreMapResponse;
+import iampotato.iampotato.domain.store.dto.maplist.StoreMapListRequest;
+import iampotato.iampotato.domain.store.dto.maplist.StoreMapListResponse;
+import iampotato.iampotato.domain.store.dto.todaydiscount.StoreTodayDiscountRequest;
+import iampotato.iampotato.domain.store.dto.todaydiscount.StoreTodayDiscountResponse;
 import iampotato.iampotato.global.util.Result;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,8 +65,8 @@ public class StoreApi {
      */
     @GetMapping("api/v1/stores/nearby/list")
     public Result<List<StoreMapListResponse>> findStoresByLocationForDiscountMapList(StoreMapListRequest storeMapListRequest,
-                                                                           @RequestParam(value = "offset", defaultValue = "0") int offset,
-                                                                           @RequestParam(value = "limit", defaultValue = "100") int limit) {
+                                                                                     @RequestParam(value = "offset", defaultValue = "0") int offset,
+                                                                                     @RequestParam(value = "limit", defaultValue = "100") int limit) {
 
         Location location = new Location(storeMapListRequest.getLatitude(), storeMapListRequest.getLongitude());
         List<Store> stores = storeService.findStoresListByLocation(location, offset, limit);
@@ -87,5 +95,17 @@ public class StoreApi {
                 .collect(Collectors.toList());
 
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, storeTodayDiscountResponses);
+    }
+
+    @Tag(name = "가게세부정보", description = "가게 전체 정보를 가져오는 api 입니다.")
+    @GetMapping("api/v1/stores/detail")
+    public Result<StoreDetailResponse> findStoreDetail(StoreDetailRequest storeDetailRequest,
+                                                                        @RequestParam(value = "offset", defaultValue = "0") int offset,
+                                                                        @RequestParam(value = "limit", defaultValue = "100") int limit) {
+
+        Store store = storeService.findByIdV2(storeDetailRequest.getId(), offset, limit);
+        StoreDetailResponse storeDetailResponse = new StoreDetailResponse(store);
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, storeDetailResponse);
     }
 }

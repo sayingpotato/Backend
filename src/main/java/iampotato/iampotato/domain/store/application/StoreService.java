@@ -29,6 +29,11 @@ public class StoreService {
         return storeRepository.findById(storeId);
     }
 
+    public Store findByIdV2(Long storeId, int offset, int limit) {
+        return storeRepository.findByIdV2(storeId, offset, limit);
+    }
+
+
     /**
      * 애플리케이션에서 사용자 위치기준 북동쪽좌표와 남서쪽 좌표를 구해 해당 좌표를
      * DB 에 넘겨서 DB 에서 해당 범위에 들어가는 가게들을 가져옵니다.

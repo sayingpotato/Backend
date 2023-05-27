@@ -18,5 +18,7 @@ public class CustomerSignInService {
     private final JwtTokenProvider jwtTokenProvider;
 
     @Transactional
-    public TokenResponse signIn(String )
+    public TokenResponse signIn(String loginId, String password) {
+
+    }
 }

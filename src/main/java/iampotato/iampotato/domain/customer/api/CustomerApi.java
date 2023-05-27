@@ -1,11 +1,10 @@
 package iampotato.iampotato.domain.customer.api;
 
 import iampotato.iampotato.domain.customer.application.CustomerImageService;
+import iampotato.iampotato.domain.customer.application.CustomerSignInService;
 import iampotato.iampotato.domain.customer.application.CustomerSignUpService;
 import iampotato.iampotato.domain.customer.domain.Customer;
-import iampotato.iampotato.domain.customer.dto.SignUpRequest;
-import iampotato.iampotato.domain.customer.dto.SignUpResponse;
-import iampotato.iampotato.domain.customer.dto.UploadImageResponse;
+import iampotato.iampotato.domain.customer.dto.*;
 import iampotato.iampotato.global.util.Result;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,10 +23,11 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class CustomerApi {
 
+    private final CustomerSignInService customerSignInService;
     private final CustomerSignUpService customerSignUpService;
     private final CustomerImageService customerImageService;
 
-    @PostMapping("/api/v1/customers")
+    @PostMapping("/api/v1/customers/signUp")
     public Result<SignUpResponse> signUp(@RequestBody SignUpRequest signUpRequest) throws Exception{    //회원 가입하는 POST API
         //Spring security로 Password Hash 암호화 로직 추가하기
         Customer customer = Customer.builder()
@@ -37,6 +37,12 @@ public class CustomerApi {
                 .build();
         String id = customerSignUpService.signUp(customer);
         return new Result<>(Result.CODE_SUCCESS,Result.MESSAGE_OK, new SignUpResponse(id));
+    }
+
+    @PostMapping("/api/v1/customers/signIn")
+    public Result<TokenResponse> signIn(@RequestBody SignInRequest signInRequest) throws Exception {
+        TokenResponse tokenResponse = customerSignInService.signIn(signInRequest.getLoginId(), signInRequest.getPassword());
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, tokenResponse);
     }
 
     @PutMapping("/api/v1/customers/{id}/image") //MultipartFile을 처리하기 위해서 @RequestParam을 사용했다. 따라서 {image:이미지파일} 꼴로 넘겨 받아야한다.

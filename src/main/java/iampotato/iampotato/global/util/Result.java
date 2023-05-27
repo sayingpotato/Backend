@@ -16,10 +16,8 @@ public class Result<T> {
     public static final int CODE_CONTINUE = 100;
     public static final int CODE_SUCCESS = 200;
     public static final int CODE_REDIRECT = 300;
-    public static final int CODE_CLIENT_ERROR = 400;
-    public static final int CODE_SERVER_ERROR = 500;
 
-    private int code;
+    private int httpCode;
     private String message;
     private T data;
 }

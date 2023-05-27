@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
@@ -27,15 +28,17 @@ public class StoreRepository {
         return em.find(Store.class, id);
     }
 
-    public Store findByIdV2(Long id, int offset, int limit) {
+    public Optional<Store> findByIdV2(Long id, int offset, int limit) {
 
-        return em.createQuery("select s from Store s" +
+        List<Store> result = em.createQuery("select distinct s from Store s" +
                         " left join fetch s.items.items i" +
                         " where s.id = :storeId", Store.class)
                 .setParameter("storeId", id)
                 .setFirstResult(offset)
                 .setMaxResults(limit)
-                .getSingleResult();
+                .getResultList();
+
+        return result.stream().findAny();
     }
 
     public List<Store> findAll() {
@@ -70,8 +73,8 @@ public class StoreRepository {
                 .map(Store::getId)
                 .collect(Collectors.toList());
 
-        return em.createQuery("select s from Store s" +
-                        " join fetch s.discounts.discounts d" +
+        return em.createQuery("select distinct s from Store s" +
+                        " left join fetch s.discounts.discounts d" +
                         " where s.id in (:storeIds)", Store.class)
                 .setParameter("storeIds", storeIds)
                 .setFirstResult(offset)
@@ -81,10 +84,10 @@ public class StoreRepository {
 
     public List<Store> findStoresByDiscountDay(DiscountDay discountDay) {
         return em.createQuery("select distinct s from Store s" +
-                        " join fetch s.discounts.discounts d" +
+                        " left join fetch s.discounts.discounts d" +
                         " where s.storeStatus = :storeStatus" +
                         " and s.discountInfo = :discountInfo" +
-                        " and d.discountDay = :discountDay" , Store.class)
+                        " and d.discountDay = :discountDay", Store.class)
                 .setParameter("storeStatus", StoreStatus.OPEN)
                 .setParameter("discountInfo", StoreDiscountInfo.TODAY_DISCOUNT)
                 .setParameter("discountDay", discountDay)

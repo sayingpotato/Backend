@@ -35,7 +35,7 @@ public class CustomerSignUpServiceTest {
                 .build();
 
         //when
-        Long saveId = customerSignUpService.signUp(customer);
+        String saveId = customerSignUpService.signUp(customer);
 
         //then
         assertEquals(customer, customerRepository.findOne(saveId));

@@ -16,7 +16,7 @@ public class CustomerImageService {
     private final CustomerRepository customerRepository;
 
     @Transactional  //CustomerImage(학생증 이미지)를 업로드해주는 서비스 로직이다.
-    public Customer uploadImage(Long customerId, MultipartFile multipartFile) throws Exception {
+    public Customer uploadImage(String customerId, MultipartFile multipartFile) throws Exception {
         //parseImageInfo() 과정에서 Exception이 발생할 수 있는데 이러면 상단 호출 메소드(컨트롤러)로 예외를 던진다.
         Customer findCustomer = customerRepository.findOne(customerId);
         CustomerImage parseCustomerImage = findCustomer.parseImageInfo(multipartFile);

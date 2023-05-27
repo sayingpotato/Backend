@@ -13,6 +13,7 @@ import iampotato.iampotato.domain.store.dto.maplist.StoreMapListResponse;
 import iampotato.iampotato.domain.store.dto.todaydiscount.StoreTodayDiscountRequest;
 import iampotato.iampotato.domain.store.dto.todaydiscount.StoreTodayDiscountResponse;
 import iampotato.iampotato.global.util.Result;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +47,8 @@ public class StoreApi {
      * 위치정보를 받으면 해당 위치에서 특정반경 이내에 있는 가게정보를 반환합니다.
      * 마커클릭시 띄워주는 info 창 정보까지만 반환합니다.
      */
+    @Tag(name = "할인 지도 페이지")
+    @Operation(summary = "할인 지도", description = "맨처음 할인 지도 페이지에 사용자 거리 기준 일정 거리안에 있는 띄워줄 가게 정보를 반환합니다.")
     @GetMapping("api/v1/stores/nearby")
     public Result<List<StoreMapResponse>> findStoresByLocationForDiscountMap(StoreMapRequest storeMapRequest) {
 
@@ -63,6 +66,8 @@ public class StoreApi {
      * 위치정보를 받으면 해당 위치에서 특정반경 이내에 있는 가게정보를 반환합니다.
      * 리스트보기 클릭시 띄워주는 상세정보를 반환합니다.
      */
+    @Tag(name = "할인 지도 페이지")
+    @Operation(summary = "할인 지도 리스트", description = "할인지도에서 리스트버튼 클릭시 보여주는 리스트에서의 가게 정보를 반환합니다.")
     @GetMapping("api/v1/stores/nearby/list")
     public Result<List<StoreMapListResponse>> findStoresByLocationForDiscountMapList(StoreMapListRequest storeMapListRequest,
                                                                                      @RequestParam(value = "offset", defaultValue = "0") int offset,
@@ -81,9 +86,9 @@ public class StoreApi {
 
     /**
      * 요일을 받으면 해당 요일에 할인하는 가게정보를 가져옵니다.
-     * DiscountDay 에 없는 요일이 들어올시 예외가 발생합니다.
-     * 해당 예외처리는 아직 안된상태이며 추후 예외처리 로직에 대해 상의하고 결정합니다.
      */
+    @Tag(name = "오늘의 할인 페이지")
+    @Operation(summary = "할인되는가게", description = "가게 할인되는가게의 정보를 가져옵니다.")
     @GetMapping("api/v1/stores/discount")
     public Result<List<StoreTodayDiscountResponse>> findStoresByDiscountDayForTodayDiscount(StoreTodayDiscountRequest storeTodayDiscountRequest) {
 
@@ -97,7 +102,8 @@ public class StoreApi {
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, storeTodayDiscountResponses);
     }
 
-    @Tag(name = "가게세부정보", description = "가게 전체 정보를 가져오는 api 입니다.")
+    @Tag(name = "가게세부정보")
+    @Operation(summary = "가게세부정보", description = "가게 전체 정보를 가져오는 api 입니다.")
     @GetMapping("api/v1/stores/detail")
     public Result<StoreDetailResponse> findStoreDetail(StoreDetailRequest storeDetailRequest,
                                                                         @RequestParam(value = "offset", defaultValue = "0") int offset,

@@ -39,3 +39,6 @@ springdoc:
     persist-authorization: true
     query-config-enabled: true
   pre-loading-enabled: true
+
+jwt:
+  secret: XeQyyCaDQt45QEq833ambdWAAfvrocVdQQrhj56FMgrRB004dF

@@ -1,12 +1,12 @@
 package iampotato.iampotato.domain.customer.api;
 
 import iampotato.iampotato.domain.customer.application.CustomerImageService;
+import iampotato.iampotato.domain.customer.application.CustomerSignInService;
 import iampotato.iampotato.domain.customer.application.CustomerSignUpService;
 import iampotato.iampotato.domain.customer.domain.Customer;
-import iampotato.iampotato.domain.customer.dto.SignUpRequest;
-import iampotato.iampotato.domain.customer.dto.SignUpResponse;
-import iampotato.iampotato.domain.customer.dto.UploadImageResponse;
+import iampotato.iampotato.domain.customer.dto.*;
 import iampotato.iampotato.global.util.Result;
+import iampotato.iampotato.global.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,10 +24,11 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class CustomerApi {
 
+    private final CustomerSignInService customerSignInService;
     private final CustomerSignUpService customerSignUpService;
     private final CustomerImageService customerImageService;
 
-    @PostMapping("/api/v1/customers")
+    @PostMapping("/api/v1/customers/signUp")
     public Result<SignUpResponse> signUp(@RequestBody SignUpRequest signUpRequest) throws Exception{    //회원 가입하는 POST API
         //Spring security로 Password Hash 암호화 로직 추가하기
         Customer customer = Customer.builder()
@@ -35,12 +36,20 @@ public class CustomerApi {
                 .password(signUpRequest.getPassword())
                 .nickname(signUpRequest.getNickname())
                 .build();
-        Long id = customerSignUpService.signUp(customer);
+        String id = customerSignUpService.signUp(customer);
         return new Result<>(Result.CODE_SUCCESS,Result.MESSAGE_OK, new SignUpResponse(id));
     }
 
-    @PutMapping("/api/v1/customers/{id}/image") //MultipartFile을 처리하기 위해서 @RequestParam을 사용했다. 따라서 {image:이미지파일} 꼴로 넘겨 받아야한다.
-    public Result<UploadImageResponse> uploadImage(@PathVariable("id") Long customerId, @RequestParam(value="image", required=false) MultipartFile multipartFile) throws Exception {
+    @PostMapping("/api/v1/customers/signIn")
+    public Result<TokenResponse> signIn(@RequestBody SignInRequest signInRequest) throws Exception {
+        TokenResponse tokenResponse = customerSignInService.signIn(signInRequest.getLoginId(), signInRequest.getPassword());
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, tokenResponse);
+    }
+
+    @PutMapping("/api/v1/customers/image") //MultipartFile을 처리하기 위해서 @RequestParam을 사용했다. 따라서 {image:이미지파일} 꼴로 넘겨 받아야한다.
+    public Result<UploadImageResponse> uploadImage(@RequestParam(value="image", required=false) MultipartFile multipartFile) throws Exception {
+//        System.out.println(SecurityUtil.getCurrentUserId());
+        String customerId = SecurityUtil.getCurrentUserId();
         Customer customer = customerImageService.uploadImage(customerId, multipartFile);
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, new UploadImageResponse(customerId, customer.getCustomerImage()));
     }
@@ -72,6 +81,4 @@ public class CustomerApi {
         }
         return fileArray;   //바이트 배열로 리턴
     }
-
-
 }

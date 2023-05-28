@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class SignUpResponse {   //회원 가입시 ResponseBody
-    private Long id;
+    private String id;
 
-    public SignUpResponse(Long id) {
+    public SignUpResponse(String id) {
         this.id = id;
     }
 }

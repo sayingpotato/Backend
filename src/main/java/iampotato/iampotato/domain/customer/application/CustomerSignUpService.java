@@ -16,7 +16,7 @@ public class CustomerSignUpService {
     private final CustomerRepository customerRepository;
 
     @Transactional
-    public Long signUp(Customer customer) throws Exception{
+    public String signUp(Customer customer) throws Exception{
         validateDuplicatedCustomerByLoginId(customer);
         validateDuplicatedCustomerByNickname(customer);
         customerRepository.save(customer);
@@ -44,7 +44,7 @@ public class CustomerSignUpService {
     }
 
     //id를 사용한 손님 단건 조회
-    public Customer findOne(Long customerId) {
+    public Customer findOne(String customerId) {
         return customerRepository.findOne(customerId);
     }
 

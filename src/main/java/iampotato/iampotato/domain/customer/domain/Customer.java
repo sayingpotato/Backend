@@ -2,6 +2,9 @@ package iampotato.iampotato.domain.customer.domain;
 
 import lombok.*;
 import org.apache.commons.lang3.ObjectUtils;
+import org.hibernate.annotations.GenericGenerator;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
@@ -11,15 +14,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.Random;
+import java.util.*;
 
 @Entity
 @Getter
 @Builder    //==정적 팩토리 메서드에서 빌더 패턴으로 변경!==//
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Customer {
+public class Customer implements UserDetails {
 
     //==정적 팩토리 메서드==//
 //    public static Customer createCustomer(String loginId, String password, String nickname) {
@@ -32,9 +34,13 @@ public class Customer {
 //        return customer;
 //    }
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     @Column(name = "customer_id")
-    private Long id;
+    private String id;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<>();
 
     private String loginId;
 
@@ -130,5 +136,43 @@ public class Customer {
         multipartFile.transferTo(file); //multipartFile을 실제로 application단에 업로드 하기 위함
 
         return customerImage;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        return this.roles.stream()
+//                .map(SimpleGrantedAuthority::new)
+//                .collect(Collectors.toList());
+        return Collections.emptyList();
+    }
+
+    @Override
+    public String getUsername() {
+        return id;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

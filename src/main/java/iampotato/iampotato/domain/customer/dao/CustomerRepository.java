@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -17,7 +18,7 @@ public class CustomerRepository {
         em.persist(customer);
     }
 
-    public Customer findOne(Long id) {
+    public Customer findOne(String id) {
         return em.find(Customer.class, id);
     }
 
@@ -38,6 +39,16 @@ public class CustomerRepository {
                 .getResultList();
     }
 
+    public Optional<Customer> findById(String username) {
+        List<Customer> result = em.createQuery("select c from Customer c" +
+                        " where c.id = :username", Customer.class)
+                .setParameter("username", username)
+                .getResultList();
+        return result.stream().findAny();
+    }
 
+    public void delete(Customer customer) {
+        em.remove(customer);
+    }
 
 }

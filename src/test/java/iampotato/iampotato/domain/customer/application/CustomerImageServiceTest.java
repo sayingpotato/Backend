@@ -48,7 +48,7 @@ class CustomerImageServiceTest {
                 .password("1q2w3e4r1!")
                 .nickname("loganImage")
                 .build();
-        Long customerId = customerSignUpService.signUp(customer);
+        String customerId = customerSignUpService.signUp(customer);
         //when
         customerImageService.uploadImage(customerId, uploadFile);
 

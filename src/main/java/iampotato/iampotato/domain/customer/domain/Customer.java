@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -44,12 +45,15 @@ public class Customer implements UserDetails {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
 
+    @NotNull
     private String loginId;
 
+    @NotNull
     private String password;
 
     private String ssn;
 
+    @NotNull
     private String nickname;
 
     @Enumerated(EnumType.STRING)

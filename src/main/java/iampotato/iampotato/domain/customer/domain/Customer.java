@@ -1,5 +1,7 @@
 package iampotato.iampotato.domain.customer.domain;
 
+import iampotato.iampotato.domain.customer.exception.CustomerException;
+import iampotato.iampotato.domain.customer.exception.CustomerExceptionGroup;
 import lombok.*;
 import org.apache.commons.lang3.ObjectUtils;
 import org.hibernate.annotations.GenericGenerator;
@@ -78,7 +80,7 @@ public class Customer implements UserDetails {
 
     public CustomerImage parseImageInfo(MultipartFile multipartFile) throws Exception {
         if (multipartFile.isEmpty()) {  //들어오는 이미지 파일이 비어있으면 예외 메세지 출력하고 상위 호출 메서드로 예외를 던짐
-            throw new IllegalStateException("이미지 파일이 비어있습니다.");
+            throw new CustomerException(CustomerExceptionGroup.CUSTOMER_IMAGE_NULL);
         }
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
@@ -100,7 +102,7 @@ public class Customer implements UserDetails {
         String contentType = multipartFile.getContentType();    //확장자를 판단하기 위해
         String fileExtension;   //이미지 파일의 확장자를 저장
         if (ObjectUtils.isEmpty(contentType)) { //확장자 명이 없는지 검사
-            throw new IllegalStateException("이미지 파일의 확장자가 존재하지 않는 잘못된 파일입니다.");
+            throw new CustomerException(CustomerExceptionGroup.CUSTOMER_IMAGE_EXTENSION_NULL);
         } else {
             if (contentType.contains("image/jpeg")) {
                 fileExtension = ".jpg";
@@ -109,7 +111,7 @@ public class Customer implements UserDetails {
             } else if (contentType.contains("image/gif")) {
                 fileExtension = ".gif";
             } else {
-                throw new IllegalStateException("이미지 파일의 확장자가 허용되지 않는 확장자입니다. jpg, png, gif 파일만 사용 가능합니다.");
+                throw new CustomerException(CustomerExceptionGroup.CUSTOMER_IMAGE_EXTENSION_WRONG);
             }
         }
 

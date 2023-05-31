@@ -4,6 +4,8 @@ import iampotato.iampotato.domain.customer.exception.CustomerException;
 import iampotato.iampotato.domain.customer.exception.CustomerExceptionGroup;
 import lombok.*;
 import org.apache.commons.lang3.ObjectUtils;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,6 +26,7 @@ import java.util.*;
 @Builder    //==정적 팩토리 메서드에서 빌더 패턴으로 변경!==//
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@DynamicInsert
 public class Customer implements UserDetails {
 
     //==정적 팩토리 메서드==//
@@ -57,6 +60,7 @@ public class Customer implements UserDetails {
     private String nickname;
 
     @Enumerated(EnumType.STRING)
+    @ColumnDefault("'UNAUTHORIZED'")
     private CustomerStatus customerStatus;  //회원 가입 상태 [COMPLETE, UNAUTHORIZED]
 
     private LocalDateTime createdDate;

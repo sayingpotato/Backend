@@ -50,4 +50,15 @@ public class CustomerSignInService {
 
         return tokenResponse;
     }
+
+    public TokenResponse addCustomerStatus(TokenResponse tokenResponse, String loginId) {
+        List<Customer> findCustomersByLoginId = customerRepository.findByLoginId(loginId);
+        if (findCustomersByLoginId.isEmpty()) {
+            throw new CustomerException(CustomerExceptionGroup.CUSTOMER_ID_NULL);
+        }
+
+        Customer customer = findCustomersByLoginId.get(0);
+        tokenResponse.setCustomerStatus(customer.getCustomerStatus());
+        return tokenResponse;
+    }
 }

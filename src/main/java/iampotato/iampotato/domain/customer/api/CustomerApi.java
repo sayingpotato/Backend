@@ -43,7 +43,7 @@ public class CustomerApi {
     @PostMapping("/api/v1/customers/signIn")
     public Result<TokenResponse> signIn(@RequestBody SignInRequest signInRequest) throws Exception {
         TokenResponse tokenResponse = customerSignInService.signIn(signInRequest.getLoginId(), signInRequest.getPassword());
-        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, tokenResponse);
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, customerSignInService.addCustomerStatus(tokenResponse, signInRequest.getLoginId()));
     }
 
     @PutMapping("/api/v1/customers/image") //MultipartFile을 처리하기 위해서 @RequestParam을 사용했다. 따라서 {image:이미지파일} 꼴로 넘겨 받아야한다.

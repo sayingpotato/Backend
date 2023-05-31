@@ -3,6 +3,8 @@ package iampotato.iampotato.domain.customer.application;
 import iampotato.iampotato.domain.customer.dao.CustomerRepository;
 import iampotato.iampotato.domain.customer.domain.Customer;
 import iampotato.iampotato.domain.customer.dto.TokenResponse;
+import iampotato.iampotato.domain.customer.exception.CustomerException;
+import iampotato.iampotato.domain.customer.exception.CustomerExceptionGroup;
 import iampotato.iampotato.domain.customer.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,13 +28,13 @@ public class CustomerSignInService {
     public TokenResponse signIn(String loginId, String password) {
         List<Customer> findCustomersByLoginId = customerRepository.findByLoginId(loginId);
         if (findCustomersByLoginId.isEmpty()) {
-            throw new IllegalStateException("존재하지 않는 아이디입니다.");
+            throw new CustomerException(CustomerExceptionGroup.CUSTOMER_ID_NULL);
         }
 
         Customer customer = findCustomersByLoginId.get(0);
 
         if (!customer.getPassword().equals(password)) {
-            throw new IllegalStateException("비밀번호가 일치하지 않습니다.");
+            throw new CustomerException(CustomerExceptionGroup.CUSTOMER_PASSWORD_WRONG);
         }
 
         // 1. Login ID/PW 를 기반으로 Authentication 객체 생성

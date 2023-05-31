@@ -2,6 +2,8 @@ package iampotato.iampotato.domain.customer.application;
 
 import iampotato.iampotato.domain.customer.dao.CustomerRepository;
 import iampotato.iampotato.domain.customer.domain.Customer;
+import iampotato.iampotato.domain.customer.exception.CustomerException;
+import iampotato.iampotato.domain.customer.exception.CustomerExceptionGroup;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,18 +25,18 @@ public class CustomerSignUpService {
         return customer.getId();
     }
 
-    private void validateDuplicatedCustomerByLoginId(Customer customer) throws Exception{
+    private void validateDuplicatedCustomerByLoginId(Customer customer) {
         List<Customer> findCustomersByLoginId = customerRepository.findByLoginId(customer.getLoginId());
         if (!findCustomersByLoginId.isEmpty()) {
-            throw new IllegalStateException("이미 존재하는 아이디입니다.");
+            throw new CustomerException(CustomerExceptionGroup.CUSTOMER_DUPLICATED_ID);
         }
     }
 
-    private void validateDuplicatedCustomerByNickname(Customer customer) throws Exception{
+    private void validateDuplicatedCustomerByNickname(Customer customer) {
         List<Customer> findCustomersByNickname = customerRepository.findByNickname(customer.getNickname());
 
         if (!findCustomersByNickname.isEmpty()) {
-            throw new IllegalStateException("이미 존재하는 닉네임입니다.");
+            throw new CustomerException(CustomerExceptionGroup.CUSTOMER_DUPLICATED_NICKNAME);
         }
     }
 

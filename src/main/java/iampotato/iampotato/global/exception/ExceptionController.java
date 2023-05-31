@@ -1,5 +1,6 @@
 package iampotato.iampotato.global.exception;
 
+import iampotato.iampotato.domain.customer.exception.CustomerException;
 import iampotato.iampotato.domain.store.exception.StoreException;
 import iampotato.iampotato.global.util.ErrorResult;
 import org.springframework.validation.BindException;
@@ -20,6 +21,13 @@ public class ExceptionController {
         return new ErrorResult(e.getStoreExceptionGroup().getHttpCode(),
                 e.getStoreExceptionGroup().getErrorCode(),
                 e.getStoreExceptionGroup().getMessage());
+    }
+
+    @ExceptionHandler(CustomerException.class)
+    public ErrorResult CustomerExceptionHandler(CustomerException e) {
+        return new ErrorResult(e.getCustomerExceptionGroup().getHttpCode(),
+                e.getCustomerExceptionGroup().getErrorCode(),
+                e.getCustomerExceptionGroup().getMessage());
     }
 
     /**

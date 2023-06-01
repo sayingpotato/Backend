@@ -86,6 +86,10 @@ public class Customer implements UserDetails {
         this.customerImage = customerImage;
     }
 
+    public void updateCustomerStatus(CustomerStatus customerStatus) {
+        this.customerStatus = customerStatus;
+    }
+
     public CustomerImage parseImageInfo(MultipartFile multipartFile) throws Exception {
         if (multipartFile.isEmpty()) {  //들어오는 이미지 파일이 비어있으면 예외 메세지 출력하고 상위 호출 메서드로 예외를 던짐
             throw new CustomerException(CustomerExceptionGroup.CUSTOMER_IMAGE_NULL);

@@ -1,5 +1,6 @@
 package iampotato.iampotato.domain.customer.api;
 
+import iampotato.iampotato.domain.customer.application.CertifyCustomerService;
 import iampotato.iampotato.domain.customer.application.CustomerImageService;
 import iampotato.iampotato.domain.customer.application.CustomerSignInService;
 import iampotato.iampotato.domain.customer.application.CustomerSignUpService;
@@ -8,10 +9,6 @@ import iampotato.iampotato.domain.customer.dto.*;
 import iampotato.iampotato.global.util.Result;
 import iampotato.iampotato.global.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,6 +24,7 @@ public class CustomerApi {
     private final CustomerSignInService customerSignInService;
     private final CustomerSignUpService customerSignUpService;
     private final CustomerImageService customerImageService;
+    private final CertifyCustomerService certifyCustomerService;
 
     @PostMapping("/api/v1/customers/signUp")
     public Result<SignUpResponse> signUp(@RequestBody SignUpRequest signUpRequest) throws Exception{    //회원 가입하는 POST API
@@ -52,6 +50,12 @@ public class CustomerApi {
         String customerId = SecurityUtil.getCurrentUserId();
         Customer customer = customerImageService.uploadImage(customerId, multipartFile);
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, new UploadImageResponse(customerId, customer.getCustomerImage()));
+    }
+
+    @PostMapping("/api/v1/customers/certify")
+    public Result<String> certifyCustomer(@RequestBody CertifyCustomerRequest certifyCustomerRequest) {
+        certifyCustomerService.certifyCustomer(certifyCustomerRequest.getId());
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, "NULL");
     }
 
     @GetMapping(value = "/image/view", produces = {"image/jpeg", "image/png", "image/gif"})

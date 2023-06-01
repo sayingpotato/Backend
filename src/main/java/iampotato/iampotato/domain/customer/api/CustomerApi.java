@@ -55,7 +55,7 @@ public class CustomerApi {
     @PostMapping("/api/v1/customers/certify")
     public Result<String> certifyCustomer(@RequestBody CertifyCustomerRequest certifyCustomerRequest) {
         certifyCustomerService.certifyCustomer(certifyCustomerRequest.getId());
-        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, "NULL");
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, null);
     }
 
     @GetMapping(value = "/image/view", produces = {"image/jpeg", "image/png", "image/gif"})

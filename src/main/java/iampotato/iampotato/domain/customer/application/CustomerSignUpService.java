@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -26,10 +27,9 @@ public class CustomerSignUpService {
     }
 
     private void validateDuplicatedCustomerByLoginId(Customer customer) {
-        List<Customer> findCustomersByLoginId = customerRepository.findByLoginId(customer.getLoginId());
-        if (!findCustomersByLoginId.isEmpty()) {
+        Optional<Customer> findCustomersByLoginId = customerRepository.findByLoginId(customer.getLoginId());
+        if(findCustomersByLoginId.isPresent())
             throw new CustomerException(CustomerExceptionGroup.CUSTOMER_DUPLICATED_ID);
-        }
     }
 
     private void validateDuplicatedCustomerByNickname(Customer customer) {

@@ -26,12 +26,7 @@ public class CustomerSignInService {
 
     @Transactional
     public TokenResponse signIn(String loginId, String password) {
-        List<Customer> findCustomersByLoginId = customerRepository.findByLoginId(loginId);
-        if (findCustomersByLoginId.isEmpty()) {
-            throw new CustomerException(CustomerExceptionGroup.CUSTOMER_ID_NULL);
-        }
-
-        Customer customer = findCustomersByLoginId.get(0);
+        Customer customer = customerRepository.findByLoginId(loginId).orElseThrow(() -> new CustomerException(CustomerExceptionGroup.CUSTOMER_ID_NULL));
 
         if (!customer.getPassword().equals(password)) {
             throw new CustomerException(CustomerExceptionGroup.CUSTOMER_PASSWORD_WRONG);
@@ -39,7 +34,7 @@ public class CustomerSignInService {
 
         // 1. Login ID/PW 를 기반으로 Authentication 객체 생성
         // 이때 authentication 는 인증 여부를 확인하는 authenticated 값이 false
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(findCustomersByLoginId.get(0).getId(), password);
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(customer.getId(), password);
 
         // 2. 실제 검증 (사용자 비밀번호 체크)이 이루어지는 부분
         // authenticate 매서드가 실행될 때 CustomUserDetailsService 에서 만든 loadUserByUsername 메서드가 실행
@@ -52,12 +47,7 @@ public class CustomerSignInService {
     }
 
     public TokenResponse addCustomerStatus(TokenResponse tokenResponse, String loginId) {
-        List<Customer> findCustomersByLoginId = customerRepository.findByLoginId(loginId);
-        if (findCustomersByLoginId.isEmpty()) {
-            throw new CustomerException(CustomerExceptionGroup.CUSTOMER_ID_NULL);
-        }
-
-        Customer customer = findCustomersByLoginId.get(0);
+        Customer customer = customerRepository.findByLoginId(loginId).orElseThrow(() -> new CustomerException(CustomerExceptionGroup.CUSTOMER_ID_NULL));
         tokenResponse.setCustomerStatus(customer.getCustomerStatus());
         return tokenResponse;
     }

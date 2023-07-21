@@ -89,6 +89,13 @@ public class StoreService {
     }
 
     public List<Store> searchStoresBy(String name) {
-        return storeRepository.findStoresByStoreAndItemName(name);
+        List<Store> stores = storeRepository.findStoresByStoreAndItemName(name);
+
+        if (stores.size() == 0) {
+            throw new StoreException(StoreExceptionGroup.STORE_NULL);
+        }
+
+        sortStoresByName(stores);
+        return stores;
     }
 }

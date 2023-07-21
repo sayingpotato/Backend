@@ -1,10 +1,9 @@
 package iampotato.iampotato.domain.store.dao;
 
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import iampotato.iampotato.domain.discount.domain.DiscountDay;
-import iampotato.iampotato.domain.store.domain.Location;
-import iampotato.iampotato.domain.store.domain.Store;
-import iampotato.iampotato.domain.store.domain.StoreDiscountInfo;
-import iampotato.iampotato.domain.store.domain.StoreStatus;
+import iampotato.iampotato.domain.item.domain.QItem;
+import iampotato.iampotato.domain.store.domain.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -19,6 +18,8 @@ import java.util.stream.Collectors;
 public class StoreRepository {
 
     private final EntityManager em;
+
+    private final JPAQueryFactory queryFactory;
 
     public void save(Store store) {
         em.persist(store);
@@ -92,5 +93,35 @@ public class StoreRepository {
                 .setParameter("discountInfo", StoreDiscountInfo.TODAY_DISCOUNT)
                 .setParameter("discountDay", discountDay)
                 .getResultList();
+    }
+
+    public List<Store> findStoresByStoreAndItemName(String name) {
+        QStore store = QStore.store;
+        QItem item = QItem.item;
+        return queryFactory
+                .selectFrom(store)
+                .distinct()
+                .join(store.items.items, item)
+                .where(item.name.contains(name)
+                        .or(store.name.contains(name)))
+                .fetch();
+    }
+
+    public List<Store> findStoresByStoreName(String name) {
+        QStore store = QStore.store;
+        return queryFactory
+                .selectFrom(store)
+                .where(store.name.contains(name))
+                .fetch();
+    }
+
+    public List<Store> findStoresByItemName(String name) {
+        QStore store = QStore.store;
+        QItem item = QItem.item;
+        return queryFactory
+                .selectFrom(store)
+                .join(store.items.items, item)
+                .where(item.name.contains(name))
+                .fetch();
     }
 }

@@ -87,4 +87,15 @@ public class StoreService {
 
         stores.sort(Comparator.comparing(Store::getName));
     }
+
+    public List<Store> searchStoresBy(String name) {
+        List<Store> stores = storeRepository.findStoresByStoreAndItemName(name);
+
+        if (stores.size() == 0) {
+            throw new StoreException(StoreExceptionGroup.STORE_NULL);
+        }
+
+        sortStoresByName(stores);
+        return stores;
+    }
 }

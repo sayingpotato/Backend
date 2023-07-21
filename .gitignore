@@ -46,3 +46,6 @@ out/
 
 ### IMAGE FILE ###
 src/main/resources/images/
+
+### Querydsl
+/src/main/generated

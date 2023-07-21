@@ -1,10 +1,17 @@
 package iampotato.iampotato.domain.store.application;
 
+import iampotato.iampotato.InitDb;
 import iampotato.iampotato.domain.discount.application.DiscountService;
 import iampotato.iampotato.domain.discount.domain.Discount;
 import iampotato.iampotato.domain.discount.domain.DiscountDay;
+import iampotato.iampotato.domain.item.domain.Item;
+import iampotato.iampotato.domain.item.domain.ItemCategory;
+import iampotato.iampotato.domain.item.domain.Items;
 import iampotato.iampotato.domain.store.dao.StoreRepository;
 import iampotato.iampotato.domain.store.domain.*;
+import iampotato.iampotato.domain.store.exception.StoreException;
+import iampotato.iampotato.domain.store.exception.StoreExceptionGroup;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.locationtech.jts.geom.Point;
@@ -17,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -175,5 +183,40 @@ class StoreServiceTest {
 
         List<Store> result = storeService.findStoresByDiscountDay(DiscountDay.MON);
         assertThat(result).containsExactly(store3, store2, store1);
+    }
+
+    @Test
+    void 가게이름_검색_기능_정상_작동() {
+
+        List<Store> stores = storeService.searchStoresBy("은원");
+        List<String> result = stores.stream().map(Store::getName).collect(Collectors.toList());
+
+        assertThat(result).contains("좋은원두");
+    }
+
+    @Test
+    void 가게이름_검색_기능_정상_작동2() {
+
+        List<Store> stores = storeService.searchStoresBy("원두");
+        List<String> result = stores.stream().map(Store::getName).collect(Collectors.toList());
+
+        assertThat(result).contains("좋은원두", "착한원두", "원두원두");
+    }
+
+    @Test
+    void 상품이름_검색_기능_정상_작동2() {
+
+        List<Store> stores = storeService.searchStoresBy("대창");
+        List<String> result = stores.stream().map(Store::getName).collect(Collectors.toList());
+
+        assertThat(result).contains("좋은원두", "원두원두");
+    }
+
+    @Test
+    void 상품이름_검색_예외() {
+
+        Assertions.assertThrows(StoreException.class, () -> {
+            List<Store> stores = storeService.searchStoresBy("감자");
+        });
     }
 }

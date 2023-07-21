@@ -9,6 +9,8 @@ import iampotato.iampotato.domain.store.dto.map.StoreMapRequest;
 import iampotato.iampotato.domain.store.dto.map.StoreMapResponse;
 import iampotato.iampotato.domain.store.dto.maplist.StoreMapListRequest;
 import iampotato.iampotato.domain.store.dto.maplist.StoreMapListResponse;
+import iampotato.iampotato.domain.store.dto.search.StoreSearchRequest;
+import iampotato.iampotato.domain.store.dto.search.StoreSearchResponse;
 import iampotato.iampotato.domain.store.dto.todaydiscount.StoreTodayDiscountRequest;
 import iampotato.iampotato.domain.store.dto.todaydiscount.StoreTodayDiscountResponse;
 import iampotato.iampotato.global.util.Result;
@@ -111,5 +113,20 @@ public class StoreApi {
         StoreDetailResponse storeDetailResponse = new StoreDetailResponse(store);
 
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, storeDetailResponse);
+    }
+
+    @Tag(name = "가게검색")
+    @Operation(summary = "가게 및 아이템 검색", description = "검색어 기준 가게이름과 아이템이름에 매칭되는것을 반환하는 api 입니다.")
+    @GetMapping("api/v1/stores/name")
+    public Result<List<StoreSearchResponse>> searchStoreBy(StoreSearchRequest storeSearchRequest,
+                                                     @RequestParam(value = "offset", defaultValue = "0") int offset,
+                                                     @RequestParam(value = "limit", defaultValue = "100") int limit) {
+
+        List<Store> stores = storeService.searchStoresBy(storeSearchRequest.getName());
+        List<StoreSearchResponse> storeSearchResponses = stores.stream()
+                .map(StoreSearchResponse::new)
+                .collect(Collectors.toList());
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, storeSearchResponses);
     }
 }

@@ -3,9 +3,7 @@ package iampotato.iampotato.domain.order.domain;
 import iampotato.iampotato.domain.customer.domain.Customer;
 import iampotato.iampotato.domain.orderitem.domain.OrderItem;
 import iampotato.iampotato.domain.review.domain.Review;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -19,11 +17,14 @@ import java.util.List;
  */
 @Entity
 @Table(name = "orders")
+@Builder
+@AllArgsConstructor
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "order_id")
     private Long id;
 
@@ -51,4 +52,9 @@ public class Order {
 
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus; // 주문 상태 [ORDER, WAIT_QR, FINISH]
+
+    // 임시 메소드
+    public void updateCollection(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
 }

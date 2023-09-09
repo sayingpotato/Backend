@@ -3,9 +3,7 @@ package iampotato.iampotato.domain.orderitem.domain;
 import iampotato.iampotato.domain.item.domain.Item;
 import iampotato.iampotato.domain.itemoption.domain.ItemOption;
 import iampotato.iampotato.domain.order.domain.Order;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -16,10 +14,13 @@ import javax.persistence.*;
  */
 @Entity
 @Getter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrderItem {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "order_item_id")
     private Long id;
 

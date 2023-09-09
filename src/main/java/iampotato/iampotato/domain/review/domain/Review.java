@@ -16,7 +16,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Review {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "review_id")
     private Long id;
 
@@ -24,6 +25,7 @@ public class Review {
     @JoinColumn(name = "store_id")
     private Store store;
 
+    private ReviewStatus reviewStatus;
 
     // 여기서부터는 리뷰 내용들 입니다.
     // =============================

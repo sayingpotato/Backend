@@ -1,11 +1,17 @@
 package iampotato.iampotato;
 
+import iampotato.iampotato.domain.customer.domain.Customer;
 import iampotato.iampotato.domain.discount.domain.Discount;
 import iampotato.iampotato.domain.discount.domain.DiscountDay;
 import iampotato.iampotato.domain.discount.domain.Discounts;
 import iampotato.iampotato.domain.item.domain.Item;
 import iampotato.iampotato.domain.item.domain.ItemCategory;
 import iampotato.iampotato.domain.item.domain.Items;
+import iampotato.iampotato.domain.itemoption.domain.ItemOption;
+import iampotato.iampotato.domain.itemoption.domain.ItemOptionCategory;
+import iampotato.iampotato.domain.order.domain.Order;
+import iampotato.iampotato.domain.order.domain.OrderStatus;
+import iampotato.iampotato.domain.orderitem.domain.OrderItem;
 import iampotato.iampotato.domain.review.domain.Review;
 import iampotato.iampotato.domain.review.domain.Reviews;
 import iampotato.iampotato.domain.store.domain.*;
@@ -23,6 +29,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -50,7 +58,7 @@ public class InitDb {
                     .createdDate(LocalDateTime.now())
                     .outletNum(0)
                     .closedDay(StoreDay.FRI)
-                    .address(new Address("h1","h2","h3","h4"))
+                    .address(new Address("h1", "h2", "h3", "h4"))
                     .category(StoreCategory.CAFE)
                     .location((Point) new WKTReader().read(String.format("POINT(%s %s)", 127.455409, 36.625170)))
                     .phone("01012345678")
@@ -166,7 +174,7 @@ public class InitDb {
                     .createdDate(LocalDateTime.now())
                     .outletNum(0)
                     .closedDay(StoreDay.FRI)
-                    .address(new Address("h1","h2","h3","h4"))
+                    .address(new Address("h1", "h2", "h3", "h4"))
                     .category(StoreCategory.CAFE)
                     .location((Point) new WKTReader().read(String.format("POINT(%s %s)", 127.455411, 36.625170)))
                     .phone("01012345679")
@@ -274,7 +282,7 @@ public class InitDb {
                     .createdDate(LocalDateTime.now())
                     .outletNum(0)
                     .closedDay(StoreDay.FRI)
-                    .address(new Address("h1","h2","h3","h4"))
+                    .address(new Address("h1", "h2", "h3", "h4"))
                     .category(StoreCategory.CAFE)
                     .location((Point) new WKTReader().read(String.format("POINT(%s %s)", 129.455409, 34.625170)))
                     .phone("01012345678")
@@ -377,11 +385,72 @@ public class InitDb {
                     .price(10000)
                     .build();
 
+            ItemOption itemOption1 = ItemOption.builder()
+                    .item(item1)
+                    .name("중")
+                    .price(3000)
+                    .category(ItemOptionCategory.SIZE)
+                    .build();
+
+            ItemOption itemOption2 = ItemOption.builder()
+                    .item(item1)
+                    .name("맵게")
+                    .price(0)
+                    .category(ItemOptionCategory.SPICY)
+                    .build();
+
+            List<ItemOption> itemOptions = new ArrayList<>();
+            itemOptions.add(itemOption1);
+            itemOptions.add(itemOption2);
+
+            item1.updateCollection(itemOptions);
             Items items = new Items(item1, item2);
 
             store1.updateCollection(storeOperationHours, storeImages, reviews, discounts, items);
-
             em.persist(store1);
+
+            Customer customer = Customer.builder()
+                    .loginId("hi")
+                    .password("123")
+                    .nickname("likeCoffee")
+                    .build();
+            em.persist(customer);
+
+            Order order1 = Order.builder()
+                    .customer(customer)
+                    .orderStatus(OrderStatus.FINISH)
+                    .totalPrice(8000)
+                    .totalPeople(3)
+                    .review(review1)
+                    .build();
+
+            OrderItem orderItem1 = OrderItem.builder()
+                    .order(order1)
+                    .item(item1)
+                    .totalPrice(5000)
+                    .build();
+
+            OrderItem orderItem2 = OrderItem.builder()
+                    .order(order1)
+                    .item(item1)
+                    .itemOption(itemOption1)
+                    .totalPrice(3000)
+                    .build();
+
+            OrderItem orderItem3 = OrderItem.builder()
+                    .order(order1)
+                    .item(item1)
+                    .itemOption(itemOption2)
+                    .totalPrice(0)
+                    .build();
+
+            List<OrderItem> orderItems = new ArrayList<>();
+            orderItems.add(orderItem1);
+            orderItems.add(orderItem2);
+            orderItems.add(orderItem3);
+
+            order1.updateCollection(orderItems);
+            em.persist(order1);
         }
     }
 }

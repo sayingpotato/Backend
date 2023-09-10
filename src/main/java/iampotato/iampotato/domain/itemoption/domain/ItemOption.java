@@ -1,9 +1,7 @@
 package iampotato.iampotato.domain.itemoption.domain;
 
 import iampotato.iampotato.domain.item.domain.Item;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,10 +11,13 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Getter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ItemOption {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "item_option_id")
     private Long id;
 

@@ -20,7 +20,8 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Item {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "item_id")
     private Long id;
 
@@ -52,4 +53,9 @@ public class Item {
     @Enumerated(EnumType.STRING)
     private ItemStatus status; // [FOR_SALE, SOLD_OUT]
 
+
+    // 임시용 함수
+    public void updateCollection(List<ItemOption> itemOptions) {
+        this.itemOptions = itemOptions;
+    }
 }

@@ -1,6 +1,7 @@
 package iampotato.iampotato.domain.item.domain;
 
-import iampotato.iampotato.domain.discount.domain.Discount;
+import iampotato.iampotato.domain.order.domain.Order;
+import iampotato.iampotato.domain.orderitem.domain.OrderItem;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Embeddable
@@ -21,5 +23,15 @@ public class Items {
 
     public Items(Item... items) {
         this.items = List.of(items);
+    }
+
+    public Items(List<Item> items) {
+        this.items = items;
+    }
+
+    public List<OrderItem> createOrderItemForItem(Order order) {
+        return items.stream()
+                .map(i -> OrderItem.createOrderItemForItem(i, order))
+                .collect(Collectors.toList());
     }
 }

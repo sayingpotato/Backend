@@ -1,5 +1,6 @@
 package iampotato.iampotato.global.exception;
 
+import iampotato.iampotato.domain.item.exception.ItemException;
 import iampotato.iampotato.domain.order.exception.OrderException;
 import iampotato.iampotato.domain.store.exception.StoreException;
 import iampotato.iampotato.global.util.ErrorResult;
@@ -28,6 +29,13 @@ public class ExceptionController {
         return new ErrorResult(e.getOrderExceptionGroup().getHttpCode(),
                 e.getOrderExceptionGroup().getErrorCode(),
                 e.getOrderExceptionGroup().getMessage());
+    }
+
+    @ExceptionHandler(ItemException.class)
+    public ErrorResult ItemExceptionHandler(ItemException e) {
+        return new ErrorResult(e.getItemExceptionGroup().getHttpCode(),
+                e.getItemExceptionGroup().getErrorCode(),
+                e.getItemExceptionGroup().getMessage());
     }
 
     /**

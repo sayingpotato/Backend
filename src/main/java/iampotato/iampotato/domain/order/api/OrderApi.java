@@ -3,14 +3,14 @@ package iampotato.iampotato.domain.order.api;
 import iampotato.iampotato.domain.order.application.OrderService;
 import iampotato.iampotato.domain.order.domain.Order;
 import iampotato.iampotato.domain.order.dto.OrderDetailResponse;
+import iampotato.iampotato.domain.order.dto.OrderPostRequest;
+import iampotato.iampotato.domain.order.dto.OrderPostResponse;
 import iampotato.iampotato.global.util.Result;
 import iampotato.iampotato.global.util.SecurityUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,5 +34,17 @@ public class OrderApi {
                 .collect(Collectors.toList());
 
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, responses);
+    }
+
+    @Tag(name = "주문 페이지")
+    @Operation(summary = "주문 등록", description = "현재 사용자의 주문을 저장합니다.")
+    @PostMapping("api/v1/order")
+    public Result<OrderPostResponse> postOrder(@RequestBody OrderPostRequest request) {
+
+        Order order = orderService.postOrder(SecurityUtil.getCurrentUserId(), request);
+
+        OrderPostResponse response = new OrderPostResponse(order);
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, response);
     }
 }

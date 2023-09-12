@@ -18,7 +18,7 @@ public class StoreDetailItems {
     public StoreDetailItems(Item item) {
         this.id = item.getId();
         this.name = item.getName();
-        this.storeDetailItemOptions = item.getItemOptions().stream()
+        this.storeDetailItemOptions = item.getItemOptions().getItemOptions().stream()
                 .map(StoreDetailItemOptions::new)
                 .collect(Collectors.toList());
     }

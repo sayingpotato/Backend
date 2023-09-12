@@ -37,4 +37,31 @@ public class OrderItem {
     private ItemOption itemOption;
 
     private int totalPrice; // item 가격 + itemOption 가격
+
+    public static OrderItem createOrderItemForItem(Item item, Order order) {
+        OrderItem orderItem = OrderItem.builder()
+                .item(item)
+                .order(order)
+                .totalPrice(item.getPrice())
+                .build();
+        order.addOrderItem(orderItem);
+        return orderItem;
+    }
+
+    public static OrderItem createOrderItemForItemOption(ItemOption itemOption, Order order) {
+        OrderItem orderItem = OrderItem.builder()
+                .item(itemOption.getItem())
+                .itemOption(itemOption)
+                .order(order)
+                .totalPrice(itemOption.getPrice())
+                .build();
+        order.addOrderItem(orderItem);
+        return orderItem;
+    }
+
+    // == 연관관계 메서드 == //
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 }

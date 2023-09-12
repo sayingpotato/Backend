@@ -1,13 +1,22 @@
 package iampotato.iampotato.domain.order.application;
 
+import iampotato.iampotato.domain.customer.dao.CustomerRepository;
+import iampotato.iampotato.domain.customer.domain.Customer;
+import iampotato.iampotato.domain.item.dao.ItemRepository;
+import iampotato.iampotato.domain.item.domain.Items;
+import iampotato.iampotato.domain.itemoption.dao.ItemOptionRepository;
+import iampotato.iampotato.domain.itemoption.domain.ItemOptions;
 import iampotato.iampotato.domain.order.dao.OrderRepository;
 import iampotato.iampotato.domain.order.domain.Order;
+import iampotato.iampotato.domain.order.domain.OrderStatus;
+import iampotato.iampotato.domain.order.dto.OrderPostRequest;
 import iampotato.iampotato.domain.order.exception.OrderException;
 import iampotato.iampotato.domain.order.exception.OrderExceptionGroup;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -16,6 +25,12 @@ import java.util.List;
 public class OrderService {
 
     private final OrderRepository orderRepository;
+
+    private final CustomerRepository customerRepository;
+
+    private final ItemRepository itemRepository;
+
+    private final ItemOptionRepository itemOptionRepository;
 
     public List<Order> getOrderDetail(String userId) {
 
@@ -26,5 +41,29 @@ public class OrderService {
         }
 
         return orders;
+    }
+
+    @Transactional
+    public Order postOrder(String userId, OrderPostRequest request) {
+
+        Customer customer = customerRepository.findById(userId).orElseThrow();
+        Items items = new Items(itemRepository.findByIds(request.getItemIds()));
+        ItemOptions itemOptions = new ItemOptions(itemOptionRepository.findByIds(request.getItemOptionIds()));
+
+        Order order = Order.builder()
+                .customer(customer)
+                .orderStatus(OrderStatus.ORDER)
+                .totalPrice(request.getTotalPrice())
+                .totalPeople(request.getTotalPeople())
+                .createdDate(LocalDateTime.now())
+                .modifiedDate(LocalDateTime.now())
+                .build();
+
+        items.createOrderItemForItem(order);
+        itemOptions.createOrderItemForItemOption(order);
+
+        orderRepository.save(order);
+
+        return order;
     }
 }

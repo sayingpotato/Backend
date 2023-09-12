@@ -28,6 +28,7 @@ public class Order {
     @Column(name = "order_id")
     private Long id;
 
+    @Builder.Default
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
@@ -52,6 +53,13 @@ public class Order {
 
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus; // 주문 상태 [ORDER, WAIT_QR, FINISH]
+
+
+    // == 연관관계 메서드 == //
+    public void addOrderItem(OrderItem orderItem) {
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
 
     // 임시 메소드
     public void updateCollection(List<OrderItem> orderItems) {

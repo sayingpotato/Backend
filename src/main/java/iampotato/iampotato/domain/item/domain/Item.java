@@ -1,12 +1,12 @@
 package iampotato.iampotato.domain.item.domain;
 
 import iampotato.iampotato.domain.itemoption.domain.ItemOption;
+import iampotato.iampotato.domain.itemoption.domain.ItemOptions;
 import iampotato.iampotato.domain.store.domain.Store;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,8 +29,8 @@ public class Item {
     @JoinColumn(name = "store_id")
     private Store store;
 
-    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
-    private List<ItemOption> itemOptions = new ArrayList<>();
+    @Embedded
+    private ItemOptions itemOptions;
 
     @Enumerated(EnumType.STRING)
     private ItemCategory category;
@@ -56,6 +56,6 @@ public class Item {
 
     // 임시용 함수
     public void updateCollection(List<ItemOption> itemOptions) {
-        this.itemOptions = itemOptions;
+        this.itemOptions = new ItemOptions(itemOptions);
     }
 }

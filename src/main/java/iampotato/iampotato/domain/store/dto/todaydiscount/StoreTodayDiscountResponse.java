@@ -7,6 +7,8 @@ import lombok.Data;
 @Data
 public class StoreTodayDiscountResponse {
 
+    private Long id;
+
     private String name;
 
     private String storeTodayDiscountThumbnail;
@@ -14,6 +16,7 @@ public class StoreTodayDiscountResponse {
     private StoreCategory category;
 
     public StoreTodayDiscountResponse(Store store) {
+        this.id = store.getId();
         this.name = store.getName();
         this.storeTodayDiscountThumbnail = store.getStoreTodayDiscountThumbnail();
         this.category = store.getCategory();

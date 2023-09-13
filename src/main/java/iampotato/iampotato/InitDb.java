@@ -43,6 +43,9 @@ public class InitDb {
         initService.dbStores1();
         initService.dbStores2();
         initService.dbStores3();
+        initService.dbStores4();
+        initService.dbStores5();
+        initService.dbStores6();
     }
 
     @Component
@@ -451,6 +454,382 @@ public class InitDb {
 
             order1.updateCollection(orderItems);
             em.persist(order1);
+        }
+
+        public void dbStores4() throws ParseException {
+            Store store1 = Store.builder()
+                    .name("스타벅스")
+                    .createdDate(LocalDateTime.now())
+                    .outletNum(0)
+                    .closedDay(StoreDay.FRI)
+                    .address(new Address("h1", "h2", "h3", "h4"))
+                    .category(StoreCategory.CAFE)
+                    .location((Point) new WKTReader().read(String.format("POINT(%s %s)", 127.455412, 36.625168)))
+                    .phone("01012345670")
+                    .paymentType(StorePaymentType.PREPAID)
+                    .salesType(StoreSalesType.HALL)
+                    .description("맥북만 입장가능")
+                    .discountInfo(StoreDiscountInfo.TODAY_DISCOUNT)
+                    .storeStatus(StoreStatus.OPEN)
+                    .build();
+
+            StoreOperationHour storeOperationHour1 = StoreOperationHour.builder()
+                    .store(store1)
+                    .startDay(StoreDay.MON)
+                    .endDay(StoreDay.FRI)
+                    .startTime("09:00")
+                    .endTime("18:00")
+                    .build();
+            StoreOperationHours storeOperationHours = new StoreOperationHours(storeOperationHour1);
+
+            StoreImage storeImage1 = StoreImage.builder()
+                    .store(store1)
+                    .creatTime(LocalDateTime.now())
+                    .storeImg("default:1212")
+                    .build();
+            StoreImage storeImage2 = StoreImage.builder()
+                    .store(store1)
+                    .creatTime(LocalDateTime.now())
+                    .storeImg("default:1213")
+                    .build();
+            StoreImages storeImages = new StoreImages(storeImage1, storeImage2);
+
+            Review review1 = Review.builder()
+                    .store(store1)
+                    .createdDate(LocalDateTime.now())
+                    .greatCoffee(1)
+                    .greatBeverage(1)
+                    .greatFood(0)
+                    .manyOutlet(0)
+                    .build();
+
+            Review review2 = Review.builder()
+                    .store(store1)
+                    .createdDate(LocalDateTime.now())
+                    .greatCoffee(0)
+                    .greatBeverage(1)
+                    .greatFood(1)
+                    .manyOutlet(1)
+                    .build();
+
+            Review review3 = Review.builder()
+                    .store(store1)
+                    .createdDate(LocalDateTime.now())
+                    .greatCoffee(0)
+                    .greatBeverage(1)
+                    .greatFood(0)
+                    .manyOutlet(1)
+                    .build();
+
+            Reviews reviews = new Reviews(review1, review2, review3);
+
+            Discount discount1 = Discount.builder()
+                    .discountDay(DiscountDay.MON)
+                    .discountRatio(5)
+                    .people(2)
+                    .store(store1)
+                    .build();
+
+            Discount discount2 = Discount.builder()
+                    .discountDay(DiscountDay.MON)
+                    .discountRatio(10)
+                    .people(4)
+                    .store(store1)
+                    .build();
+
+            Discount discount3 = Discount.builder()
+                    .discountDay(DiscountDay.SUN)
+                    .discountRatio(5)
+                    .people(2)
+                    .store(store1)
+                    .build();
+
+            Discounts discounts = new Discounts(discount1, discount2, discount3);
+//            em.persist(storeImage1);
+//            em.persist(storeImage2);
+//            em.persist(storeOperationHour1);
+
+            Item item1 = Item.builder()
+                    .store(store1)
+                    .name("카라멜마끼아또")
+                    .category(ItemCategory.PORK)
+                    .img("http://dffdf")
+                    .price(7000)
+                    .build();
+
+            Items items = new Items(item1);
+
+            store1.updateCollection(storeOperationHours, storeImages, reviews, discounts, items);
+
+            em.persist(store1);
+        }
+
+        public void dbStores5() throws ParseException {
+            Store store1 = Store.builder()
+                    .name("서브웨이")
+                    .createdDate(LocalDateTime.now())
+                    .outletNum(0)
+                    .closedDay(StoreDay.SUN)
+                    .address(new Address("h1", "h2", "h3", "h4"))
+                    .category(StoreCategory.FOOD)
+                    .location((Point) new WKTReader().read(String.format("POINT(%s %s)", 129.455449, 34.625160)))
+                    .phone("01012345678")
+                    .paymentType(StorePaymentType.PREPAID)
+                    .salesType(StoreSalesType.HALL)
+                    .description("신선한 야채 서브웨이")
+                    .discountInfo(StoreDiscountInfo.TODAY_DISCOUNT)
+                    .storeStatus(StoreStatus.OPEN)
+                    .build();
+
+            StoreOperationHour storeOperationHour1 = StoreOperationHour.builder()
+                    .store(store1)
+                    .startDay(StoreDay.MON)
+                    .endDay(StoreDay.FRI)
+                    .startTime("09:00")
+                    .endTime("18:00")
+                    .build();
+            StoreOperationHours storeOperationHours = new StoreOperationHours(storeOperationHour1);
+
+            StoreImage storeImage1 = StoreImage.builder()
+                    .store(store1)
+                    .creatTime(LocalDateTime.now())
+                    .storeImg("default:1212")
+                    .build();
+            StoreImage storeImage2 = StoreImage.builder()
+                    .store(store1)
+                    .creatTime(LocalDateTime.now())
+                    .storeImg("default:1213")
+                    .build();
+            StoreImages storeImages = new StoreImages(storeImage1, storeImage2);
+
+            Review review1 = Review.builder()
+                    .store(store1)
+                    .createdDate(LocalDateTime.now())
+                    .greatCoffee(0)
+                    .greatBeverage(1)
+                    .greatFood(1)
+                    .manyOutlet(0)
+                    .build();
+
+            Review review2 = Review.builder()
+                    .store(store1)
+                    .createdDate(LocalDateTime.now())
+                    .greatCoffee(0)
+                    .greatBeverage(1)
+                    .greatFood(1)
+                    .manyOutlet(1)
+                    .build();
+
+            Review review3 = Review.builder()
+                    .store(store1)
+                    .createdDate(LocalDateTime.now())
+                    .greatCoffee(0)
+                    .greatBeverage(1)
+                    .greatFood(0)
+                    .manyOutlet(1)
+                    .build();
+
+            Reviews reviews = new Reviews(review1, review2, review3);
+
+            Discount discount1 = Discount.builder()
+                    .discountDay(DiscountDay.MON)
+                    .discountRatio(5)
+                    .people(2)
+                    .store(store1)
+                    .build();
+
+            Discount discount2 = Discount.builder()
+                    .discountDay(DiscountDay.MON)
+                    .discountRatio(10)
+                    .people(4)
+                    .store(store1)
+                    .build();
+
+            Discount discount3 = Discount.builder()
+                    .discountDay(DiscountDay.SUN)
+                    .discountRatio(5)
+                    .people(2)
+                    .store(store1)
+                    .build();
+
+            Discounts discounts = new Discounts(discount1, discount2, discount3);
+//            em.persist(storeImage1);
+//            em.persist(storeImage2);
+//            em.persist(storeOperationHour1);
+
+            Item item1 = Item.builder()
+                    .store(store1)
+                    .name("BLT")
+                    .category(ItemCategory.PORK)
+                    .img("http://dffdf")
+                    .price(12000)
+                    .build();
+
+            Item item2 = Item.builder()
+                    .store(store1)
+                    .name("치킨 데리야끼")
+                    .category(ItemCategory.PORK)
+                    .img("http://dffdf2")
+                    .price(10000)
+                    .build();
+
+            ItemOption itemOption1 = ItemOption.builder()
+                    .item(item1)
+                    .name("30cm")
+                    .price(3000)
+                    .category(ItemOptionCategory.SIZE)
+                    .build();
+
+            ItemOption itemOption2 = ItemOption.builder()
+                    .item(item1)
+                    .name("핫칠리")
+                    .price(0)
+                    .category(ItemOptionCategory.SPICY)
+                    .build();
+
+            List<ItemOption> itemOptions = new ArrayList<>();
+            itemOptions.add(itemOption1);
+            itemOptions.add(itemOption2);
+
+            item1.updateCollection(itemOptions);
+            Items items = new Items(item1, item2);
+
+            store1.updateCollection(storeOperationHours, storeImages, reviews, discounts, items);
+            em.persist(store1);
+        }
+
+        public void dbStores6() throws ParseException {
+            Store store1 = Store.builder()
+                    .name("황궁쟁반짜장")
+                    .createdDate(LocalDateTime.now())
+                    .outletNum(0)
+                    .closedDay(StoreDay.SAT)
+                    .address(new Address("h1", "h2", "h3", "h4"))
+                    .category(StoreCategory.FOOD)
+                    .location((Point) new WKTReader().read(String.format("POINT(%s %s)", 129.455449, 34.625165)))
+                    .phone("01012345658")
+                    .paymentType(StorePaymentType.PREPAID)
+                    .salesType(StoreSalesType.HALL)
+                    .description("신속한 배달")
+                    .discountInfo(StoreDiscountInfo.TODAY_DISCOUNT)
+                    .storeStatus(StoreStatus.OPEN)
+                    .build();
+
+            StoreOperationHour storeOperationHour1 = StoreOperationHour.builder()
+                    .store(store1)
+                    .startDay(StoreDay.MON)
+                    .endDay(StoreDay.FRI)
+                    .startTime("09:00")
+                    .endTime("18:00")
+                    .build();
+            StoreOperationHours storeOperationHours = new StoreOperationHours(storeOperationHour1);
+
+            StoreImage storeImage1 = StoreImage.builder()
+                    .store(store1)
+                    .creatTime(LocalDateTime.now())
+                    .storeImg("default:1212")
+                    .build();
+            StoreImage storeImage2 = StoreImage.builder()
+                    .store(store1)
+                    .creatTime(LocalDateTime.now())
+                    .storeImg("default:1213")
+                    .build();
+            StoreImages storeImages = new StoreImages(storeImage1, storeImage2);
+
+            Review review1 = Review.builder()
+                    .store(store1)
+                    .createdDate(LocalDateTime.now())
+                    .greatCoffee(0)
+                    .greatBeverage(1)
+                    .greatFood(1)
+                    .manyOutlet(0)
+                    .build();
+
+            Review review2 = Review.builder()
+                    .store(store1)
+                    .createdDate(LocalDateTime.now())
+                    .greatCoffee(0)
+                    .greatBeverage(1)
+                    .greatFood(1)
+                    .manyOutlet(1)
+                    .build();
+
+            Review review3 = Review.builder()
+                    .store(store1)
+                    .createdDate(LocalDateTime.now())
+                    .greatCoffee(0)
+                    .greatBeverage(1)
+                    .greatFood(1)
+                    .manyOutlet(1)
+                    .build();
+
+            Reviews reviews = new Reviews(review1, review2, review3);
+
+            Discount discount1 = Discount.builder()
+                    .discountDay(DiscountDay.TUE)
+                    .discountRatio(5)
+                    .people(2)
+                    .store(store1)
+                    .build();
+
+            Discount discount2 = Discount.builder()
+                    .discountDay(DiscountDay.TUE)
+                    .discountRatio(10)
+                    .people(4)
+                    .store(store1)
+                    .build();
+
+            Discount discount3 = Discount.builder()
+                    .discountDay(DiscountDay.FRI)
+                    .discountRatio(5)
+                    .people(2)
+                    .store(store1)
+                    .build();
+
+            Discounts discounts = new Discounts(discount1, discount2, discount3);
+//            em.persist(storeImage1);
+//            em.persist(storeImage2);
+//            em.persist(storeOperationHour1);
+
+            Item item1 = Item.builder()
+                    .store(store1)
+                    .name("짜장면")
+                    .category(ItemCategory.PORK)
+                    .img("http://dffdf")
+                    .price(7000)
+                    .build();
+
+            Item item2 = Item.builder()
+                    .store(store1)
+                    .name("짬뽕")
+                    .category(ItemCategory.PORK)
+                    .img("http://dffdf2")
+                    .price(5000)
+                    .build();
+
+            ItemOption itemOption1 = ItemOption.builder()
+                    .item(item1)
+                    .name("곱빼기")
+                    .price(500)
+                    .category(ItemOptionCategory.SIZE)
+                    .build();
+
+            ItemOption itemOption2 = ItemOption.builder()
+                    .item(item1)
+                    .name("맛있게")
+                    .price(0)
+                    .category(ItemOptionCategory.SPICY)
+                    .build();
+
+            List<ItemOption> itemOptions = new ArrayList<>();
+            itemOptions.add(itemOption1);
+            itemOptions.add(itemOption2);
+
+            item1.updateCollection(itemOptions);
+            Items items = new Items(item1, item2);
+
+            store1.updateCollection(storeOperationHours, storeImages, reviews, discounts, items);
+            em.persist(store1);
         }
     }
 }

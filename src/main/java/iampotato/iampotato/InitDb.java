@@ -70,6 +70,7 @@ public class InitDb {
                     .description("11가지 원두를 쓰는 카페입니다")
                     .discountInfo(StoreDiscountInfo.TODAY_DISCOUNT)
                     .storeStatus(StoreStatus.OPEN)
+                    .tableImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/f1e66d1b-c551-468b-b54e-bdc1de905999")
                     .build();
 
             StoreOperationHour storeOperationHour1 = StoreOperationHour.builder()

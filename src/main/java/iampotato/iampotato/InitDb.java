@@ -223,21 +223,21 @@ public class InitDb {
             item1.updateCollection(itemOptions);
 
             ItemOption itemOption4 = ItemOption.builder()
-                    .item(item1)
+                    .item(item2)
                     .name("톨")
                     .price(0)
                     .category(ItemOptionCategory.SIZE)
                     .build();
 
             ItemOption itemOption5 = ItemOption.builder()
-                    .item(item1)
+                    .item(item2)
                     .name("그란데")
                     .price(500)
                     .category(ItemOptionCategory.SIZE)
                     .build();
 
             ItemOption itemOption6 = ItemOption.builder()
-                    .item(item1)
+                    .item(item2)
                     .name("벤티")
                     .price(1000)
                     .category(ItemOptionCategory.SIZE)
@@ -250,21 +250,21 @@ public class InitDb {
             item2.updateCollection(itemOptions2);
 
             ItemOption itemOption7 = ItemOption.builder()
-                    .item(item1)
+                    .item(item3)
                     .name("톨")
                     .price(0)
                     .category(ItemOptionCategory.SIZE)
                     .build();
 
             ItemOption itemOption8 = ItemOption.builder()
-                    .item(item1)
+                    .item(item3)
                     .name("그란데")
                     .price(500)
                     .category(ItemOptionCategory.SIZE)
                     .build();
 
             ItemOption itemOption9 = ItemOption.builder()
-                    .item(item1)
+                    .item(item3)
                     .name("벤티")
                     .price(1000)
                     .category(ItemOptionCategory.SIZE)
@@ -277,21 +277,21 @@ public class InitDb {
             item3.updateCollection(itemOptions3);
 
             ItemOption itemOption10 = ItemOption.builder()
-                    .item(item1)
+                    .item(item4)
                     .name("톨")
                     .price(0)
                     .category(ItemOptionCategory.SIZE)
                     .build();
 
             ItemOption itemOption11 = ItemOption.builder()
-                    .item(item1)
+                    .item(item4)
                     .name("그란데")
                     .price(500)
                     .category(ItemOptionCategory.SIZE)
                     .build();
 
             ItemOption itemOption12 = ItemOption.builder()
-                    .item(item1)
+                    .item(item4)
                     .name("벤티")
                     .price(1000)
                     .category(ItemOptionCategory.SIZE)
@@ -301,7 +301,7 @@ public class InitDb {
             itemOptions.add(itemOption10);
             itemOptions.add(itemOption11);
             itemOptions.add(itemOption12);
-            item3.updateCollection(itemOptions4);
+            item4.updateCollection(itemOptions4);
 
             Items items = new Items(item1, item2, item3, item4);
 

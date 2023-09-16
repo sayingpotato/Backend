@@ -58,6 +58,11 @@ public class CustomerApi {
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, null);
     }
 
+    @GetMapping("/api/v1/customers/unauthorizedList")
+    public Result<getUnauthorizedListResponse> getUnauthorizedList() throws Exception {
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, new getUnauthorizedListResponse());
+    }
+
     @GetMapping(value = "/image/view", produces = {"image/jpeg", "image/png", "image/gif"})
     public byte[] getImage(@RequestParam("customerStoredImage") String customerStoredImage) throws IOException {
         FileInputStream fis = null; //파일로부터 바이트로 입력받기

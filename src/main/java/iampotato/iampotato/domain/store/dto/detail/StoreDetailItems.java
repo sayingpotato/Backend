@@ -13,14 +13,11 @@ public class StoreDetailItems {
 
     String name;
 
-    int price;
-
     List<StoreDetailItemOptions> storeDetailItemOptions;
 
     public StoreDetailItems(Item item) {
         this.id = item.getId();
         this.name = item.getName();
-        this.price = item.getPrice();
         this.storeDetailItemOptions = item.getItemOptions().getItemOptions().stream()
                 .map(StoreDetailItemOptions::new)
                 .collect(Collectors.toList());

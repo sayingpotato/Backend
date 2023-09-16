@@ -61,7 +61,7 @@ public class InitDb {
                     .createdDate(LocalDateTime.now())
                     .outletNum(0)
                     .closedDay(StoreDay.FRI)
-                    .address(new Address("충북 청주시 서원구 1순환로 6720길 64", "h2", "h3", "h4"))
+                    .address(new Address("h1", "h2", "h3", "h4"))
                     .category(StoreCategory.CAFE)
                     .location((Point) new WKTReader().read(String.format("POINT(%s %s)", 127.455409, 36.625170)))
                     .phone("01012345678")
@@ -85,29 +85,14 @@ public class InitDb {
             StoreImage storeImage1 = StoreImage.builder()
                     .store(store1)
                     .creatTime(LocalDateTime.now())
-                    .storeImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/3f3d91b3-3b3a-41e8-8d8e-467174118a96")
+                    .storeImg("default:1212")
                     .build();
             StoreImage storeImage2 = StoreImage.builder()
                     .store(store1)
                     .creatTime(LocalDateTime.now())
-                    .storeImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/65648635-b505-4c73-b18b-c381569b20a9")
+                    .storeImg("default:1213")
                     .build();
-            StoreImage storeImage3 = StoreImage.builder()
-                    .store(store1)
-                    .creatTime(LocalDateTime.now())
-                    .storeImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/1ed76463-29ca-44b2-874e-9a08c48256e1")
-                    .build();
-            StoreImage storeImage4 = StoreImage.builder()
-                    .store(store1)
-                    .creatTime(LocalDateTime.now())
-                    .storeImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/5c7bddf0-647e-441c-a695-faf12083a933")
-                    .build();
-            StoreImage storeImage5 = StoreImage.builder()
-                    .store(store1)
-                    .creatTime(LocalDateTime.now())
-                    .storeImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/6fe0fcf0-b38e-4b4e-ac1b-42627a445755")
-                    .build();
-            StoreImages storeImages = new StoreImages(storeImage1, storeImage2, storeImage3, storeImage4, storeImage5);
+            StoreImages storeImages = new StoreImages(storeImage1, storeImage2);
 
             Review review1 = Review.builder()
                     .store(store1)
@@ -166,17 +151,17 @@ public class InitDb {
 
             Item item1 = Item.builder()
                     .store(store1)
-                    .name("아메리카노")
+                    .name("돼지불고기")
                     .category(ItemCategory.PORK)
-                    .img("https://github.com/sayingpotato/Frontend-Web/assets/64068511/159b3769-cf0f-4d2e-8307-ba63ae71c8d3")
+                    .img("http://dffdf")
                     .price(5000)
                     .build();
 
             Item item2 = Item.builder()
                     .store(store1)
-                    .name("자몽허니블랙티")
+                    .name("대창")
                     .category(ItemCategory.PORK)
-                    .img("https://github.com/sayingpotato/Frontend-Web/assets/64068511/c95086b5-179b-4234-8ce5-0480a714fcc3")
+                    .img("http://dffdf2")
                     .price(10000)
                     .build();
 

@@ -70,6 +70,7 @@ public class InitDb {
                     .description("11가지 원두를 쓰는 카페입니다")
                     .discountInfo(StoreDiscountInfo.TODAY_DISCOUNT)
                     .storeStatus(StoreStatus.OPEN)
+                    .tableImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/f1e66d1b-c551-468b-b54e-bdc1de905999")
                     .build();
 
             StoreOperationHour storeOperationHour1 = StoreOperationHour.builder()
@@ -164,7 +165,131 @@ public class InitDb {
                     .price(10000)
                     .build();
 
-            Items items = new Items(item1, item2);
+            Item item3 = Item.builder()
+                    .store(store1)
+                    .name("카페라떼")
+                    .category(ItemCategory.PORK)
+                    .img("https://github.com/sayingpotato/Frontend-Web/assets/64068511/8f777931-2110-4093-beff-c4b1f807234b")
+                    .price(7000)
+                    .build();
+
+            Item item4 = Item.builder()
+                    .store(store1)
+                    .name("핫초코")
+                    .category(ItemCategory.PORK)
+                    .img("https://github.com/sayingpotato/Frontend-Web/assets/64068511/2f95dd53-70e4-47a0-b36b-2f32b7de1b55")
+                    .price(4000)
+                    .build();
+
+            ItemOption itemOption1 = ItemOption.builder()
+                    .item(item1)
+                    .name("톨")
+                    .price(0)
+                    .category(ItemOptionCategory.SIZE)
+                    .build();
+
+            ItemOption itemOption2 = ItemOption.builder()
+                    .item(item1)
+                    .name("그란데")
+                    .price(500)
+                    .category(ItemOptionCategory.SIZE)
+                    .build();
+
+            ItemOption itemOption3 = ItemOption.builder()
+                    .item(item1)
+                    .name("벤티")
+                    .price(1000)
+                    .category(ItemOptionCategory.SIZE)
+                    .build();
+
+            List<ItemOption> itemOptions = new ArrayList<>();
+            itemOptions.add(itemOption1);
+            itemOptions.add(itemOption2);
+            itemOptions.add(itemOption3);
+            item1.updateCollection(itemOptions);
+
+            ItemOption itemOption4 = ItemOption.builder()
+                    .item(item2)
+                    .name("톨")
+                    .price(0)
+                    .category(ItemOptionCategory.SIZE)
+                    .build();
+
+            ItemOption itemOption5 = ItemOption.builder()
+                    .item(item2)
+                    .name("그란데")
+                    .price(500)
+                    .category(ItemOptionCategory.SIZE)
+                    .build();
+
+            ItemOption itemOption6 = ItemOption.builder()
+                    .item(item2)
+                    .name("벤티")
+                    .price(1000)
+                    .category(ItemOptionCategory.SIZE)
+                    .build();
+
+            List<ItemOption> itemOptions2 = new ArrayList<>();
+            itemOptions.add(itemOption4);
+            itemOptions.add(itemOption5);
+            itemOptions.add(itemOption6);
+            item2.updateCollection(itemOptions2);
+
+            ItemOption itemOption7 = ItemOption.builder()
+                    .item(item3)
+                    .name("톨")
+                    .price(0)
+                    .category(ItemOptionCategory.SIZE)
+                    .build();
+
+            ItemOption itemOption8 = ItemOption.builder()
+                    .item(item3)
+                    .name("그란데")
+                    .price(500)
+                    .category(ItemOptionCategory.SIZE)
+                    .build();
+
+            ItemOption itemOption9 = ItemOption.builder()
+                    .item(item3)
+                    .name("벤티")
+                    .price(1000)
+                    .category(ItemOptionCategory.SIZE)
+                    .build();
+
+            List<ItemOption> itemOptions3 = new ArrayList<>();
+            itemOptions.add(itemOption7);
+            itemOptions.add(itemOption8);
+            itemOptions.add(itemOption9);
+            item3.updateCollection(itemOptions3);
+
+            ItemOption itemOption10 = ItemOption.builder()
+                    .item(item4)
+                    .name("톨")
+                    .price(0)
+                    .category(ItemOptionCategory.SIZE)
+                    .build();
+
+            ItemOption itemOption11 = ItemOption.builder()
+                    .item(item4)
+                    .name("그란데")
+                    .price(500)
+                    .category(ItemOptionCategory.SIZE)
+                    .build();
+
+            ItemOption itemOption12 = ItemOption.builder()
+                    .item(item4)
+                    .name("벤티")
+                    .price(1000)
+                    .category(ItemOptionCategory.SIZE)
+                    .build();
+
+            List<ItemOption> itemOptions4 = new ArrayList<>();
+            itemOptions.add(itemOption10);
+            itemOptions.add(itemOption11);
+            itemOptions.add(itemOption12);
+            item4.updateCollection(itemOptions4);
+
+            Items items = new Items(item1, item2, item3, item4);
 
             store1.updateCollection(storeOperationHours, storeImages, reviews, discounts, items);
 

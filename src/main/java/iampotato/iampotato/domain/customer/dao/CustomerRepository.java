@@ -1,5 +1,6 @@
 package iampotato.iampotato.domain.customer.dao;
 import iampotato.iampotato.domain.customer.domain.Customer;
+import iampotato.iampotato.domain.customer.domain.CustomerStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
@@ -39,6 +40,17 @@ public class CustomerRepository {
                 .getResultList();
         return result.stream().findAny();
     }
+
+    public List<Customer> findUnauthorizedCustomers() {
+        List<Customer> result = em.createQuery("select c from Customer c" +
+                        " where c.customerImage.customerStoredImage != NULL" +
+                        " and c.customerStatus = :customerStatus", Customer.class)
+                .setParameter("customerStatus", CustomerStatus.UNAUTHORIZED)
+                .getResultList();
+
+        return result;
+    }
+
     public void delete(Customer customer) {
         em.remove(customer);
     }

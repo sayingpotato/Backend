@@ -61,8 +61,14 @@ public class Customer implements UserDetails {
 
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
+
+    @NotNull
     private String customerNumber;
+
+    @NotNull
     private String customerDept;
+
+    @NotNull
     private String customerCollege;
     private String customerGrade;
     @Embedded

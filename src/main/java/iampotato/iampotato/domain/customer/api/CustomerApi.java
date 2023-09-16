@@ -1,11 +1,10 @@
 package iampotato.iampotato.domain.customer.api;
 
-import iampotato.iampotato.domain.customer.application.CertifyCustomerService;
-import iampotato.iampotato.domain.customer.application.CustomerImageService;
-import iampotato.iampotato.domain.customer.application.CustomerSignInService;
-import iampotato.iampotato.domain.customer.application.CustomerSignUpService;
+import iampotato.iampotato.domain.customer.application.*;
 import iampotato.iampotato.domain.customer.domain.Customer;
 import iampotato.iampotato.domain.customer.dto.*;
+import iampotato.iampotato.domain.order.domain.Order;
+import iampotato.iampotato.domain.order.dto.OrderDetailResponse;
 import iampotato.iampotato.global.util.Result;
 import iampotato.iampotato.global.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +15,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequiredArgsConstructor
 public class CustomerApi {
@@ -23,6 +25,7 @@ public class CustomerApi {
     private final CustomerSignUpService customerSignUpService;
     private final CustomerImageService customerImageService;
     private final CertifyCustomerService certifyCustomerService;
+    private final GetUnauthorizedCustomersService getUnauthorizedCustomersService;
 
     @PostMapping("/api/v1/customers/signUp")
     public Result<SignUpResponse> signUp(@RequestBody SignUpRequest signUpRequest) throws Exception{    //회원 가입하는 POST API
@@ -31,6 +34,9 @@ public class CustomerApi {
                 .loginId(signUpRequest.getLoginId())
                 .password(signUpRequest.getPassword())
                 .nickname(signUpRequest.getNickname())
+                .customerNumber(signUpRequest.getCustomerNumber())
+                .customerDept(signUpRequest.getCustomerDept())
+                .customerCollege(signUpRequest.getCustomerCollege())
                 .build();
         String id = customerSignUpService.signUp(customer);
         return new Result<>(Result.CODE_SUCCESS,Result.MESSAGE_OK, new SignUpResponse(id));
@@ -53,6 +59,23 @@ public class CustomerApi {
     public Result<String> certifyCustomer(@RequestBody CertifyCustomerRequest certifyCustomerRequest) {
         certifyCustomerService.certifyCustomer(certifyCustomerRequest.getId());
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, null);
+    }
+
+    @GetMapping("/api/v1/customers/unauthorizedCustomers")
+    public Result<List<UnauthorizedCustomer>> getUnauthorizedCustomers() throws Exception {
+
+        List<Customer> unauthorizedCustomers = getUnauthorizedCustomersService.getUnauthorizedCustomers();
+        List<UnauthorizedCustomer> responses = unauthorizedCustomers.stream()
+                .map(unauthorizedCustomer -> new UnauthorizedCustomer(
+                        unauthorizedCustomer.getId(),
+                        unauthorizedCustomer.getCustomerNumber(),
+                        unauthorizedCustomer.getCustomerDept(),
+                        unauthorizedCustomer.getCustomerCollege(),
+                        unauthorizedCustomer.getCustomerImage()
+                ))
+                .collect(Collectors.toList());
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, responses);
     }
 
     @GetMapping(value = "/image/view", produces = {"image/jpeg", "image/png", "image/gif"})

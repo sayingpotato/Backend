@@ -11,9 +11,17 @@ import java.util.stream.Collectors;
 public class StoreDetailResponse {
 
     Long id;
+
     String name;
+
     Address address;
+
     String tableImg;
+
+    String phone;
+
+    int outletNum;
+
     List<StoreDetailStoreOperationHour> storeOperationHours;
 
     List<StoreDetailStoreImage> storeDetailStoreImages;
@@ -29,6 +37,8 @@ public class StoreDetailResponse {
         this.address = store.getAddress();
         this.name = store.getName();
         this.tableImg = store.getTableImg();
+        this.phone = store.getPhone();
+        this.outletNum = store.getOutletNum();
 
         this.storeOperationHours = store.getStoreOperationHours().getStoreOperationHours().stream()
                 .map(StoreDetailStoreOperationHour::new)

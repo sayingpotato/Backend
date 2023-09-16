@@ -31,6 +31,9 @@ public class CustomerApi {
                 .loginId(signUpRequest.getLoginId())
                 .password(signUpRequest.getPassword())
                 .nickname(signUpRequest.getNickname())
+                .customerNumber(signUpRequest.getCustomerNumber())
+                .customerDept(signUpRequest.getCustomerDept())
+                .customerCollege(signUpRequest.getCustomerCollege())
                 .build();
         String id = customerSignUpService.signUp(customer);
         return new Result<>(Result.CODE_SUCCESS,Result.MESSAGE_OK, new SignUpResponse(id));

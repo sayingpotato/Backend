@@ -16,6 +16,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class CustomerApi {
@@ -58,9 +60,9 @@ public class CustomerApi {
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, null);
     }
 
-    @GetMapping("/api/v1/customers/unauthorizedList")
-    public Result<getUnauthorizedListResponse> getUnauthorizedList() throws Exception {
-        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, new getUnauthorizedListResponse());
+    @GetMapping("/api/v1/customers/unauthorizedCustomers")
+    public Result<List<UnauthorizedCustomer>> getUnauthorizedCustomers() throws Exception {
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, null);
     }
 
     @GetMapping(value = "/image/view", produces = {"image/jpeg", "image/png", "image/gif"})

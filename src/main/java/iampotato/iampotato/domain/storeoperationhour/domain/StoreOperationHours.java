@@ -19,4 +19,8 @@ public class StoreOperationHours {
     public StoreOperationHours(StoreOperationHour... storeOperationHours) {
         this.storeOperationHours = List.of(storeOperationHours);
     }
+
+    public StoreOperationHours(List<StoreOperationHour> storeOperationHours) {
+        this.storeOperationHours = storeOperationHours;
+    }
 }

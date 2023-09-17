@@ -8,8 +8,11 @@ import iampotato.iampotato.domain.store.dao.StoreRepository;
 import iampotato.iampotato.domain.store.domain.Location;
 import iampotato.iampotato.domain.store.domain.Store;
 import iampotato.iampotato.domain.store.dto.register.StoreRegistrationRequest;
+import iampotato.iampotato.domain.store.dto.update.StoreUpdateRequest;
 import iampotato.iampotato.domain.store.exception.StoreException;
 import iampotato.iampotato.domain.store.exception.StoreExceptionGroup;
+import iampotato.iampotato.domain.storeoperationhour.domain.StoreOperationHour;
+import iampotato.iampotato.domain.storeoperationhour.domain.StoreOperationHours;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +21,7 @@ import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -53,6 +57,34 @@ public class StoreService {
         ownerStoreService.registerOwnerStore(store, owner);
 
         storeRepository.save(store);
+
+        return store;
+    }
+
+    @Transactional
+    public Store updateStore(StoreUpdateRequest request) {
+
+        Store store = storeRepository.findById(request.getId());
+
+
+        List<StoreOperationHour> hours = request.getStoreOperationHours().stream()
+                .map(o -> StoreOperationHour.createStoreOperationHour(store,
+                        o.getStartDay(),
+                        o.getEndDay(),
+                        o.getStartTime(),
+                        o.getEndTime()
+                )).collect(Collectors.toList());
+
+        store.updateStore(request.getSalesType(),
+                request.getStoreStatus(),
+                request.getDiscountInfo(),
+                request.getDescription(),
+                request.getTableImg(),
+                new StoreOperationHours(hours),
+                request.getClosedDay(),
+                request.getStoreMapThumbnail(),
+                request.getStoreTodayDiscountThumbnail(),
+                request.getOutletNum());
 
         return store;
     }

@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 @Builder
 @AllArgsConstructor
-public class ReviewResultOfCafe {
+public class ReviewResult {
 
     private int allNum;
 

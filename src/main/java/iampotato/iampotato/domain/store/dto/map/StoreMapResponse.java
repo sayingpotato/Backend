@@ -13,6 +13,8 @@ public class StoreMapResponse {
 
     private Location location;
 
+    private String name;
+
     private StoreMarkerInfo markerInfo;
 
     public StoreMapResponse(Store store) {
@@ -20,6 +22,8 @@ public class StoreMapResponse {
 
         // Point 자료형은 json 인식이 불가능하기때문에 Location 자료형으로 변환해주어야 합니다.
         this.location = new Location(store.getLocation().getY(), store.getLocation().getX());
+
+        this.name = store.getName();
 
         markerInfo = new StoreMarkerInfo(store);
     }

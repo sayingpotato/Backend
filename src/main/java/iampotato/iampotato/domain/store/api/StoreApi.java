@@ -15,6 +15,8 @@ import iampotato.iampotato.domain.store.dto.search.StoreSearchRequest;
 import iampotato.iampotato.domain.store.dto.search.StoreSearchResponse;
 import iampotato.iampotato.domain.store.dto.todaydiscount.StoreTodayDiscountRequest;
 import iampotato.iampotato.domain.store.dto.todaydiscount.StoreTodayDiscountResponse;
+import iampotato.iampotato.domain.store.dto.update.StoreUpdateRequest;
+import iampotato.iampotato.domain.store.dto.update.StoreUpdateResponse;
 import iampotato.iampotato.global.util.Result;
 import iampotato.iampotato.global.util.SecurityUtil;
 import io.swagger.v3.oas.annotations.Operation;
@@ -41,6 +43,18 @@ public class StoreApi {
 
         Store store = storeService.registerStore(SecurityUtil.getCurrentUserId(), request);
         StoreRegistrationResponse response = new StoreRegistrationResponse(store);
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, response);
+    }
+
+    /**
+     * 가게 정보 등록 UPDATE API
+     */
+    @PutMapping("api/v1/stores")
+    public Result<StoreUpdateResponse> updateStore(@RequestBody StoreUpdateRequest request) {
+
+        Store store = storeService.updateStore(request);
+        StoreUpdateResponse response = new StoreUpdateResponse(store);
 
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, response);
     }

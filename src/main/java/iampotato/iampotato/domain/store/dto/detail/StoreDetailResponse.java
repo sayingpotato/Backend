@@ -1,6 +1,6 @@
 package iampotato.iampotato.domain.store.dto.detail;
 
-import iampotato.iampotato.domain.review.domain.ReviewResultOfCafe;
+import iampotato.iampotato.domain.review.domain.ReviewResult;
 import iampotato.iampotato.domain.store.domain.*;
 import lombok.Data;
 
@@ -28,7 +28,7 @@ public class StoreDetailResponse {
 
     List<StoreDetailItems> storeDetailItems;
 
-    ReviewResultOfCafe reviewResultOfCafe;
+    ReviewResult reviewResult;
 
     List<StoreDetailDiscount> discounts;
 
@@ -52,7 +52,7 @@ public class StoreDetailResponse {
                 .map(StoreDetailItems::new)
                 .collect(Collectors.toList());
 
-        this.reviewResultOfCafe = store.getReviews().getReviewResultOfCafe();
+        this.reviewResult = store.getReviews().getReviewResultOfCafe();
 
         this.discounts = store.getDiscounts().getDiscounts().stream()
                 .map(StoreDetailDiscount::new)

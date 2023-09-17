@@ -53,8 +53,8 @@ public class Reviews {
                 countManyOutlet();
     }
 
-    public ReviewResultOfCafe getReviewResultOfCafe() {
-        return ReviewResultOfCafe.builder()
+    public ReviewResult getReviewResultOfCafe() {
+        return ReviewResult.builder()
                 .greatBeverageNum(countGreatBeverage())
                 .greatCoffeeNum(countGreatCoffee())
                 .greatFoodNum(countGreatFood())

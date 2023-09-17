@@ -28,4 +28,19 @@ public class StoreOperationHour {
     private StoreDay endDay;
     private String startTime;
     private String endTime;
+
+    public static StoreOperationHour createStoreOperationHour(Store store,
+                                                              StoreDay startDay,
+                                                              StoreDay endDay,
+                                                              String startTime,
+                                                              String endTime) {
+
+        return StoreOperationHour.builder()
+                .store(store)
+                .startDay(startDay)
+                .endDay(endDay)
+                .startTime(startTime)
+                .endTime(endTime)
+                .build();
+    }
 }

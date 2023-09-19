@@ -1,5 +1,7 @@
 package iampotato.iampotato.domain.store.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import org.hibernate.annotations.ColumnDefault;
@@ -11,6 +13,8 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 @Getter
+@Builder
+@AllArgsConstructor
 @EqualsAndHashCode
 public class StoreMapThumbnail {
 
@@ -18,7 +22,9 @@ public class StoreMapThumbnail {
      * DEFAULT_THUMBNAIL_URL 는 저장된 이미지 없을시 띄워주는 사진 URL 입니다.
      */
     private static final String DEFAULT_THUMBNAIL_URL = "'aa'";
-    protected StoreMapThumbnail(){}
+
+    protected StoreMapThumbnail() {
+    }
 
     @ColumnDefault(DEFAULT_THUMBNAIL_URL)
     private String mainImg;

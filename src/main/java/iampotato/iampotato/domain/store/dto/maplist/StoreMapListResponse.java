@@ -26,12 +26,18 @@ public class StoreMapListResponse {
 
     private StoreTopReview storeTopReview;
 
+    private int maxDiscountRatio;
+
+    private int minDiscountRatio;
+
     public StoreMapListResponse(Store store) {
 
         this.id = store.getId();
         this.name = store.getName();
         this.storeMapThumbnail = store.getStoreMapThumbnail();
         this.location = new Location(store.getLocation().getY(), store.getLocation().getX());
+        this.maxDiscountRatio = store.maxDiscountRatio().getDiscountRatio();
+        this.minDiscountRatio = store.minDiscountRatio().getDiscountRatio();
 
         this.discounts = store.getDiscounts().getDiscounts().stream()
                 .map(StoreMapListDiscount::new)

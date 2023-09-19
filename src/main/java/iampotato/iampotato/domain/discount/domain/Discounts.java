@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Getter
@@ -20,5 +21,19 @@ public class Discounts {
 
     public Discounts(Discount... discounts) {
         this.discounts = List.of(discounts);
+    }
+
+    public Discount getMaxDiscountRatio() {
+        Comparator<Discount> comparatorByDiscountRatio = Comparator.comparingInt(Discount::getDiscountRatio);
+        return discounts.stream()
+                .max(comparatorByDiscountRatio)
+                .get();
+    }
+
+    public Discount getMinDiscountRatio() {
+        Comparator<Discount> comparatorByDiscountRatio = Comparator.comparingInt(Discount::getDiscountRatio);
+        return discounts.stream()
+                .min(comparatorByDiscountRatio)
+                .get();
     }
 }

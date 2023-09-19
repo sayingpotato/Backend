@@ -56,6 +56,32 @@ public class InitDb {
         private final EntityManager em;
 
         public void dbStores1() throws ParseException {
+
+            StoreMapThumbnail storeMapThumbnail = StoreMapThumbnail.builder()
+                    .mainImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/f1e66d1b-c551-468b-b54e-bdc1de905999")
+                    .subImg1("https://github.com/sayingpotato/Frontend-Web/assets/64068511/3f3d91b3-3b3a-41e8-8d8e-467174118a96")
+                    .subImg2("https://github.com/sayingpotato/Frontend-Web/assets/64068511/65648635-b505-4c73-b18b-c381569b20a9")
+                    .subImg3("https://github.com/sayingpotato/Frontend-Web/assets/64068511/1ed76463-29ca-44b2-874e-9a08c48256e1")
+                    .build();
+
+            StoreTopItem storeTopItem = StoreTopItem.builder()
+                    .firstGradeItemName("아이스아메리카노")
+                    .firstGradeItemNumber(299)
+                    .secondGradeItemName("자몽허니블랙티")
+                    .secondGradeItemNumber(142)
+                    .thirdGradeItemName("핫초코")
+                    .thirdGradeItemNumber(53)
+                    .build();
+
+            StoreTopReview storeTopReview = StoreTopReview.builder()
+                    .firstGradeReviewName("가게가 멋있어요")
+                    .firstGradeReviewNumber(47)
+                    .secondGradeReviewName("커피가 맛있어요")
+                    .secondGradeReviewNumber(44)
+                    .thirdGradeReviewName("조명이 예뻐요")
+                    .thirdGradeReviewNumber(16)
+                    .build();
+
             Store store1 = Store.builder()
                     .name("좋은원두")
                     .createdDate(LocalDateTime.now())
@@ -71,6 +97,9 @@ public class InitDb {
                     .discountInfo(StoreDiscountInfo.TODAY_DISCOUNT)
                     .storeStatus(StoreStatus.OPEN)
                     .tableImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/f1e66d1b-c551-468b-b54e-bdc1de905999")
+                    .storeMapThumbnail(storeMapThumbnail)
+                    .storeTopItem(storeTopItem)
+                    .storeTopReview(storeTopReview)
                     .build();
 
             StoreOperationHour storeOperationHour1 = StoreOperationHour.builder()
@@ -312,6 +341,32 @@ public class InitDb {
         }
 
         public void dbStores2() throws ParseException {
+
+            StoreMapThumbnail storeMapThumbnail = StoreMapThumbnail.builder()
+                    .mainImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/f1e66d1b-c551-468b-b54e-bdc1de905999")
+                    .subImg1("https://github.com/sayingpotato/Frontend-Web/assets/64068511/3f3d91b3-3b3a-41e8-8d8e-467174118a96")
+                    .subImg2("https://github.com/sayingpotato/Frontend-Web/assets/64068511/65648635-b505-4c73-b18b-c381569b20a9")
+                    .subImg3("https://github.com/sayingpotato/Frontend-Web/assets/64068511/1ed76463-29ca-44b2-874e-9a08c48256e1")
+                    .build();
+
+            StoreTopItem storeTopItem = StoreTopItem.builder()
+                    .firstGradeItemName("아이스아메리카노")
+                    .firstGradeItemNumber(120)
+                    .secondGradeItemName("녹차")
+                    .secondGradeItemNumber(72)
+                    .thirdGradeItemName("핫초코")
+                    .thirdGradeItemNumber(40)
+                    .build();
+
+            StoreTopReview storeTopReview = StoreTopReview.builder()
+                    .firstGradeReviewName("플러그가 많아요")
+                    .firstGradeReviewNumber(35)
+                    .secondGradeReviewName("커피가 맛있어요")
+                    .secondGradeReviewNumber(24)
+                    .thirdGradeReviewName("케이크가 맛나요")
+                    .thirdGradeReviewNumber(9)
+                    .build();
+
             Store store1 = Store.builder()
                     .name("착한원두")
                     .createdDate(LocalDateTime.now())
@@ -326,6 +381,9 @@ public class InitDb {
                     .description("11가지 원두를 쓰는 카페입니다")
                     .discountInfo(StoreDiscountInfo.TODAY_DISCOUNT)
                     .storeStatus(StoreStatus.OPEN)
+                    .storeMapThumbnail(storeMapThumbnail)
+                    .storeTopItem(storeTopItem)
+                    .storeTopReview(storeTopReview)
                     .build();
 
             StoreOperationHour storeOperationHour1 = StoreOperationHour.builder()
@@ -420,6 +478,32 @@ public class InitDb {
         }
 
         public void dbStores3() throws ParseException {
+
+            StoreMapThumbnail storeMapThumbnail = StoreMapThumbnail.builder()
+                    .mainImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/f1e66d1b-c551-468b-b54e-bdc1de905999")
+                    .subImg1("https://github.com/sayingpotato/Frontend-Web/assets/64068511/3f3d91b3-3b3a-41e8-8d8e-467174118a96")
+                    .subImg2("https://github.com/sayingpotato/Frontend-Web/assets/64068511/65648635-b505-4c73-b18b-c381569b20a9")
+                    .subImg3("https://github.com/sayingpotato/Frontend-Web/assets/64068511/1ed76463-29ca-44b2-874e-9a08c48256e1")
+                    .build();
+
+            StoreTopItem storeTopItem = StoreTopItem.builder()
+                    .firstGradeItemName("아이스아메리카노")
+                    .firstGradeItemNumber(6003)
+                    .secondGradeItemName("카페라떼")
+                    .secondGradeItemNumber(2642)
+                    .thirdGradeItemName("돌체라떼")
+                    .thirdGradeItemNumber(614)
+                    .build();
+
+            StoreTopReview storeTopReview = StoreTopReview.builder()
+                    .firstGradeReviewName("분위기가 좋아요")
+                    .firstGradeReviewNumber(4127)
+                    .secondGradeReviewName("커피가 맛있어요")
+                    .secondGradeReviewNumber(434)
+                    .thirdGradeReviewName("화장실이 꺠끗해요")
+                    .thirdGradeReviewNumber(126)
+                    .build();
+
             Store store1 = Store.builder()
                     .name("원두원두")
                     .createdDate(LocalDateTime.now())
@@ -434,6 +518,9 @@ public class InitDb {
                     .description("11가지 원두를 쓰는 카페입니다")
                     .discountInfo(StoreDiscountInfo.NONE)
                     .storeStatus(StoreStatus.OPEN)
+                    .storeMapThumbnail(storeMapThumbnail)
+                    .storeTopItem(storeTopItem)
+                    .storeTopReview(storeTopReview)
                     .build();
 
             StoreOperationHour storeOperationHour1 = StoreOperationHour.builder()

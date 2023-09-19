@@ -1,5 +1,6 @@
 package iampotato.iampotato.domain.store.domain;
 
+import iampotato.iampotato.domain.discount.domain.Discount;
 import iampotato.iampotato.domain.discount.domain.Discounts;
 import iampotato.iampotato.domain.item.domain.Items;
 import iampotato.iampotato.domain.review.domain.Reviews;
@@ -103,6 +104,15 @@ public class Store {
 
     @Enumerated(EnumType.STRING)
     private StoreDiscountInfo discountInfo;
+
+
+    public Discount maxDiscountRatio() {
+        return discounts.getMaxDiscountRatio();
+    }
+
+    public Discount minDiscountRatio() {
+        return discounts.getMinDiscountRatio();
+    }
 
     public void updateStore(StoreSalesType salesType,
                             StoreStatus storeStatus,

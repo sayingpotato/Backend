@@ -2,6 +2,7 @@ package iampotato.iampotato.global.exception;
 
 import iampotato.iampotato.domain.item.exception.ItemException;
 import iampotato.iampotato.domain.order.exception.OrderException;
+import iampotato.iampotato.domain.owner.exception.OwnerException;
 import iampotato.iampotato.domain.store.exception.StoreException;
 import iampotato.iampotato.global.util.ErrorResult;
 import org.springframework.validation.BindException;
@@ -36,6 +37,13 @@ public class ExceptionController {
         return new ErrorResult(e.getItemExceptionGroup().getHttpCode(),
                 e.getItemExceptionGroup().getErrorCode(),
                 e.getItemExceptionGroup().getMessage());
+    }
+
+    @ExceptionHandler(OwnerException.class)
+    public ErrorResult OwnerExceptionHandler(OwnerException e) {
+        return new ErrorResult(e.getOwnerExceptionGroup().getHttpCode(),
+                e.getOwnerExceptionGroup().getErrorCode(),
+                e.getOwnerExceptionGroup().getMessage());
     }
 
     /**

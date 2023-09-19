@@ -12,6 +12,8 @@ import iampotato.iampotato.domain.itemoption.domain.ItemOptionCategory;
 import iampotato.iampotato.domain.order.domain.Order;
 import iampotato.iampotato.domain.order.domain.OrderStatus;
 import iampotato.iampotato.domain.orderitem.domain.OrderItem;
+import iampotato.iampotato.domain.owner.domain.Owner;
+import iampotato.iampotato.domain.owner.domain.OwnerStatus;
 import iampotato.iampotato.domain.review.domain.Review;
 import iampotato.iampotato.domain.review.domain.Reviews;
 import iampotato.iampotato.domain.store.domain.*;
@@ -648,6 +650,16 @@ public class InitDb {
                     .customerCollege("충북대학교")
                     .build();
             em.persist(customer);
+
+            Owner owner = Owner.builder()
+                    .loginId("owner1")
+                    .password("123")
+                    .nickname("CafeMaster")
+                    .ownerStatus(OwnerStatus.UNAUTHORIZED)
+                    .ownerBusinessNumber("773-49-00806")
+                    .ssn("934920")
+                    .build();
+            em.persist(owner);
 
             Order order1 = Order.builder()
                     .customer(customer)

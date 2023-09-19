@@ -8,6 +8,7 @@ import iampotato.iampotato.domain.storeimage.domain.StoreImages;
 import iampotato.iampotato.domain.storeoperationhour.domain.StoreOperationHours;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.locationtech.jts.geom.Point;
 
 import javax.persistence.*;
@@ -25,6 +26,7 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 @DynamicInsert
+@DynamicUpdate
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Store {
@@ -103,6 +105,7 @@ public class Store {
     @Enumerated(EnumType.STRING)
     private StoreDiscountInfo discountInfo;
 
+
     public Discount maxDiscountRatio() {
         return discounts.getMaxDiscountRatio();
     }
@@ -110,6 +113,30 @@ public class Store {
     public Discount minDiscountRatio() {
         return discounts.getMinDiscountRatio();
     }
+
+    public void updateStore(StoreSalesType salesType,
+                            StoreStatus storeStatus,
+                            StoreDiscountInfo discountInfo,
+                            String description,
+                            String tableImg,
+                            StoreOperationHours storeOperationHours,
+                            StoreDay closedDay,
+                            StoreMapThumbnail storeMapThumbnail,
+                            String storeTodayDiscountThumbnail,
+                            int outletNum) {
+
+        this.salesType = salesType;
+        this.storeStatus = storeStatus;
+        this.discountInfo = discountInfo;
+        this.description = description;
+        this.tableImg = tableImg;
+        this.storeOperationHours = storeOperationHours;
+        this.closedDay = closedDay;
+        this.storeMapThumbnail = storeMapThumbnail;
+        this.storeTodayDiscountThumbnail = storeTodayDiscountThumbnail;
+        this.outletNum = outletNum;
+    }
+
 
     // 해당 메서드는 실제 사용할 비즈니스 로직이 아닙니다. InitDb 에 사용할 메소드로 임시로 만들어둔것입니다.
     public void updateCollection(StoreOperationHours storeOperationHours, StoreImages storeImages, Reviews reviews, Discounts discounts, Items items) {

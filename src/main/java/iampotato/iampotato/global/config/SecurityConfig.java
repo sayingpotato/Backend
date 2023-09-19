@@ -38,6 +38,8 @@ public class SecurityConfig {
                 .antMatchers("/**/*").permitAll()
                 .antMatchers("/api/v1/customers/signUp").permitAll()
                 .antMatchers("/api/v1/customers/signIn").permitAll()
+                .antMatchers("/api/v1/customers/unauthorizedCustomers").permitAll()
+                .antMatchers("/image/view").permitAll()
                 .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers("/v3/api-docs/**").permitAll()
                 .antMatchers("/swagger-ui.html").permitAll()

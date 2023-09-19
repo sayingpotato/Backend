@@ -643,6 +643,9 @@ public class InitDb {
                     .loginId("hi")
                     .password("123")
                     .nickname("likeCoffee")
+                    .customerNumber("2017038000")
+                    .customerDept("소프트웨어학과")
+                    .customerCollege("충북대학교")
                     .build();
             em.persist(customer);
 

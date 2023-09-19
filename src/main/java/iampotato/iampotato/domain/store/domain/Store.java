@@ -1,5 +1,6 @@
 package iampotato.iampotato.domain.store.domain;
 
+import iampotato.iampotato.domain.discount.domain.Discount;
 import iampotato.iampotato.domain.discount.domain.Discounts;
 import iampotato.iampotato.domain.item.domain.Items;
 import iampotato.iampotato.domain.review.domain.Reviews;
@@ -28,7 +29,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Store {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "store_id")
     private Long id;
 
@@ -101,6 +103,13 @@ public class Store {
     @Enumerated(EnumType.STRING)
     private StoreDiscountInfo discountInfo;
 
+    public Discount maxDiscountRatio() {
+        return discounts.getMaxDiscountRatio();
+    }
+
+    public Discount minDiscountRatio() {
+        return discounts.getMinDiscountRatio();
+    }
 
     // 해당 메서드는 실제 사용할 비즈니스 로직이 아닙니다. InitDb 에 사용할 메소드로 임시로 만들어둔것입니다.
     public void updateCollection(StoreOperationHours storeOperationHours, StoreImages storeImages, Reviews reviews, Discounts discounts, Items items) {

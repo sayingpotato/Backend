@@ -60,7 +60,7 @@ public class InitDb {
         public void dbStores1() throws ParseException {
 
             StoreMapThumbnail storeMapThumbnail = StoreMapThumbnail.builder()
-                    .mainImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/f1e66d1b-c551-468b-b54e-bdc1de905999")
+                    .mainImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/6fe0fcf0-b38e-4b4e-ac1b-42627a445755")
                     .subImg1("https://github.com/sayingpotato/Frontend-Web/assets/64068511/3f3d91b3-3b3a-41e8-8d8e-467174118a96")
                     .subImg2("https://github.com/sayingpotato/Frontend-Web/assets/64068511/65648635-b505-4c73-b18b-c381569b20a9")
                     .subImg3("https://github.com/sayingpotato/Frontend-Web/assets/64068511/1ed76463-29ca-44b2-874e-9a08c48256e1")
@@ -345,7 +345,7 @@ public class InitDb {
         public void dbStores2() throws ParseException {
 
             StoreMapThumbnail storeMapThumbnail = StoreMapThumbnail.builder()
-                    .mainImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/f1e66d1b-c551-468b-b54e-bdc1de905999")
+                    .mainImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/6fe0fcf0-b38e-4b4e-ac1b-42627a445755")
                     .subImg1("https://github.com/sayingpotato/Frontend-Web/assets/64068511/3f3d91b3-3b3a-41e8-8d8e-467174118a96")
                     .subImg2("https://github.com/sayingpotato/Frontend-Web/assets/64068511/65648635-b505-4c73-b18b-c381569b20a9")
                     .subImg3("https://github.com/sayingpotato/Frontend-Web/assets/64068511/1ed76463-29ca-44b2-874e-9a08c48256e1")
@@ -482,7 +482,7 @@ public class InitDb {
         public void dbStores3() throws ParseException {
 
             StoreMapThumbnail storeMapThumbnail = StoreMapThumbnail.builder()
-                    .mainImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/f1e66d1b-c551-468b-b54e-bdc1de905999")
+                    .mainImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/6fe0fcf0-b38e-4b4e-ac1b-42627a445755")
                     .subImg1("https://github.com/sayingpotato/Frontend-Web/assets/64068511/3f3d91b3-3b3a-41e8-8d8e-467174118a96")
                     .subImg2("https://github.com/sayingpotato/Frontend-Web/assets/64068511/65648635-b505-4c73-b18b-c381569b20a9")
                     .subImg3("https://github.com/sayingpotato/Frontend-Web/assets/64068511/1ed76463-29ca-44b2-874e-9a08c48256e1")

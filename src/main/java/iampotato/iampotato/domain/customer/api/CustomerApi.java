@@ -1,10 +1,9 @@
 package iampotato.iampotato.domain.customer.api;
 
 import iampotato.iampotato.domain.customer.application.*;
+import iampotato.iampotato.domain.customer.dao.CustomerRepository;
 import iampotato.iampotato.domain.customer.domain.Customer;
 import iampotato.iampotato.domain.customer.dto.*;
-import iampotato.iampotato.domain.order.domain.Order;
-import iampotato.iampotato.domain.order.dto.OrderDetailResponse;
 import iampotato.iampotato.global.util.Result;
 import iampotato.iampotato.global.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
@@ -26,9 +25,10 @@ public class CustomerApi {
     private final CustomerImageService customerImageService;
     private final CertifyCustomerService certifyCustomerService;
     private final GetUnauthorizedCustomersService getUnauthorizedCustomersService;
+    private final CustomerRepository customerRepository;
 
     @PostMapping("/api/v1/customers/signUp")
-    public Result<SignUpResponse> signUp(@RequestBody SignUpRequest signUpRequest) throws Exception{    //회원 가입하는 POST API
+    public Result<SignUpResponse> signUp(@RequestBody SignUpRequest signUpRequest) throws Exception {    //회원 가입하는 POST API
         //Spring security로 Password Hash 암호화 로직 추가하기
         Customer customer = Customer.builder()
                 .loginId(signUpRequest.getLoginId())
@@ -39,8 +39,9 @@ public class CustomerApi {
                 .customerCollege(signUpRequest.getCustomerCollege())
                 .build();
         String id = customerSignUpService.signUp(customer);
-        return new Result<>(Result.CODE_SUCCESS,Result.MESSAGE_OK, new SignUpResponse(id));
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, new SignUpResponse(id));
     }
+
     @PostMapping("/api/v1/customers/signIn")
     public Result<TokenResponse> signIn(@RequestBody SignInRequest signInRequest) throws Exception {
         TokenResponse tokenResponse = customerSignInService.signIn(signInRequest.getLoginId(), signInRequest.getPassword());
@@ -48,7 +49,7 @@ public class CustomerApi {
     }
 
     @PutMapping("/api/v1/customers/image") //MultipartFile을 처리하기 위해서 @RequestParam을 사용했다. 따라서 {image:이미지파일} 꼴로 넘겨 받아야한다.
-    public Result<UploadImageResponse> uploadImage(@RequestParam(value="image", required=false) MultipartFile multipartFile) throws Exception {
+    public Result<UploadImageResponse> uploadImage(@RequestParam(value = "image", required = false) MultipartFile multipartFile) throws Exception {
 //        System.out.println(SecurityUtil.getCurrentUserId());
         String customerId = SecurityUtil.getCurrentUserId();
         Customer customer = customerImageService.uploadImage(customerId, multipartFile);
@@ -76,6 +77,16 @@ public class CustomerApi {
                 .collect(Collectors.toList());
 
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, responses);
+    }
+
+    @GetMapping("/api/v1/customers")
+    public Result<MyPageResponse> getUserInfo() {
+
+        Customer customer = customerRepository.findOne(SecurityUtil.getCurrentUserId());
+
+        MyPageResponse response = new MyPageResponse(customer);
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, response);
     }
 
     @GetMapping(value = "/image/view", produces = {"image/jpeg", "image/png", "image/gif"})

@@ -35,7 +35,6 @@ public class SecurityConfig {
                 .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/**/*").permitAll()
-                .antMatchers("/**/*").permitAll()
                 .antMatchers("/api/v1/customers/signUp").permitAll()
                 .antMatchers("/api/v1/customers/signIn").permitAll()
                 .antMatchers("/api/v1/customers/unauthorizedCustomers").permitAll()

@@ -12,6 +12,7 @@ import iampotato.iampotato.domain.order.domain.OrderStatus;
 import iampotato.iampotato.domain.order.dto.OrderPostRequest;
 import iampotato.iampotato.domain.order.exception.OrderException;
 import iampotato.iampotato.domain.order.exception.OrderExceptionGroup;
+import iampotato.iampotato.domain.review.domain.Review;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,12 +50,14 @@ public class OrderService {
         Customer customer = customerRepository.findById(userId).orElseThrow();
         Items items = new Items(itemRepository.findByIds(request.getItemIds()));
         ItemOptions itemOptions = new ItemOptions(itemOptionRepository.findByIds(request.getItemOptionIds()));
+        Review review = Review.builder().build();
 
         Order order = Order.builder()
                 .customer(customer)
                 .orderStatus(OrderStatus.ORDER)
                 .totalPrice(request.getTotalPrice())
                 .totalPeople(request.getTotalPeople())
+                .review(review)
                 .createdDate(LocalDateTime.now())
                 .modifiedDate(LocalDateTime.now())
                 .build();

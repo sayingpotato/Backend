@@ -25,20 +25,27 @@ public class Review {
     @JoinColumn(name = "store_id")
     private Store store;
 
-    private ReviewStatus reviewStatus;
+    @Builder.Default
+    private ReviewStatus reviewStatus = ReviewStatus.NONE;
 
     // 여기서부터는 리뷰 내용들 입니다.
     // =============================
-    private int greatCoffee;
 
-    private int greatBeverage;
+    @Builder.Default
+    private int greatCoffee = 0;
 
-    private int greatFood;
+    @Builder.Default
+    private int greatBeverage = 0;
 
-    private int manyOutlet;
+    @Builder.Default
+    private int greatFood = 0;
+
+    @Builder.Default
+    private int manyOutlet = 0;
     // =============================
 
-    private LocalDateTime createdDate;
+    @Builder.Default
+    private LocalDateTime createdDate = LocalDateTime.now();
 
     private LocalDateTime modifiedDate;
 }

@@ -13,6 +13,8 @@ public class OrderPostRequest {
 
     private int totalPeople;
 
+    private int discountPrice;
+
     private List<Long> itemIds;
 
     private List<Long> itemOptionIds;

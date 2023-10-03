@@ -3,6 +3,7 @@ package iampotato.iampotato.domain.order.api;
 import iampotato.iampotato.domain.order.application.OrderService;
 import iampotato.iampotato.domain.order.domain.Order;
 import iampotato.iampotato.domain.order.dto.OrderDetailResponse;
+import iampotato.iampotato.domain.order.dto.OrderDiscountsResponse;
 import iampotato.iampotato.domain.order.dto.OrderPostRequest;
 import iampotato.iampotato.domain.order.dto.OrderPostResponse;
 import iampotato.iampotato.global.util.Result;
@@ -44,6 +45,16 @@ public class OrderApi {
         Order order = orderService.postOrder(SecurityUtil.getCurrentUserId(), request);
 
         OrderPostResponse response = new OrderPostResponse(order);
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, response);
+    }
+
+    @Tag(name = "주문 페이지")
+    @Operation(summary = "할인 금액 요청", description = "현재 사용자의 총 할인 금액을 가져옵니다.")
+    @GetMapping("api/v1/discount/total")
+    public Result<OrderDiscountsResponse> getDisocunts() {
+
+        OrderDiscountsResponse response = orderService.getDiscounts(SecurityUtil.getCurrentUserId());
 
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, response);
     }

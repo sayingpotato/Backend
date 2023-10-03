@@ -79,7 +79,7 @@ public class CustomerApi {
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, responses);
     }
 
-    @GetMapping("/api/v1/customers")
+    @GetMapping("/api/v1/mypage")
     public Result<MyPageResponse> getUserInfo() {
 
         Customer customer = customerRepository.findOne(SecurityUtil.getCurrentUserId());

@@ -9,6 +9,7 @@ import iampotato.iampotato.domain.itemoption.domain.ItemOptions;
 import iampotato.iampotato.domain.order.dao.OrderRepository;
 import iampotato.iampotato.domain.order.domain.Order;
 import iampotato.iampotato.domain.order.domain.OrderStatus;
+import iampotato.iampotato.domain.order.dto.OrderDiscountsResponse;
 import iampotato.iampotato.domain.order.dto.OrderPostRequest;
 import iampotato.iampotato.domain.order.exception.OrderException;
 import iampotato.iampotato.domain.order.exception.OrderExceptionGroup;
@@ -69,5 +70,10 @@ public class OrderService {
         orderRepository.save(order);
 
         return order;
+    }
+
+    public OrderDiscountsResponse getDiscounts(String userId) {
+
+        return orderRepository.findTotalDiscounts(userId);
     }
 }

@@ -1,6 +1,7 @@
 package iampotato.iampotato.domain.order.dao;
 
 import iampotato.iampotato.domain.order.domain.Order;
+import iampotato.iampotato.domain.order.dto.OrderDiscountsResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -25,5 +26,13 @@ public class OrderRepository {
                         " order by o.createdDate desc", Order.class)
                 .setParameter("id", userId)
                 .getResultList();
+    }
+
+    public OrderDiscountsResponse findTotalDiscounts(String userId) {
+
+        return em.createQuery("select new iampotato.iampotato.domain.order.dto.OrderDiscountsResponse(coalesce(sum(o.discountPrice), 0L)) from Order o " +
+                        "where o.customer.id = :id ", OrderDiscountsResponse.class)
+                .setParameter("id", userId)
+                .getSingleResult();
     }
 }

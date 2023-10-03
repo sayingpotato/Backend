@@ -45,6 +45,8 @@ public class Order {
 
     private int totalPeople;
 
+    private int discountPrice;
+
     private String qrValue;
 
     private LocalDateTime createdDate;

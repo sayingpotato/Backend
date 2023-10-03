@@ -54,6 +54,7 @@ public class OrderService {
 
         Order order = Order.builder()
                 .customer(customer)
+                .discountPrice(request.getDiscountPrice())
                 .orderStatus(OrderStatus.ORDER)
                 .totalPrice(request.getTotalPrice())
                 .totalPeople(request.getTotalPeople())

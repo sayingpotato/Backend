@@ -34,4 +34,11 @@ public class Items {
                 .map(i -> OrderItem.createOrderItemForItem(i, order))
                 .collect(Collectors.toList());
     }
+
+    public List<String> findItemsByName(String name) {
+        return items.stream()
+                .map(Item::getName)
+                .filter(iName -> iName.contains(name))
+                .collect(Collectors.toList());
+    }
 }

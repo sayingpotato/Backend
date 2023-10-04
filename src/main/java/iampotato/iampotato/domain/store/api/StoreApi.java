@@ -137,10 +137,7 @@ public class StoreApi {
                                                            @RequestParam(value = "offset", defaultValue = "0") int offset,
                                                            @RequestParam(value = "limit", defaultValue = "100") int limit) {
 
-        List<Store> stores = storeService.searchStoresBy(storeSearchRequest.getName());
-        List<StoreSearchResponse> storeSearchResponses = stores.stream()
-                .map(StoreSearchResponse::new)
-                .collect(Collectors.toList());
+        List<StoreSearchResponse> storeSearchResponses = storeService.searchStoresBy(storeSearchRequest.getName());
 
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, storeSearchResponses);
     }

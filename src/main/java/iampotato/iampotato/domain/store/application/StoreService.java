@@ -8,6 +8,7 @@ import iampotato.iampotato.domain.store.dao.StoreRepository;
 import iampotato.iampotato.domain.store.domain.Location;
 import iampotato.iampotato.domain.store.domain.Store;
 import iampotato.iampotato.domain.store.dto.register.StoreRegistrationRequest;
+import iampotato.iampotato.domain.store.dto.search.StoreSearchResponse;
 import iampotato.iampotato.domain.store.dto.update.StoreUpdateRequest;
 import iampotato.iampotato.domain.store.exception.StoreException;
 import iampotato.iampotato.domain.store.exception.StoreExceptionGroup;
@@ -18,9 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -149,8 +148,47 @@ public class StoreService {
         stores.sort(Comparator.comparing(Store::getName));
     }
 
-    public List<Store> searchStoresBy(String name) {
-        List<Store> stores = storeRepository.findStoresByStoreAndItemName(name);
+    public List<StoreSearchResponse> searchStoresBy(String name) {
+
+        List<Store> storesByStoreName = storeRepository.findStoresByStoreName(name);
+        List<Store> storesByItemName = storeRepository.findStoresByItemName(name);
+
+        if (storesByStoreName.size() == 0 && storesByItemName.size() == 0) {
+            throw new StoreException(StoreExceptionGroup.STORE_NULL);
+        }
+
+        Set<Long> checkDistinct = new HashSet<>();
+
+        List<StoreSearchResponse> responses = storesByItemName.stream()
+                .map(s -> {
+                    checkDistinct.add(s.getId());
+                    return new StoreSearchResponse(s, false, s.getItems().findItemsByName(name));
+                })
+                .collect(Collectors.toList());
+
+        List<StoreSearchResponse> responsesByStoreName = storesByStoreName.stream()
+                .filter(s -> !checkDistinct.contains(s.getId()))
+                .map(s -> new StoreSearchResponse(s, true, null))
+                .collect(Collectors.toList());
+
+        responses.addAll(responsesByStoreName);
+
+        return responses;
+    }
+
+    public List<Store> searchStoresByStoreName(String name) {
+        List<Store> stores = storeRepository.findStoresByStoreName(name);
+
+        if (stores.size() == 0) {
+            throw new StoreException(StoreExceptionGroup.STORE_NULL);
+        }
+
+        sortStoresByName(stores);
+        return stores;
+    }
+
+    public List<Store> searchStoresByItemName(String name) {
+        List<Store> stores = storeRepository.findStoresByItemName(name);
 
         if (stores.size() == 0) {
             throw new StoreException(StoreExceptionGroup.STORE_NULL);

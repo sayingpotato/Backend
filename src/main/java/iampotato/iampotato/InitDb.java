@@ -61,10 +61,10 @@ public class InitDb {
         public void dbStores1() throws ParseException {
 
             StoreMapThumbnail storeMapThumbnail = StoreMapThumbnail.builder()
-                    .mainImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/6fe0fcf0-b38e-4b4e-ac1b-42627a445755")
-                    .subImg1("https://github.com/sayingpotato/Frontend-Web/assets/64068511/3f3d91b3-3b3a-41e8-8d8e-467174118a96")
-                    .subImg2("https://github.com/sayingpotato/Frontend-Web/assets/64068511/65648635-b505-4c73-b18b-c381569b20a9")
-                    .subImg3("https://github.com/sayingpotato/Frontend-Web/assets/64068511/1ed76463-29ca-44b2-874e-9a08c48256e1")
+                    .mainImg("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a1.png")
+                    .subImg1("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a2.png")
+                    .subImg2("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a3.png")
+                    .subImg3("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a4.png")
                     .build();
 
             StoreTopItem storeTopItem = StoreTopItem.builder()
@@ -99,7 +99,7 @@ public class InitDb {
                     .description("11가지 원두를 쓰는 카페입니다")
                     .discountInfo(StoreDiscountInfo.TODAY_DISCOUNT)
                     .storeStatus(StoreStatus.OPEN)
-                    .tableImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/f1e66d1b-c551-468b-b54e-bdc1de905999")
+                    .tableImg("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a5.png")
                     .storeMapThumbnail(storeMapThumbnail)
                     .storeTopItem(storeTopItem)
                     .storeTopReview(storeTopReview)
@@ -117,27 +117,27 @@ public class InitDb {
             StoreImage storeImage1 = StoreImage.builder()
                     .store(store1)
                     .creatTime(LocalDateTime.now())
-                    .storeImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/3f3d91b3-3b3a-41e8-8d8e-467174118a96")
+                    .storeImg("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a2.png")
                     .build();
             StoreImage storeImage2 = StoreImage.builder()
                     .store(store1)
                     .creatTime(LocalDateTime.now())
-                    .storeImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/65648635-b505-4c73-b18b-c381569b20a9")
+                    .storeImg("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a3.png")
                     .build();
             StoreImage storeImage3 = StoreImage.builder()
                     .store(store1)
                     .creatTime(LocalDateTime.now())
-                    .storeImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/1ed76463-29ca-44b2-874e-9a08c48256e1")
+                    .storeImg("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a4.png")
                     .build();
             StoreImage storeImage4 = StoreImage.builder()
                     .store(store1)
                     .creatTime(LocalDateTime.now())
-                    .storeImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/5c7bddf0-647e-441c-a695-faf12083a933")
+                    .storeImg("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a6.png")
                     .build();
             StoreImage storeImage5 = StoreImage.builder()
                     .store(store1)
                     .creatTime(LocalDateTime.now())
-                    .storeImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/6fe0fcf0-b38e-4b4e-ac1b-42627a445755")
+                    .storeImg("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a1.png")
                     .build();
             StoreImages storeImages = new StoreImages(storeImage1, storeImage2, storeImage3, storeImage4, storeImage5);
 
@@ -213,7 +213,7 @@ public class InitDb {
                     .store(store1)
                     .name("아메리카노")
                     .category(ItemCategory.PORK)
-                    .img("https://github.com/sayingpotato/Frontend-Web/assets/64068511/159b3769-cf0f-4d2e-8307-ba63ae71c8d3")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/b1.png")
                     .price(5000)
                     .build();
 
@@ -221,7 +221,7 @@ public class InitDb {
                     .store(store1)
                     .name("자몽허니블랙티")
                     .category(ItemCategory.PORK)
-                    .img("https://github.com/sayingpotato/Frontend-Web/assets/64068511/c95086b5-179b-4234-8ce5-0480a714fcc3")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/b2.png")
                     .price(10000)
                     .build();
 
@@ -229,7 +229,7 @@ public class InitDb {
                     .store(store1)
                     .name("카페라떼")
                     .category(ItemCategory.PORK)
-                    .img("https://github.com/sayingpotato/Frontend-Web/assets/64068511/8f777931-2110-4093-beff-c4b1f807234b")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/b3.png")
                     .price(7000)
                     .build();
 
@@ -237,7 +237,7 @@ public class InitDb {
                     .store(store1)
                     .name("핫초코")
                     .category(ItemCategory.PORK)
-                    .img("https://github.com/sayingpotato/Frontend-Web/assets/64068511/2f95dd53-70e4-47a0-b36b-2f32b7de1b55")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/b4.png")
                     .price(4000)
                     .build();
 
@@ -359,10 +359,10 @@ public class InitDb {
         public void dbStores2() throws ParseException {
 
             StoreMapThumbnail storeMapThumbnail = StoreMapThumbnail.builder()
-                    .mainImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/6fe0fcf0-b38e-4b4e-ac1b-42627a445755")
-                    .subImg1("https://github.com/sayingpotato/Frontend-Web/assets/64068511/3f3d91b3-3b3a-41e8-8d8e-467174118a96")
-                    .subImg2("https://github.com/sayingpotato/Frontend-Web/assets/64068511/65648635-b505-4c73-b18b-c381569b20a9")
-                    .subImg3("https://github.com/sayingpotato/Frontend-Web/assets/64068511/1ed76463-29ca-44b2-874e-9a08c48256e1")
+                    .mainImg("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a1.png")
+                    .subImg1("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a2.png")
+                    .subImg2("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a3.png")
+                    .subImg3("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a4.png")
                     .build();
 
             StoreTopItem storeTopItem = StoreTopItem.builder()
@@ -509,10 +509,10 @@ public class InitDb {
         public void dbStores3() throws ParseException {
 
             StoreMapThumbnail storeMapThumbnail = StoreMapThumbnail.builder()
-                    .mainImg("https://github.com/sayingpotato/Frontend-Web/assets/64068511/6fe0fcf0-b38e-4b4e-ac1b-42627a445755")
-                    .subImg1("https://github.com/sayingpotato/Frontend-Web/assets/64068511/3f3d91b3-3b3a-41e8-8d8e-467174118a96")
-                    .subImg2("https://github.com/sayingpotato/Frontend-Web/assets/64068511/65648635-b505-4c73-b18b-c381569b20a9")
-                    .subImg3("https://github.com/sayingpotato/Frontend-Web/assets/64068511/1ed76463-29ca-44b2-874e-9a08c48256e1")
+                    .mainImg("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a1.png")
+                    .subImg1("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a2.png")
+                    .subImg2("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a3.png")
+                    .subImg3("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a4.png")
                     .build();
 
             StoreTopItem storeTopItem = StoreTopItem.builder()

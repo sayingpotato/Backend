@@ -15,6 +15,7 @@ import iampotato.iampotato.domain.orderitem.domain.OrderItem;
 import iampotato.iampotato.domain.owner.domain.Owner;
 import iampotato.iampotato.domain.owner.domain.OwnerStatus;
 import iampotato.iampotato.domain.review.domain.Review;
+import iampotato.iampotato.domain.review.domain.ReviewDetail;
 import iampotato.iampotato.domain.review.domain.Reviews;
 import iampotato.iampotato.domain.store.domain.*;
 import iampotato.iampotato.domain.storeimage.domain.StoreImage;
@@ -140,31 +141,44 @@ public class InitDb {
                     .build();
             StoreImages storeImages = new StoreImages(storeImage1, storeImage2, storeImage3, storeImage4, storeImage5);
 
+            ReviewDetail reviewDetail1 = ReviewDetail.GREAT_COFFEE;
+
+            ReviewDetail reviewDetail2 = ReviewDetail.GREAT_BEVERAGE;
+
+            ReviewDetail reviewDetail3 = ReviewDetail.GREAT_FOOD;
+
+            ReviewDetail reviewDetail4 = ReviewDetail.MANY_OUTLET;
+
+
+            List<ReviewDetail> reviewDetails1 = new ArrayList<>();
+            reviewDetails1.add(reviewDetail1);
+            reviewDetails1.add(reviewDetail2);
+
+            List<ReviewDetail> reviewDetails2 = new ArrayList<>();
+            reviewDetails2.add(reviewDetail2);
+            reviewDetails2.add(reviewDetail3);
+            reviewDetails2.add(reviewDetail4);
+
+            List<ReviewDetail> reviewDetails3 = new ArrayList<>();
+            reviewDetails3.add(reviewDetail2);
+            reviewDetails3.add(reviewDetail4);
+
             Review review1 = Review.builder()
                     .store(store1)
                     .createdDate(LocalDateTime.now())
-                    .greatCoffee(1)
-                    .greatBeverage(1)
-                    .greatFood(0)
-                    .manyOutlet(0)
+                    .reviewDetails(reviewDetails1)
                     .build();
 
             Review review2 = Review.builder()
                     .store(store1)
                     .createdDate(LocalDateTime.now())
-                    .greatCoffee(0)
-                    .greatBeverage(1)
-                    .greatFood(1)
-                    .manyOutlet(1)
+                    .reviewDetails(reviewDetails2)
                     .build();
 
             Review review3 = Review.builder()
                     .store(store1)
                     .createdDate(LocalDateTime.now())
-                    .greatCoffee(0)
-                    .greatBeverage(1)
-                    .greatFood(0)
-                    .manyOutlet(1)
+                    .reviewDetails(reviewDetails3)
                     .build();
 
             Reviews reviews = new Reviews(review1, review2, review3);
@@ -409,31 +423,44 @@ public class InitDb {
                     .build();
             StoreImages storeImages = new StoreImages(storeImage1, storeImage2);
 
+            ReviewDetail reviewDetail1 = ReviewDetail.GREAT_COFFEE;
+
+            ReviewDetail reviewDetail2 = ReviewDetail.GREAT_BEVERAGE;
+
+            ReviewDetail reviewDetail3 = ReviewDetail.GREAT_FOOD;
+
+            ReviewDetail reviewDetail4 = ReviewDetail.MANY_OUTLET;
+
+
+            List<ReviewDetail> reviewDetails1 = new ArrayList<>();
+            reviewDetails1.add(reviewDetail1);
+            reviewDetails1.add(reviewDetail2);
+
+            List<ReviewDetail> reviewDetails2 = new ArrayList<>();
+            reviewDetails2.add(reviewDetail2);
+            reviewDetails2.add(reviewDetail3);
+            reviewDetails2.add(reviewDetail4);
+
+            List<ReviewDetail> reviewDetails3 = new ArrayList<>();
+            reviewDetails3.add(reviewDetail2);
+            reviewDetails3.add(reviewDetail4);
+
             Review review1 = Review.builder()
                     .store(store1)
                     .createdDate(LocalDateTime.now())
-                    .greatCoffee(1)
-                    .greatBeverage(1)
-                    .greatFood(0)
-                    .manyOutlet(0)
+                    .reviewDetails(reviewDetails1)
                     .build();
 
             Review review2 = Review.builder()
                     .store(store1)
                     .createdDate(LocalDateTime.now())
-                    .greatCoffee(0)
-                    .greatBeverage(1)
-                    .greatFood(1)
-                    .manyOutlet(1)
+                    .reviewDetails(reviewDetails2)
                     .build();
 
             Review review3 = Review.builder()
                     .store(store1)
                     .createdDate(LocalDateTime.now())
-                    .greatCoffee(0)
-                    .greatBeverage(1)
-                    .greatFood(0)
-                    .manyOutlet(1)
+                    .reviewDetails(reviewDetails3)
                     .build();
 
             Reviews reviews = new Reviews(review1, review2, review3);
@@ -546,31 +573,43 @@ public class InitDb {
                     .build();
             StoreImages storeImages = new StoreImages(storeImage1, storeImage2);
 
+            ReviewDetail reviewDetail1 = ReviewDetail.GREAT_COFFEE;
+
+            ReviewDetail reviewDetail2 = ReviewDetail.GREAT_BEVERAGE;
+
+            ReviewDetail reviewDetail3 = ReviewDetail.GREAT_FOOD;
+
+            ReviewDetail reviewDetail4 = ReviewDetail.MANY_OUTLET;
+
+
+            List<ReviewDetail> reviewDetails1 = new ArrayList<>();
+            reviewDetails1.add(reviewDetail1);
+
+            List<ReviewDetail> reviewDetails2 = new ArrayList<>();
+            reviewDetails2.add(reviewDetail2);
+            reviewDetails2.add(reviewDetail3);
+            reviewDetails2.add(reviewDetail4);
+
+            List<ReviewDetail> reviewDetails3 = new ArrayList<>();
+            reviewDetails3.add(reviewDetail2);
+            reviewDetails3.add(reviewDetail4);
+
             Review review1 = Review.builder()
                     .store(store1)
                     .createdDate(LocalDateTime.now())
-                    .greatCoffee(1)
-                    .greatBeverage(1)
-                    .greatFood(0)
-                    .manyOutlet(0)
+                    .reviewDetails(reviewDetails1)
                     .build();
 
             Review review2 = Review.builder()
                     .store(store1)
                     .createdDate(LocalDateTime.now())
-                    .greatCoffee(0)
-                    .greatBeverage(1)
-                    .greatFood(1)
-                    .manyOutlet(1)
+                    .reviewDetails(reviewDetails2)
                     .build();
 
             Review review3 = Review.builder()
                     .store(store1)
                     .createdDate(LocalDateTime.now())
-                    .greatCoffee(0)
-                    .greatBeverage(1)
-                    .greatFood(0)
-                    .manyOutlet(1)
+                    .reviewDetails(reviewDetails3)
                     .build();
 
             Reviews reviews = new Reviews(review1, review2, review3);
@@ -736,31 +775,41 @@ public class InitDb {
                     .build();
             StoreImages storeImages = new StoreImages(storeImage1, storeImage2);
 
+            ReviewDetail reviewDetail1 = ReviewDetail.GREAT_COFFEE;
+
+            ReviewDetail reviewDetail2 = ReviewDetail.GREAT_BEVERAGE;
+
+            ReviewDetail reviewDetail3 = ReviewDetail.GREAT_FOOD;
+
+            ReviewDetail reviewDetail4 = ReviewDetail.MANY_OUTLET;
+
+
+            List<ReviewDetail> reviewDetails1 = new ArrayList<>();
+            reviewDetails1.add(reviewDetail4);
+
+            List<ReviewDetail> reviewDetails2 = new ArrayList<>();
+            reviewDetails2.add(reviewDetail2);
+            reviewDetails2.add(reviewDetail3);
+
+            List<ReviewDetail> reviewDetails3 = new ArrayList<>();
+            reviewDetails3.add(reviewDetail2);
+
             Review review1 = Review.builder()
                     .store(store1)
                     .createdDate(LocalDateTime.now())
-                    .greatCoffee(1)
-                    .greatBeverage(1)
-                    .greatFood(0)
-                    .manyOutlet(0)
+                    .reviewDetails(reviewDetails1)
                     .build();
 
             Review review2 = Review.builder()
                     .store(store1)
                     .createdDate(LocalDateTime.now())
-                    .greatCoffee(0)
-                    .greatBeverage(1)
-                    .greatFood(1)
-                    .manyOutlet(1)
+                    .reviewDetails(reviewDetails2)
                     .build();
 
             Review review3 = Review.builder()
                     .store(store1)
                     .createdDate(LocalDateTime.now())
-                    .greatCoffee(0)
-                    .greatBeverage(1)
-                    .greatFood(0)
-                    .manyOutlet(1)
+                    .reviewDetails(reviewDetails3)
                     .build();
 
             Reviews reviews = new Reviews(review1, review2, review3);
@@ -844,31 +893,43 @@ public class InitDb {
                     .build();
             StoreImages storeImages = new StoreImages(storeImage1, storeImage2);
 
+            ReviewDetail reviewDetail1 = ReviewDetail.GREAT_COFFEE;
+
+            ReviewDetail reviewDetail2 = ReviewDetail.GREAT_BEVERAGE;
+
+            ReviewDetail reviewDetail3 = ReviewDetail.GREAT_FOOD;
+
+            ReviewDetail reviewDetail4 = ReviewDetail.MANY_OUTLET;
+
+
+            List<ReviewDetail> reviewDetails1 = new ArrayList<>();
+            reviewDetails1.add(reviewDetail1);
+            reviewDetails1.add(reviewDetail2);
+            reviewDetails1.add(reviewDetail3);
+            reviewDetails1.add(reviewDetail4);
+
+            List<ReviewDetail> reviewDetails2 = new ArrayList<>();
+            reviewDetails2.add(reviewDetail4);
+
+            List<ReviewDetail> reviewDetails3 = new ArrayList<>();
+            reviewDetails3.add(reviewDetail1);
+
             Review review1 = Review.builder()
                     .store(store1)
                     .createdDate(LocalDateTime.now())
-                    .greatCoffee(0)
-                    .greatBeverage(1)
-                    .greatFood(1)
-                    .manyOutlet(0)
+                    .reviewDetails(reviewDetails1)
                     .build();
 
             Review review2 = Review.builder()
                     .store(store1)
                     .createdDate(LocalDateTime.now())
-                    .greatCoffee(0)
-                    .greatBeverage(1)
-                    .greatFood(1)
-                    .manyOutlet(1)
+                    .reviewDetails(reviewDetails2)
                     .build();
 
             Review review3 = Review.builder()
                     .store(store1)
                     .createdDate(LocalDateTime.now())
-                    .greatCoffee(0)
-                    .greatBeverage(1)
-                    .greatFood(0)
-                    .manyOutlet(1)
+                    .reviewDetails(reviewDetails3)
                     .build();
 
             Reviews reviews = new Reviews(review1, review2, review3);
@@ -978,31 +1039,45 @@ public class InitDb {
                     .build();
             StoreImages storeImages = new StoreImages(storeImage1, storeImage2);
 
+            ReviewDetail reviewDetail1 = ReviewDetail.GREAT_COFFEE;
+
+            ReviewDetail reviewDetail2 = ReviewDetail.GREAT_BEVERAGE;
+
+            ReviewDetail reviewDetail3 = ReviewDetail.GREAT_FOOD;
+
+            ReviewDetail reviewDetail4 = ReviewDetail.MANY_OUTLET;
+
+
+            List<ReviewDetail> reviewDetails1 = new ArrayList<>();
+            reviewDetails1.add(reviewDetail2);
+
+            List<ReviewDetail> reviewDetails2 = new ArrayList<>();
+            reviewDetails2.add(reviewDetail2);
+            reviewDetails2.add(reviewDetail4);
+
+            List<ReviewDetail> reviewDetails3 = new ArrayList<>();
+            reviewDetails3.add(reviewDetail1);
+            reviewDetails3.add(reviewDetail2);
+            reviewDetails3.add(reviewDetail4);
+
             Review review1 = Review.builder()
                     .store(store1)
                     .createdDate(LocalDateTime.now())
-                    .greatCoffee(0)
-                    .greatBeverage(1)
-                    .greatFood(1)
-                    .manyOutlet(0)
+                    .reviewDetails(reviewDetails1)
                     .build();
 
             Review review2 = Review.builder()
                     .store(store1)
                     .createdDate(LocalDateTime.now())
-                    .greatCoffee(0)
-                    .greatBeverage(1)
-                    .greatFood(1)
-                    .manyOutlet(1)
+                    .reviewDetails(reviewDetails2)
+
                     .build();
 
             Review review3 = Review.builder()
                     .store(store1)
                     .createdDate(LocalDateTime.now())
-                    .greatCoffee(0)
-                    .greatBeverage(1)
-                    .greatFood(1)
-                    .manyOutlet(1)
+                    .reviewDetails(reviewDetails3)
+
                     .build();
 
             Reviews reviews = new Reviews(review1, review2, review3);

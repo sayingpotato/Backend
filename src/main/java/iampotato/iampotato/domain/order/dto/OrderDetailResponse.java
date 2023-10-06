@@ -84,7 +84,7 @@ public class OrderDetailResponse {
     }
 
     @Data
-    public class StoreInfo {
+    public static class StoreInfo {
 
         private StoreCategory category;
 

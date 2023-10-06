@@ -24,25 +24,25 @@ public class Reviews {
 
     public int countGreatCoffee() {
         return reviews.stream()
-                .mapToInt(Review::getGreatCoffee)
+                .mapToInt(r -> r.getReviewDetailCount(ReviewDetail.GREAT_COFFEE))
                 .sum();
     }
 
     public int countGreatBeverage() {
         return reviews.stream()
-                .mapToInt(Review::getGreatBeverage)
+                .mapToInt(r -> r.getReviewDetailCount(ReviewDetail.GREAT_BEVERAGE))
                 .sum();
     }
 
     public int countGreatFood() {
         return reviews.stream()
-                .mapToInt(Review::getGreatFood)
+                .mapToInt(r -> r.getReviewDetailCount(ReviewDetail.GREAT_FOOD))
                 .sum();
     }
 
     public int countManyOutlet() {
         return reviews.stream()
-                .mapToInt(Review::getManyOutlet)
+                .mapToInt(r -> r.getReviewDetailCount(ReviewDetail.MANY_OUTLET))
                 .sum();
     }
 

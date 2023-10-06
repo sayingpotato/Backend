@@ -54,6 +54,8 @@ public class OrderDetailResponse {
 
         private ReviewStatus reviewStatus;
 
+        private Long id;
+
         private int greatCoffee;
 
         private String greatCoffeeContent;
@@ -72,6 +74,7 @@ public class OrderDetailResponse {
 
         public OrderDetailReview(Review review) {
             this.reviewStatus = review.getReviewStatus();
+            this.id = review.getId();
             this.greatCoffee = review.getReviewDetailCount(ReviewDetail.GREAT_COFFEE);
             this.greatCoffeeContent = review.getReviewDetailContent(ReviewDetail.GREAT_COFFEE);
             this.greatBeverage = review.getReviewDetailCount(ReviewDetail.GREAT_BEVERAGE);

@@ -10,9 +10,9 @@ public enum ReviewDetail {
     GREAT_FOOD(1, "음식이 맛있어요"),
     MANY_OUTLET(1, "콘센트가 많아요");
 
-    private int count;
+    private final int count;
 
-    private String content;
+    private final String content;
 
     ReviewDetail(int count, String content) {
         this.count = count;

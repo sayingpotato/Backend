@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Review <-> Store = N : 1
@@ -28,24 +29,31 @@ public class Review {
     @Builder.Default
     private ReviewStatus reviewStatus = ReviewStatus.NONE;
 
-    // 여기서부터는 리뷰 내용들 입니다.
-    // =============================
-
-    @Builder.Default
-    private int greatCoffee = 0;
-
-    @Builder.Default
-    private int greatBeverage = 0;
-
-    @Builder.Default
-    private int greatFood = 0;
-
-    @Builder.Default
-    private int manyOutlet = 0;
-    // =============================
+    @ElementCollection
+    @CollectionTable(name = "review_details", joinColumns = @JoinColumn(name = "review_id"))
+    @Enumerated(EnumType.STRING)
+    List<ReviewDetail> reviewDetails;
 
     @Builder.Default
     private LocalDateTime createdDate = LocalDateTime.now();
 
     private LocalDateTime modifiedDate;
+
+    public int getReviewDetailCount(ReviewDetail reviewDetail) {
+
+        return reviewDetails.stream()
+                .filter(rd -> rd == reviewDetail)
+                .findAny()
+                .map(ReviewDetail::getCount)
+                .orElse(0);
+    }
+
+    public String getReviewDetailContent(ReviewDetail reviewDetail) {
+
+        return reviewDetails.stream()
+                .filter(rd -> rd == reviewDetail)
+                .findAny()
+                .map(ReviewDetail::getContent)
+                .orElse(reviewDetail.getContent());
+    }
 }

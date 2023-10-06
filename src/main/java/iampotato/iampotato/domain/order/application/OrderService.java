@@ -14,6 +14,7 @@ import iampotato.iampotato.domain.order.dto.OrderPostRequest;
 import iampotato.iampotato.domain.order.exception.OrderException;
 import iampotato.iampotato.domain.order.exception.OrderExceptionGroup;
 import iampotato.iampotato.domain.review.domain.Review;
+import iampotato.iampotato.domain.store.dao.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +32,8 @@ public class OrderService {
     private final CustomerRepository customerRepository;
 
     private final ItemRepository itemRepository;
+
+    private final StoreRepository storeRepository;
 
     private final ItemOptionRepository itemOptionRepository;
 
@@ -51,7 +54,9 @@ public class OrderService {
         Customer customer = customerRepository.findById(userId).orElseThrow();
         Items items = new Items(itemRepository.findByIds(request.getItemIds()));
         ItemOptions itemOptions = new ItemOptions(itemOptionRepository.findByIds(request.getItemOptionIds()));
-        Review review = Review.builder().build();
+        Review review = Review.builder()
+                .store(storeRepository.findById(request.getStoreId()))
+                .build();
 
         Order order = Order.builder()
                 .customer(customer)

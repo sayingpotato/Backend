@@ -4,7 +4,10 @@ import iampotato.iampotato.domain.order.domain.Order;
 import iampotato.iampotato.domain.order.domain.OrderStatus;
 import iampotato.iampotato.domain.orderitem.domain.OrderItem;
 import iampotato.iampotato.domain.review.domain.Review;
+import iampotato.iampotato.domain.review.domain.ReviewDetail;
 import iampotato.iampotato.domain.review.domain.ReviewStatus;
+import iampotato.iampotato.domain.store.domain.Store;
+import iampotato.iampotato.domain.store.domain.StoreCategory;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -25,6 +28,8 @@ public class OrderDetailResponse {
     private List<OrderDetailOrderItem> orderDetailOrderItems;
 
     private OrderDetailReview orderDetailReview;
+
+    private StoreInfo storeInfo;
 
     @Data
     public static class OrderDetailOrderItem {
@@ -49,20 +54,48 @@ public class OrderDetailResponse {
 
         private ReviewStatus reviewStatus;
 
+        private Long id;
+
         private int greatCoffee;
+
+        private String greatCoffeeContent;
 
         private int greatBeverage;
 
+        private String greatBeverageContent;
+
         private int greatFood;
+
+        private String greatFoodContent;
 
         private int manyOutlet;
 
+        private String manyOutletContent;
+
         public OrderDetailReview(Review review) {
             this.reviewStatus = review.getReviewStatus();
-            this.greatCoffee = review.getGreatCoffee();
-            this.greatBeverage = review.getGreatBeverage();
-            this.greatFood = review.getGreatFood();
-            this.manyOutlet = review.getManyOutlet();
+            this.id = review.getId();
+            this.greatCoffee = review.getReviewDetailCount(ReviewDetail.GREAT_COFFEE);
+            this.greatCoffeeContent = review.getReviewDetailContent(ReviewDetail.GREAT_COFFEE);
+            this.greatBeverage = review.getReviewDetailCount(ReviewDetail.GREAT_BEVERAGE);
+            this.greatBeverageContent = review.getReviewDetailContent(ReviewDetail.GREAT_BEVERAGE);
+            this.greatFood = review.getReviewDetailCount(ReviewDetail.GREAT_FOOD);
+            this.greatFoodContent = review.getReviewDetailContent(ReviewDetail.GREAT_FOOD);
+            this.manyOutlet = review.getReviewDetailCount(ReviewDetail.MANY_OUTLET);
+            this.manyOutletContent = review.getReviewDetailContent(ReviewDetail.MANY_OUTLET);
+        }
+    }
+
+    @Data
+    public static class StoreInfo {
+
+        private StoreCategory category;
+
+        private String thumbnail;
+
+        public StoreInfo(Store store) {
+            this.category = store.getCategory();
+            this.thumbnail = store.getStoreTodayDiscountThumbnail();
         }
     }
 
@@ -78,5 +111,6 @@ public class OrderDetailResponse {
                 .collect(Collectors.toList());
 
         this.orderDetailReview = new OrderDetailReview(order.getReview());
+        this.storeInfo = new StoreInfo(order.getReview().getStore());
     }
 }

@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,10 +30,11 @@ public class Review {
     @Builder.Default
     private ReviewStatus reviewStatus = ReviewStatus.NONE;
 
+    @Builder.Default
     @ElementCollection
     @CollectionTable(name = "review_details", joinColumns = @JoinColumn(name = "review_id"))
     @Enumerated(EnumType.STRING)
-    List<ReviewDetail> reviewDetails;
+    List<ReviewDetail> reviewDetails = new ArrayList<>();
 
     @Builder.Default
     private LocalDateTime createdDate = LocalDateTime.now();
@@ -55,5 +57,16 @@ public class Review {
                 .findAny()
                 .map(ReviewDetail::getContent)
                 .orElse(reviewDetail.getContent());
+    }
+
+    public void addReviewDetail(ReviewDetail reviewDetail) {
+        this.reviewDetails.add(reviewDetail);
+    }
+
+    public void reviewContent() {
+        this.reviewStatus = ReviewStatus.REVIEWING;
+        if (reviewDetails.size() == 0) {
+            reviewStatus = ReviewStatus.NONE;
+        }
     }
 }

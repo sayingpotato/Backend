@@ -41,7 +41,7 @@ public class OwnerService {
 
     @Transactional
     public Owner authorizeOwner(String id) {
-        Owner owner = ownerRepository.findById(id);
+        Owner owner = ownerRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 점주"));
         owner.authorizeOwner();
         return owner;
     }

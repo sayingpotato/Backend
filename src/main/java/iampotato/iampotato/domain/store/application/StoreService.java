@@ -51,7 +51,7 @@ public class StoreService {
                 .createdDate(LocalDateTime.now())
                 .build();
 
-        Owner owner = ownerRepository.findById(userId);
+        Owner owner = ownerRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 점주"));
 
         ownerStoreService.registerOwnerStore(store, owner);
 

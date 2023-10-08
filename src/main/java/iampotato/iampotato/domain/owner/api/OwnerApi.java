@@ -1,16 +1,16 @@
 package iampotato.iampotato.domain.owner.api;
 
+import iampotato.iampotato.domain.customer.dto.SignInRequest;
+import iampotato.iampotato.domain.customer.dto.TokenResponse;
 import iampotato.iampotato.domain.owner.application.OwnerService;
+import iampotato.iampotato.domain.owner.application.OwnerSignInService;
 import iampotato.iampotato.domain.owner.domain.Owner;
 import iampotato.iampotato.domain.owner.dto.*;
 import iampotato.iampotato.global.util.Result;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +20,8 @@ import java.util.stream.Collectors;
 public class OwnerApi {
 
     private final OwnerService ownerService;
+
+    private final OwnerSignInService ownerSignInService;
 
     @Tag(name = "점주")
     @Operation(summary = "점주 회원가입", description = "점주의 정보를 등록할때 사용되는 API 입니다.")
@@ -36,6 +38,14 @@ public class OwnerApi {
         OwnerSignUpResponse response = new OwnerSignUpResponse(ownerService.signUp(owner));
 
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, response);
+    }
+
+    @Tag(name = "점주")
+    @Operation(summary = "점주 로그인", description = "점주가 로그인할때 사용되는 API 입니다.")
+    @PostMapping("/api/v1/owner/signIn")
+    public Result<TokenResponse> signIn(@RequestBody SignInRequest signInRequest) {
+        TokenResponse tokenResponse = ownerSignInService.signIn(signInRequest.getLoginId(), signInRequest.getPassword());
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, ownerSignInService.addOwnerStatus(tokenResponse, signInRequest.getLoginId()));
     }
 
     @Tag(name = "관리자 점주 페이지")

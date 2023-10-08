@@ -38,7 +38,7 @@ public class OwnerApi {
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, response);
     }
 
-    @Tag(name = "점주")
+    @Tag(name = "관리자 점주 페이지")
     @Operation(summary = "비인증 점주 가져오기", description = "관리자페이지에서 인증되지 않은 점주들의 정보를 가져올때 사용되는 API 입니다.")
     @GetMapping("/api/v1/owner/unauthorization")
     public Result<List<OwnerUnauthorizedResponse>> getUnauthorizedOwner() {
@@ -52,7 +52,7 @@ public class OwnerApi {
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, responses);
     }
 
-    @Tag(name = "점주")
+    @Tag(name = "관리자 점주 페이지")
     @Operation(summary = "인증하기", description = "인증되지 않은 점주를 인증할때 사용되는 API 입니다.")
     @PutMapping("/api/v1/owner/authorization")
     public Result<OwnerAuthorizeResponse> authorizeOwner(OwnerAuthorizeRequest request) {

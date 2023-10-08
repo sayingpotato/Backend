@@ -1,8 +1,8 @@
 package iampotato.iampotato.global.config;
 
-import lombok.RequiredArgsConstructor;
 import iampotato.iampotato.domain.customer.jwt.JwtAuthenticationFilter;
 import iampotato.iampotato.domain.customer.jwt.JwtTokenProvider;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -41,6 +41,8 @@ public class SecurityConfig {
                 .antMatchers("/api/v1/customers/certify").permitAll()
                 .antMatchers("/api/v1/owner/authorization").permitAll()
                 .antMatchers("/api/v1/owner/unauthorization").permitAll()
+                .antMatchers("/api/v1/owner/signIn").permitAll()
+                .antMatchers("/api/v1/owner/signUp").permitAll()
                 .antMatchers("/image/view").permitAll()
                 .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers("/v3/api-docs/**").permitAll()

@@ -28,6 +28,7 @@ public class Review {
     private Store store;
 
     @Builder.Default
+    @Enumerated(EnumType.STRING)
     private ReviewStatus reviewStatus = ReviewStatus.NONE;
 
     @Builder.Default

@@ -93,9 +93,12 @@ public class OrderDetailResponse {
 
         private String thumbnail;
 
+        private String storeName;
+
         public StoreInfo(Store store) {
             this.category = store.getCategory();
             this.thumbnail = store.getStoreTodayDiscountThumbnail();
+            this.storeName = store.getName();
         }
     }
 

@@ -1,7 +1,9 @@
 package iampotato.iampotato.domain.customer.application;
 
-import lombok.RequiredArgsConstructor;
 import iampotato.iampotato.domain.customer.dao.CustomerRepository;
+import iampotato.iampotato.domain.owner.dao.OwnerRepository;
+import iampotato.iampotato.domain.owner.domain.Owner;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -9,12 +11,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
     private final CustomerRepository userRepository;
+    private final OwnerRepository ownerRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -22,7 +23,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         return userRepository.findById(username)
                 .map(this::createUserDetails)
-                .orElseThrow(() -> new UsernameNotFoundException("해당하는 유저를 찾을 수 없습니다."));
+                .orElseGet(() -> ownerRepository.findById(username)
+                        .map(this::createOwnerDetails)
+                        .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저")));
     }
 
     private UserDetails createUserDetails(iampotato.iampotato.domain.customer.domain.Customer user) {
@@ -34,6 +37,15 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .username(user.getUsername())
                 .password(passwordEncoder.encode(user.getPassword()))
                 .roles(user.getRoles().toArray(new String[0]))
+                .build();
+    }
+
+    private UserDetails createOwnerDetails(Owner owner) {
+
+        return User.builder()
+                .username(owner.getUsername())
+                .password(passwordEncoder.encode(owner.getPassword()))
+                .roles(owner.getRoles().toArray(new String[0]))
                 .build();
     }
 }

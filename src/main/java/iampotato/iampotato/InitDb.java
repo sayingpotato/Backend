@@ -1,6 +1,7 @@
 package iampotato.iampotato;
 
 import iampotato.iampotato.domain.customer.domain.Customer;
+import iampotato.iampotato.domain.customer.domain.CustomerStatus;
 import iampotato.iampotato.domain.discount.domain.Discount;
 import iampotato.iampotato.domain.discount.domain.DiscountDay;
 import iampotato.iampotato.domain.discount.domain.Discounts;
@@ -16,6 +17,7 @@ import iampotato.iampotato.domain.owner.domain.Owner;
 import iampotato.iampotato.domain.owner.domain.OwnerStatus;
 import iampotato.iampotato.domain.review.domain.Review;
 import iampotato.iampotato.domain.review.domain.ReviewDetail;
+import iampotato.iampotato.domain.review.domain.ReviewStatus;
 import iampotato.iampotato.domain.review.domain.Reviews;
 import iampotato.iampotato.domain.store.domain.*;
 import iampotato.iampotato.domain.storeimage.domain.StoreImage;
@@ -598,21 +600,31 @@ public class InitDb {
                     .store(store1)
                     .createdDate(LocalDateTime.now())
                     .reviewDetails(reviewDetails1)
+                    .reviewStatus(ReviewStatus.NONE)
                     .build();
 
             Review review2 = Review.builder()
                     .store(store1)
                     .createdDate(LocalDateTime.now())
                     .reviewDetails(reviewDetails2)
+                    .reviewStatus(ReviewStatus.NONE)
                     .build();
 
             Review review3 = Review.builder()
                     .store(store1)
                     .createdDate(LocalDateTime.now())
                     .reviewDetails(reviewDetails3)
+                    .reviewStatus(ReviewStatus.REVIEWING)
                     .build();
 
-            Reviews reviews = new Reviews(review1, review2, review3);
+            Review review4 = Review.builder()
+                    .store(store1)
+                    .createdDate(LocalDateTime.now())
+                    .reviewDetails(reviewDetails3)
+                    .reviewStatus(ReviewStatus.EXPIRED)
+                    .build();
+
+            Reviews reviews = new Reviews(review1, review2, review3, review4);
 
             Discount discount1 = Discount.builder()
                     .discountDay(DiscountDay.MON)
@@ -687,6 +699,9 @@ public class InitDb {
                     .customerNumber("2017038000")
                     .customerDept("소프트웨어학과")
                     .customerCollege("충북대학교")
+                    .customerGrade("4학년")
+                    .customerStatus(CustomerStatus.COMPLETE)
+                    .createdDate(LocalDateTime.now())
                     .build();
             em.persist(customer);
 
@@ -694,11 +709,21 @@ public class InitDb {
                     .loginId("owner1")
                     .password("123")
                     .nickname("CafeMaster")
-                    .ownerStatus(OwnerStatus.UNAUTHORIZED)
+                    .ownerStatus(OwnerStatus.COMPLETE)
                     .ownerBusinessNumber("773-49-00806")
                     .ssn("934920")
                     .build();
+
+            Owner owner2 = Owner.builder()
+                    .loginId("owner2")
+                    .password("123")
+                    .nickname("FoodMaster")
+                    .ownerStatus(OwnerStatus.UNAUTHORIZED)
+                    .ownerBusinessNumber("43202-24-806")
+                    .ssn("133340")
+                    .build();
             em.persist(owner);
+            em.persist(owner2);
 
             Order order1 = Order.builder()
                     .customer(customer)
@@ -734,7 +759,84 @@ public class InitDb {
             orderItems.add(orderItem3);
 
             order1.updateCollection(orderItems);
+
+            Order order2 = Order.builder()
+                    .customer(customer)
+                    .orderStatus(OrderStatus.FINISH)
+                    .totalPrice(12000)
+                    .totalPeople(4)
+                    .review(review2)
+                    .build();
+
+            OrderItem orderItem4 = OrderItem.builder()
+                    .order(order2)
+                    .item(item1)
+                    .totalPrice(7000)
+                    .build();
+
+            OrderItem orderItem5 = OrderItem.builder()
+                    .order(order2)
+                    .item(item1)
+                    .itemOption(itemOption1)
+                    .totalPrice(4000)
+                    .build();
+
+            OrderItem orderItem6 = OrderItem.builder()
+                    .order(order2)
+                    .item(item1)
+                    .itemOption(itemOption2)
+                    .totalPrice(1000)
+                    .build();
+
+            List<OrderItem> orderItems2 = new ArrayList<>();
+            orderItems2.add(orderItem4);
+            orderItems2.add(orderItem5);
+            orderItems2.add(orderItem6);
+
+            order2.updateCollection(orderItems2);
+
+            Order order3 = Order.builder()
+                    .customer(customer)
+                    .orderStatus(OrderStatus.FINISH)
+                    .totalPrice(7000)
+                    .totalPeople(2)
+                    .review(review3)
+                    .build();
+
+            OrderItem orderItem7 = OrderItem.builder()
+                    .order(order3)
+                    .item(item1)
+                    .totalPrice(7000)
+                    .build();
+
+            List<OrderItem> orderItems3 = new ArrayList<>();
+            orderItems3.add(orderItem7);
+
+            order3.updateCollection(orderItems3);
+
+            Order order4 = Order.builder()
+                    .customer(customer)
+                    .orderStatus(OrderStatus.FINISH)
+                    .totalPrice(20000)
+                    .totalPeople(1)
+                    .review(review4)
+                    .build();
+
+            OrderItem orderItem8 = OrderItem.builder()
+                    .order(order4)
+                    .item(item1)
+                    .totalPrice(20000)
+                    .build();
+
+            List<OrderItem> orderItems4 = new ArrayList<>();
+            orderItems4.add(orderItem8);
+
+            order3.updateCollection(orderItems4);
+
             em.persist(order1);
+            em.persist(order2);
+            em.persist(order3);
+            em.persist(order4);
         }
 
         public void dbStores4() throws ParseException {

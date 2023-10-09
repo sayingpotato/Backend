@@ -585,12 +585,10 @@ public class InitDb {
 
 
             List<ReviewDetail> reviewDetails1 = new ArrayList<>();
-            reviewDetails1.add(reviewDetail1);
+
 
             List<ReviewDetail> reviewDetails2 = new ArrayList<>();
-            reviewDetails2.add(reviewDetail2);
-            reviewDetails2.add(reviewDetail3);
-            reviewDetails2.add(reviewDetail4);
+
 
             List<ReviewDetail> reviewDetails3 = new ArrayList<>();
             reviewDetails3.add(reviewDetail2);

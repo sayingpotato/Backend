@@ -25,6 +25,8 @@ public class ReviewService {
                 .map(ReviewDetail::find)
                 .forEach(review::addReviewDetail);
 
+        review.checkReview();
+
         return review;
     }
 }

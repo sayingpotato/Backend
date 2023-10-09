@@ -102,7 +102,7 @@ public class OrderDetailResponse {
 
         private int goodKind;
 
-        private String goodKingContent;
+        private String goodKindContent;
 
         public OrderDetailReview(Review review) {
             this.reviewStatus = review.getReviewStatus();
@@ -130,7 +130,7 @@ public class OrderDetailResponse {
             this.goodService = review.getReviewDetailCount(ReviewDetail.GOOD_SERVICE);
             this.goodServiceContent = review.getReviewDetailContent(ReviewDetail.GOOD_SERVICE);
             this.goodKind = review.getReviewDetailCount(ReviewDetail.GOOD_KIND);
-            this.goodKingContent = review.getReviewDetailContent(ReviewDetail.GOOD_KIND);
+            this.goodKindContent = review.getReviewDetailContent(ReviewDetail.GOOD_KIND);
         }
     }
 

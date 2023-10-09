@@ -72,6 +72,38 @@ public class OrderDetailResponse {
 
         private String manyOutletContent;
 
+        private int goodMood;
+
+        private String goodMoodContent;
+
+        private int goodPrice;
+
+        private String goodPriceContent;
+
+        private int goodWifi;
+
+        private String goodWifiContent;
+
+        private int goodDesert;
+
+        private String goodDesertContent;
+
+        private int quietMood;
+
+        private String quietMoodContent;
+
+        private int cleanToilet;
+
+        private String cleanToiletContent;
+
+        private int goodService;
+
+        private String goodServiceContent;
+
+        private int goodKind;
+
+        private String goodKingContent;
+
         public OrderDetailReview(Review review) {
             this.reviewStatus = review.getReviewStatus();
             this.id = review.getId();
@@ -83,6 +115,22 @@ public class OrderDetailResponse {
             this.greatFoodContent = review.getReviewDetailContent(ReviewDetail.GREAT_FOOD);
             this.manyOutlet = review.getReviewDetailCount(ReviewDetail.MANY_OUTLET);
             this.manyOutletContent = review.getReviewDetailContent(ReviewDetail.MANY_OUTLET);
+            this.goodMood = review.getReviewDetailCount(ReviewDetail.GOOD_MOOD);
+            this.goodMoodContent = review.getReviewDetailContent(ReviewDetail.GOOD_MOOD);
+            this.goodPrice = review.getReviewDetailCount(ReviewDetail.GOOD_PRICE);
+            this.goodPriceContent = review.getReviewDetailContent(ReviewDetail.GOOD_PRICE);
+            this.goodWifi = review.getReviewDetailCount(ReviewDetail.GOOD_WIFI);
+            this.goodWifiContent = review.getReviewDetailContent(ReviewDetail.GOOD_WIFI);
+            this.goodDesert = review.getReviewDetailCount(ReviewDetail.GOOD_DESERT);
+            this.goodDesertContent = review.getReviewDetailContent(ReviewDetail.GOOD_DESERT);
+            this.quietMood = review.getReviewDetailCount(ReviewDetail.QUIET_MOOD);
+            this.quietMoodContent = review.getReviewDetailContent(ReviewDetail.QUIET_MOOD);
+            this.cleanToilet = review.getReviewDetailCount(ReviewDetail.CLEAN_TOILET);
+            this.cleanToiletContent = review.getReviewDetailContent(ReviewDetail.CLEAN_TOILET);
+            this.goodService = review.getReviewDetailCount(ReviewDetail.GOOD_SERVICE);
+            this.goodServiceContent = review.getReviewDetailContent(ReviewDetail.GOOD_SERVICE);
+            this.goodKind = review.getReviewDetailCount(ReviewDetail.GOOD_KIND);
+            this.goodKingContent = review.getReviewDetailContent(ReviewDetail.GOOD_KIND);
         }
     }
 

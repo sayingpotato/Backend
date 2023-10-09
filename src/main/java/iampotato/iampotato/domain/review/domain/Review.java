@@ -65,7 +65,11 @@ public class Review {
     }
 
     public void reviewContent() {
+        this.reviewDetails.clear();
         this.reviewStatus = ReviewStatus.REVIEWING;
+    }
+
+    public void checkReview() {
         if (reviewDetails.size() == 0) {
             reviewStatus = ReviewStatus.NONE;
         }

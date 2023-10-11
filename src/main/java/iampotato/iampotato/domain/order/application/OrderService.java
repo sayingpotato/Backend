@@ -9,10 +9,7 @@ import iampotato.iampotato.domain.itemoption.domain.ItemOptions;
 import iampotato.iampotato.domain.order.dao.OrderRepository;
 import iampotato.iampotato.domain.order.domain.Order;
 import iampotato.iampotato.domain.order.domain.OrderStatus;
-import iampotato.iampotato.domain.order.dto.OrderAcceptRequest;
-import iampotato.iampotato.domain.order.dto.OrderDiscountsResponse;
-import iampotato.iampotato.domain.order.dto.OrderOwnerRequest;
-import iampotato.iampotato.domain.order.dto.OrderPostRequest;
+import iampotato.iampotato.domain.order.dto.*;
 import iampotato.iampotato.domain.order.exception.OrderException;
 import iampotato.iampotato.domain.order.exception.OrderExceptionGroup;
 import iampotato.iampotato.domain.review.domain.Review;
@@ -101,6 +98,16 @@ public class OrderService {
         Order order = orderRepository.findById(request.getOrderId());
 
         order.acceptOrder();
+
+        return order;
+    }
+
+    @Transactional
+    public Order rejectOrder(OrderRejectRequest request) {
+
+        Order order = orderRepository.findById(request.getOrderId());
+
+        order.rejectOrder();
 
         return order;
     }

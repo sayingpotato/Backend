@@ -770,6 +770,7 @@ public class InitDb {
                     .totalPeople(3)
                     .review(review1)
                     .createdDate(LocalDateTime.now())
+                    .discountPrice(800)
                     .build();
 
             OrderItem orderItem1 = OrderItem.builder()
@@ -806,6 +807,7 @@ public class InitDb {
                     .totalPeople(4)
                     .createdDate(LocalDateTime.now())
                     .review(review2)
+                    .discountPrice(2400)
                     .build();
 
             OrderItem orderItem4 = OrderItem.builder()
@@ -842,6 +844,7 @@ public class InitDb {
                     .totalPeople(2)
                     .createdDate(LocalDateTime.now())
                     .review(review3)
+                    .discountPrice(700)
                     .build();
 
             OrderItem orderItem7 = OrderItem.builder()
@@ -862,6 +865,7 @@ public class InitDb {
                     .totalPeople(1)
                     .review(review4)
                     .createdDate(LocalDateTime.now())
+                    .discountPrice(1000)
                     .build();
 
             OrderItem orderItem8 = OrderItem.builder()

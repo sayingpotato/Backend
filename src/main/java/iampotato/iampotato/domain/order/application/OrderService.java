@@ -87,9 +87,14 @@ public class OrderService {
         return order;
     }
 
-    public OrderDiscountsResponse getDiscounts(String userId) {
+    public OrderDiscountsResponse getTotalDiscounts(String userId) {
 
         return orderRepository.findTotalDiscounts(userId);
+    }
+
+    public List<OrderRecentDiscountsResponse> getRecentDiscounts(String userId) {
+
+        return orderRepository.findRecentDiscounts(userId);
     }
 
     @Transactional

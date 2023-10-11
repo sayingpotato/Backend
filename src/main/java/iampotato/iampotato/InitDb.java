@@ -769,6 +769,7 @@ public class InitDb {
                     .totalPrice(8000)
                     .totalPeople(3)
                     .review(review1)
+                    .createdDate(LocalDateTime.now())
                     .build();
 
             OrderItem orderItem1 = OrderItem.builder()
@@ -803,6 +804,7 @@ public class InitDb {
                     .orderStatus(OrderStatus.FINISH)
                     .totalPrice(12000)
                     .totalPeople(4)
+                    .createdDate(LocalDateTime.now())
                     .review(review2)
                     .build();
 
@@ -838,6 +840,7 @@ public class InitDb {
                     .orderStatus(OrderStatus.FINISH)
                     .totalPrice(7000)
                     .totalPeople(2)
+                    .createdDate(LocalDateTime.now())
                     .review(review3)
                     .build();
 
@@ -854,10 +857,11 @@ public class InitDb {
 
             Order order4 = Order.builder()
                     .customer(customer)
-                    .orderStatus(OrderStatus.FINISH)
+                    .orderStatus(OrderStatus.ORDER)
                     .totalPrice(20000)
                     .totalPeople(1)
                     .review(review4)
+                    .createdDate(LocalDateTime.now())
                     .build();
 
             OrderItem orderItem8 = OrderItem.builder()
@@ -869,7 +873,7 @@ public class InitDb {
             List<OrderItem> orderItems4 = new ArrayList<>();
             orderItems4.add(orderItem8);
 
-            order3.updateCollection(orderItems4);
+            order4.updateCollection(orderItems4);
 
             em.persist(order1);
             em.persist(order2);

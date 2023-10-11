@@ -15,6 +15,7 @@ import iampotato.iampotato.domain.order.domain.OrderStatus;
 import iampotato.iampotato.domain.orderitem.domain.OrderItem;
 import iampotato.iampotato.domain.owner.domain.Owner;
 import iampotato.iampotato.domain.owner.domain.OwnerStatus;
+import iampotato.iampotato.domain.ownerstore.domain.OwnerStore;
 import iampotato.iampotato.domain.review.domain.Review;
 import iampotato.iampotato.domain.review.domain.ReviewDetail;
 import iampotato.iampotato.domain.review.domain.ReviewStatus;
@@ -703,6 +704,29 @@ public class InitDb {
                     .build();
             em.persist(customer);
 
+            // 임시 가게
+            Store store2 = Store.builder()
+                    .name("메달론")
+                    .createdDate(LocalDateTime.now())
+                    .outletNum(0)
+                    .closedDay(StoreDay.FRI)
+                    .address(new Address("장구봉로", "h2", "h3", "h4"))
+                    .category(StoreCategory.CAFE)
+                    .location((Point) new WKTReader().read(String.format("POINT(%s %s)", 127.456229, 36.624270)))
+                    .phone("01014254678")
+                    .paymentType(StorePaymentType.PREPAID)
+                    .salesType(StoreSalesType.HALL)
+                    .description("매일 맛있는 커피")
+                    .discountInfo(StoreDiscountInfo.NONE)
+                    .storeStatus(StoreStatus.OPEN)
+                    .storeMapThumbnail(storeMapThumbnail)
+                    .storeTopItem(storeTopItem)
+                    .storeTopReview(storeTopReview)
+                    .build();
+
+            em.persist(store2);
+            //
+
             Owner owner = Owner.builder()
                     .loginId("owner1")
                     .password("123")
@@ -712,6 +736,20 @@ public class InitDb {
                     .ssn("934920")
                     .build();
 
+            OwnerStore ownerStore = OwnerStore.builder()
+                    .store(store1)
+                    .owner(owner)
+                    .build();
+
+            OwnerStore ownerStore1 = OwnerStore.builder()
+                    .store(store2)
+                    .owner(owner)
+                    .build();
+
+            List<OwnerStore> ownerStores = new ArrayList<>();
+            ownerStores.add(ownerStore);
+            ownerStores.add(ownerStore1);
+
             Owner owner2 = Owner.builder()
                     .loginId("owner2")
                     .password("123")
@@ -720,6 +758,8 @@ public class InitDb {
                     .ownerBusinessNumber("43202-24-806")
                     .ssn("133340")
                     .build();
+
+            owner.updateOwnerStores(ownerStores);
             em.persist(owner);
             em.persist(owner2);
 

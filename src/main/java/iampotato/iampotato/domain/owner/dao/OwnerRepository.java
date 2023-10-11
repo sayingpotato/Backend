@@ -41,5 +41,15 @@ public class OwnerRepository {
                 .getResultList();
     }
 
+    public Optional<Owner> findOwnerStores(String ownerId, int offset, int limit) {
+        List<Owner> result = em.createQuery("select o from Owner o " +
+                        "left join fetch o.ownerStores os " +
+                        "where o.id = :ownerId", Owner.class)
+                .setParameter("ownerId", ownerId)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
 
+        return result.stream().findAny();
+    }
 }

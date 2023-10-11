@@ -15,6 +15,7 @@ import iampotato.iampotato.domain.order.domain.OrderStatus;
 import iampotato.iampotato.domain.orderitem.domain.OrderItem;
 import iampotato.iampotato.domain.owner.domain.Owner;
 import iampotato.iampotato.domain.owner.domain.OwnerStatus;
+import iampotato.iampotato.domain.ownerstore.domain.OwnerStore;
 import iampotato.iampotato.domain.review.domain.Review;
 import iampotato.iampotato.domain.review.domain.ReviewDetail;
 import iampotato.iampotato.domain.review.domain.ReviewStatus;
@@ -703,6 +704,29 @@ public class InitDb {
                     .build();
             em.persist(customer);
 
+            // 임시 가게
+            Store store2 = Store.builder()
+                    .name("메달론")
+                    .createdDate(LocalDateTime.now())
+                    .outletNum(0)
+                    .closedDay(StoreDay.FRI)
+                    .address(new Address("장구봉로", "h2", "h3", "h4"))
+                    .category(StoreCategory.CAFE)
+                    .location((Point) new WKTReader().read(String.format("POINT(%s %s)", 127.456229, 36.624270)))
+                    .phone("01014254678")
+                    .paymentType(StorePaymentType.PREPAID)
+                    .salesType(StoreSalesType.HALL)
+                    .description("매일 맛있는 커피")
+                    .discountInfo(StoreDiscountInfo.NONE)
+                    .storeStatus(StoreStatus.OPEN)
+                    .storeMapThumbnail(storeMapThumbnail)
+                    .storeTopItem(storeTopItem)
+                    .storeTopReview(storeTopReview)
+                    .build();
+
+            em.persist(store2);
+            //
+
             Owner owner = Owner.builder()
                     .loginId("owner1")
                     .password("123")
@@ -712,6 +736,20 @@ public class InitDb {
                     .ssn("934920")
                     .build();
 
+            OwnerStore ownerStore = OwnerStore.builder()
+                    .store(store1)
+                    .owner(owner)
+                    .build();
+
+            OwnerStore ownerStore1 = OwnerStore.builder()
+                    .store(store2)
+                    .owner(owner)
+                    .build();
+
+            List<OwnerStore> ownerStores = new ArrayList<>();
+            ownerStores.add(ownerStore);
+            ownerStores.add(ownerStore1);
+
             Owner owner2 = Owner.builder()
                     .loginId("owner2")
                     .password("123")
@@ -720,6 +758,8 @@ public class InitDb {
                     .ownerBusinessNumber("43202-24-806")
                     .ssn("133340")
                     .build();
+
+            owner.updateOwnerStores(ownerStores);
             em.persist(owner);
             em.persist(owner2);
 
@@ -729,6 +769,7 @@ public class InitDb {
                     .totalPrice(8000)
                     .totalPeople(3)
                     .review(review1)
+                    .createdDate(LocalDateTime.now())
                     .build();
 
             OrderItem orderItem1 = OrderItem.builder()
@@ -763,6 +804,7 @@ public class InitDb {
                     .orderStatus(OrderStatus.FINISH)
                     .totalPrice(12000)
                     .totalPeople(4)
+                    .createdDate(LocalDateTime.now())
                     .review(review2)
                     .build();
 
@@ -798,6 +840,7 @@ public class InitDb {
                     .orderStatus(OrderStatus.FINISH)
                     .totalPrice(7000)
                     .totalPeople(2)
+                    .createdDate(LocalDateTime.now())
                     .review(review3)
                     .build();
 
@@ -814,10 +857,11 @@ public class InitDb {
 
             Order order4 = Order.builder()
                     .customer(customer)
-                    .orderStatus(OrderStatus.FINISH)
+                    .orderStatus(OrderStatus.ORDER)
                     .totalPrice(20000)
                     .totalPeople(1)
                     .review(review4)
+                    .createdDate(LocalDateTime.now())
                     .build();
 
             OrderItem orderItem8 = OrderItem.builder()
@@ -829,7 +873,7 @@ public class InitDb {
             List<OrderItem> orderItems4 = new ArrayList<>();
             orderItems4.add(orderItem8);
 
-            order3.updateCollection(orderItems4);
+            order4.updateCollection(orderItems4);
 
             em.persist(order1);
             em.persist(order2);

@@ -56,6 +56,13 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus; // 주문 상태 [ORDER, WAIT_QR, FINISH]
 
+    public void acceptOrder() {
+        this.orderStatus = OrderStatus.FINISH;
+    }
+
+    public void rejectOrder() {
+        this.orderStatus = OrderStatus.CANCEL;
+    }
 
     // == 연관관계 메서드 == //
     public void addOrderItem(OrderItem orderItem) {

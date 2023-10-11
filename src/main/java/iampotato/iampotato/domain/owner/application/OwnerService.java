@@ -45,4 +45,12 @@ public class OwnerService {
         owner.authorizeOwner();
         return owner;
     }
+
+    public Owner getOwnerStores(String ownerId, int offset, int limit) {
+
+        Optional<Owner> result = ownerRepository.findOwnerStores(ownerId, offset, limit);
+        Owner owner = result.orElseThrow(() -> new OwnerException(OwnerExceptionGroup.OWNER_NULL));
+
+        return owner;
+    }
 }

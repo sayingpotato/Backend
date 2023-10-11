@@ -18,13 +18,33 @@ public class OrderRepository {
         em.persist(order);
     }
 
-    public List<Order> findOrder(String userId) {
+    public Order findById(Long orderId) {
+        return em.find(Order.class, orderId);
+    }
+
+    public List<Order> findOrders(String userId, int offset, int limit) {
 
         return em.createQuery("select distinct o from Order o" +
                         " left join fetch o.orderItems oi" +
                         " where o.customer.id = :id" +
                         " order by o.createdDate desc", Order.class)
                 .setParameter("id", userId)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+    }
+
+    public List<Order> findOrderRequest(String ownerId, Long storeId, int offset, int limit) {
+        return em.createQuery("select distinct o from Order o" +
+                        " left join fetch o.orderItems oi" +
+                        " join oi.item.store.ownerStores os" +
+                        " where oi.item.store.id = :storeId" +
+                        " and os.owner.id = :ownerId" +
+                        " order by o.createdDate desc", Order.class)
+                .setParameter("storeId", storeId)
+                .setParameter("ownerId", ownerId)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
                 .getResultList();
     }
 

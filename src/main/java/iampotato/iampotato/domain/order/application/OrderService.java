@@ -9,8 +9,7 @@ import iampotato.iampotato.domain.itemoption.domain.ItemOptions;
 import iampotato.iampotato.domain.order.dao.OrderRepository;
 import iampotato.iampotato.domain.order.domain.Order;
 import iampotato.iampotato.domain.order.domain.OrderStatus;
-import iampotato.iampotato.domain.order.dto.OrderDiscountsResponse;
-import iampotato.iampotato.domain.order.dto.OrderPostRequest;
+import iampotato.iampotato.domain.order.dto.*;
 import iampotato.iampotato.domain.order.exception.OrderException;
 import iampotato.iampotato.domain.order.exception.OrderExceptionGroup;
 import iampotato.iampotato.domain.review.domain.Review;
@@ -37,9 +36,20 @@ public class OrderService {
 
     private final ItemOptionRepository itemOptionRepository;
 
-    public List<Order> getOrderDetail(String userId) {
+    public List<Order> getOrderDetail(String userId, int offset, int limit) {
 
-        List<Order> orders = orderRepository.findOrder(userId);
+        List<Order> orders = orderRepository.findOrders(userId, offset, limit);
+
+        if (orders.isEmpty()) {
+            throw new OrderException(OrderExceptionGroup.ORDER_NULL);
+        }
+
+        return orders;
+    }
+
+    public List<Order> getOrderRequest(String ownerId, OrderOwnerRequest request, int offset, int limit) {
+
+        List<Order> orders = orderRepository.findOrderRequest(ownerId, request.getStoreId(), offset, limit);
 
         if (orders.isEmpty()) {
             throw new OrderException(OrderExceptionGroup.ORDER_NULL);
@@ -80,5 +90,25 @@ public class OrderService {
     public OrderDiscountsResponse getDiscounts(String userId) {
 
         return orderRepository.findTotalDiscounts(userId);
+    }
+
+    @Transactional
+    public Order acceptOrder(OrderAcceptRequest request) {
+
+        Order order = orderRepository.findById(request.getOrderId());
+
+        order.acceptOrder();
+
+        return order;
+    }
+
+    @Transactional
+    public Order rejectOrder(OrderRejectRequest request) {
+
+        Order order = orderRepository.findById(request.getOrderId());
+
+        order.rejectOrder();
+
+        return order;
     }
 }

@@ -3,6 +3,7 @@ package iampotato.iampotato.domain.store.domain;
 import iampotato.iampotato.domain.discount.domain.Discount;
 import iampotato.iampotato.domain.discount.domain.Discounts;
 import iampotato.iampotato.domain.item.domain.Items;
+import iampotato.iampotato.domain.ownerstore.domain.OwnerStore;
 import iampotato.iampotato.domain.review.domain.Reviews;
 import iampotato.iampotato.domain.storeimage.domain.StoreImages;
 import iampotato.iampotato.domain.storeoperationhour.domain.StoreOperationHours;
@@ -13,9 +14,12 @@ import org.locationtech.jts.geom.Point;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
+ * Store <-> OwnerStore = 1 : N
  * Store <-> Item = 1 : N
  * Store <-> Discount = 1 : N
  * Store <-> Review = 1 : N
@@ -35,6 +39,10 @@ public class Store {
     @GeneratedValue
     @Column(name = "store_id")
     private Long id;
+
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    @Builder.Default
+    private List<OwnerStore> ownerStores = new ArrayList<>();
 
     // Store 을 삭제하면 해당 가게의 상품과 상품옵션도 같이 지워지도록 CascadeType.ALL 로 설정
     @Embedded

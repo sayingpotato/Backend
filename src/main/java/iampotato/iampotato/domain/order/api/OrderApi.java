@@ -49,12 +49,23 @@ public class OrderApi {
     @Tag(name = "주문 페이지")
     @Operation(summary = "할인 금액 요청", description = "현재 사용자의 총 할인 금액을 가져옵니다.")
     @GetMapping("api/v1/discount/total")
-    public Result<OrderDiscountsResponse> getDisocunts() {
+    public Result<OrderDiscountsResponse> getTotalDiscounts() {
 
-        OrderDiscountsResponse response = orderService.getDiscounts(SecurityUtil.getCurrentUserId());
+        OrderDiscountsResponse response = orderService.getTotalDiscounts(SecurityUtil.getCurrentUserId());
 
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, response);
     }
+
+    @Tag(name = "주문 페이지")
+    @Operation(summary = "최근 할인 내역 요청", description = "현재 사용자의 최근 할인 내역을 가져옵니다.")
+    @GetMapping("api/v1/discount/detail")
+    public Result<List<OrderRecentDiscountsResponse>> getRecentDiscounts() {
+
+        List<OrderRecentDiscountsResponse> responses = orderService.getRecentDiscounts(SecurityUtil.getCurrentUserId());
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, responses);
+    }
+
 
     @Tag(name = "점주")
     @Operation(summary = "현재 주문 요청", description = "현재 Owner 가 받은 주문을 반환합니다.")

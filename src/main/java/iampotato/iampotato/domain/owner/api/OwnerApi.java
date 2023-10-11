@@ -7,6 +7,7 @@ import iampotato.iampotato.domain.owner.application.OwnerSignInService;
 import iampotato.iampotato.domain.owner.domain.Owner;
 import iampotato.iampotato.domain.owner.dto.*;
 import iampotato.iampotato.global.util.Result;
+import iampotato.iampotato.global.util.SecurityUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -46,6 +47,18 @@ public class OwnerApi {
     public Result<TokenResponse> signIn(@RequestBody SignInRequest signInRequest) {
         TokenResponse tokenResponse = ownerSignInService.signIn(signInRequest.getLoginId(), signInRequest.getPassword());
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, ownerSignInService.addOwnerStatus(tokenResponse, signInRequest.getLoginId()));
+    }
+
+    @Tag(name = "점주")
+    @Operation(summary = "보유 가게 가져오기", description = "점주가 보유한 모든 가게를 가져옵니다..")
+    @GetMapping("/api/v1/owner/store")
+    public Result<OwnerStoresResponse> getOwnerStores(@RequestParam(value = "offset", defaultValue = "0") int offset,
+                                                      @RequestParam(value = "limit", defaultValue = "100") int limit) {
+
+        Owner owner = ownerService.getOwnerStores(SecurityUtil.getCurrentUserId(), offset, limit);
+        OwnerStoresResponse response = new OwnerStoresResponse(owner);
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, response);
     }
 
     @Tag(name = "관리자 점주 페이지")

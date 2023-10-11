@@ -28,7 +28,7 @@ public class OrderApi {
     public Result<List<OrderDetailResponse>> getOrderDetail(@RequestParam(value = "offset", defaultValue = "0") int offset,
                                                             @RequestParam(value = "limit", defaultValue = "20") int limit) {
 
-        List<Order> orderDetails = orderService.getOrderDetail(SecurityUtil.getCurrentUserId());
+        List<Order> orderDetails = orderService.getOrderDetail(SecurityUtil.getCurrentUserId(), offset, limit);
 
         List<OrderDetailResponse> responses = orderDetails.stream()
                 .map(OrderDetailResponse::new)

@@ -18,13 +18,15 @@ public class OrderRepository {
         em.persist(order);
     }
 
-    public List<Order> findOrder(String userId) {
+    public List<Order> findOrder(String userId, int offset, int limit) {
 
         return em.createQuery("select distinct o from Order o" +
                         " left join fetch o.orderItems oi" +
                         " where o.customer.id = :id" +
                         " order by o.createdDate desc", Order.class)
                 .setParameter("id", userId)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
                 .getResultList();
     }
 

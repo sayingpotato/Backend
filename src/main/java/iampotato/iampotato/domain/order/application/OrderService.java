@@ -37,9 +37,9 @@ public class OrderService {
 
     private final ItemOptionRepository itemOptionRepository;
 
-    public List<Order> getOrderDetail(String userId) {
+    public List<Order> getOrderDetail(String userId, int offset, int limit) {
 
-        List<Order> orders = orderRepository.findOrder(userId);
+        List<Order> orders = orderRepository.findOrder(userId, offset, limit);
 
         if (orders.isEmpty()) {
             throw new OrderException(OrderExceptionGroup.ORDER_NULL);

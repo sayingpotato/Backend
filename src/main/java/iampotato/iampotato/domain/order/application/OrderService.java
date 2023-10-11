@@ -10,6 +10,7 @@ import iampotato.iampotato.domain.order.dao.OrderRepository;
 import iampotato.iampotato.domain.order.domain.Order;
 import iampotato.iampotato.domain.order.domain.OrderStatus;
 import iampotato.iampotato.domain.order.dto.OrderDiscountsResponse;
+import iampotato.iampotato.domain.order.dto.OrderOwnerRequest;
 import iampotato.iampotato.domain.order.dto.OrderPostRequest;
 import iampotato.iampotato.domain.order.exception.OrderException;
 import iampotato.iampotato.domain.order.exception.OrderExceptionGroup;
@@ -40,6 +41,17 @@ public class OrderService {
     public List<Order> getOrderDetail(String userId, int offset, int limit) {
 
         List<Order> orders = orderRepository.findOrder(userId, offset, limit);
+
+        if (orders.isEmpty()) {
+            throw new OrderException(OrderExceptionGroup.ORDER_NULL);
+        }
+
+        return orders;
+    }
+
+    public List<Order> getOrderRequest(String ownerId, OrderOwnerRequest request, int offset, int limit) {
+
+        List<Order> orders = orderRepository.findOrderRequest(ownerId, request.getStoreId(), offset, limit);
 
         if (orders.isEmpty()) {
             throw new OrderException(OrderExceptionGroup.ORDER_NULL);

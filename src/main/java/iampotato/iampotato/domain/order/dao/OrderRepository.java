@@ -30,6 +30,20 @@ public class OrderRepository {
                 .getResultList();
     }
 
+    public List<Order> findOrderRequest(String ownerId, Long storeId, int offset, int limit) {
+        return em.createQuery("select distinct o from Order o" +
+                        " left join fetch o.orderItems oi" +
+                        " join oi.item.store.ownerStores os" +
+                        " where oi.item.store.id = :storeId" +
+                        " and os.owner.id = :ownerId" +
+                        " order by o.createdDate desc", Order.class)
+                .setParameter("storeId", storeId)
+                .setParameter("ownerId", ownerId)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+    }
+
     public OrderDiscountsResponse findTotalDiscounts(String userId) {
 
         return em.createQuery("select new iampotato.iampotato.domain.order.dto.OrderDiscountsResponse(coalesce(sum(o.discountPrice), 0L)) from Order o " +

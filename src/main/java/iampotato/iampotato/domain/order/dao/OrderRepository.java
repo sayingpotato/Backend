@@ -2,6 +2,7 @@ package iampotato.iampotato.domain.order.dao;
 
 import iampotato.iampotato.domain.order.domain.Order;
 import iampotato.iampotato.domain.order.dto.OrderDiscountsResponse;
+import iampotato.iampotato.domain.order.dto.OrderRecentDiscountsResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -54,5 +55,15 @@ public class OrderRepository {
                         "where o.customer.id = :id ", OrderDiscountsResponse.class)
                 .setParameter("id", userId)
                 .getSingleResult();
+    }
+
+    public List<OrderRecentDiscountsResponse> findRecentDiscounts(String userId) {
+
+        return em.createQuery("select distinct new iampotato.iampotato.domain.order.dto.OrderRecentDiscountsResponse(o.discountPrice, s.name, o.createdDate) from Order o " +
+                        "left join o.orderItems oi " +
+                        "join oi.item.store s " +
+                        "where o.customer.id = :userId", OrderRecentDiscountsResponse.class)
+                .setParameter("userId", userId)
+                .getResultList();
     }
 }

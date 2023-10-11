@@ -60,6 +60,10 @@ public class Order {
         this.orderStatus = OrderStatus.FINISH;
     }
 
+    public void rejectOrder() {
+        this.orderStatus = OrderStatus.CANCEL;
+    }
+
     // == 연관관계 메서드 == //
     public void addOrderItem(OrderItem orderItem) {
         orderItems.add(orderItem);

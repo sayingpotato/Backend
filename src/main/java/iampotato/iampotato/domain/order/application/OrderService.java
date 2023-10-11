@@ -9,6 +9,7 @@ import iampotato.iampotato.domain.itemoption.domain.ItemOptions;
 import iampotato.iampotato.domain.order.dao.OrderRepository;
 import iampotato.iampotato.domain.order.domain.Order;
 import iampotato.iampotato.domain.order.domain.OrderStatus;
+import iampotato.iampotato.domain.order.dto.OrderAcceptRequest;
 import iampotato.iampotato.domain.order.dto.OrderDiscountsResponse;
 import iampotato.iampotato.domain.order.dto.OrderOwnerRequest;
 import iampotato.iampotato.domain.order.dto.OrderPostRequest;
@@ -40,7 +41,7 @@ public class OrderService {
 
     public List<Order> getOrderDetail(String userId, int offset, int limit) {
 
-        List<Order> orders = orderRepository.findOrder(userId, offset, limit);
+        List<Order> orders = orderRepository.findOrders(userId, offset, limit);
 
         if (orders.isEmpty()) {
             throw new OrderException(OrderExceptionGroup.ORDER_NULL);
@@ -92,5 +93,15 @@ public class OrderService {
     public OrderDiscountsResponse getDiscounts(String userId) {
 
         return orderRepository.findTotalDiscounts(userId);
+    }
+
+    @Transactional
+    public Order acceptOrder(OrderAcceptRequest request) {
+
+        Order order = orderRepository.findById(request.getOrderId());
+
+        order.acceptOrder();
+
+        return order;
     }
 }

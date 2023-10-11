@@ -1,5 +1,6 @@
 package iampotato.iampotato.domain.owner.domain;
 
+import iampotato.iampotato.domain.ownerstore.domain.OwnerStore;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
@@ -28,6 +29,10 @@ public class Owner implements UserDetails {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
 
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    @Builder.Default
+    private List<OwnerStore> ownerStores = new ArrayList<>();
+
     private String loginId;
 
     private String password;
@@ -49,6 +54,10 @@ public class Owner implements UserDetails {
 
     public void authorizeOwner() {
         this.ownerStatus = OwnerStatus.COMPLETE;
+    }
+
+    public void updateOwnerStores(List<OwnerStore> ownerStores) {
+        this.ownerStores = ownerStores;
     }
 
     @Override
@@ -85,4 +94,5 @@ public class Owner implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

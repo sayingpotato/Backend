@@ -82,4 +82,15 @@ public class OrderApi {
 
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, response);
     }
+
+    @Tag(name = "점주")
+    @Operation(summary = "주문 거절", description = "해당하는 주문 id 를 주면 해당 주문을 거절합니다.")
+    @PostMapping("api/v1/order/reject")
+    public Result<OrderRejectResponse> getOrderRequest(@RequestBody OrderRejectRequest request) {
+
+        Order order = orderService.rejectOrder(request);
+        OrderRejectResponse response = new OrderRejectResponse(order);
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, response);
+    }
 }

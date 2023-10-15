@@ -93,6 +93,7 @@ public class InitDb {
 
             Store store1 = Store.builder()
                     .name("좋은원두")
+                    .storeTodayDiscountThumbnail("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/t1.png")
                     .createdDate(LocalDateTime.now())
                     .outletNum(0)
                     .closedDay(StoreDay.FRI)
@@ -391,6 +392,7 @@ public class InitDb {
 
             Store store1 = Store.builder()
                     .name("착한원두")
+                    .storeTodayDiscountThumbnail("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/t2.png")
                     .createdDate(LocalDateTime.now())
                     .outletNum(0)
                     .closedDay(StoreDay.FRI)
@@ -1067,6 +1069,7 @@ public class InitDb {
         public void dbStores4() throws ParseException {
             Store store1 = Store.builder()
                     .name("스타벅스")
+                    .storeTodayDiscountThumbnail("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/t3.png")
                     .createdDate(LocalDateTime.now())
                     .outletNum(0)
                     .closedDay(StoreDay.FRI)
@@ -1185,6 +1188,7 @@ public class InitDb {
         public void dbStores5() throws ParseException {
             Store store1 = Store.builder()
                     .name("서브웨이")
+                    .storeTodayDiscountThumbnail("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/t4.png")
                     .createdDate(LocalDateTime.now())
                     .outletNum(0)
                     .closedDay(StoreDay.SUN)

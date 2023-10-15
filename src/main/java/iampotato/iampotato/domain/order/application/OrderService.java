@@ -116,4 +116,9 @@ public class OrderService {
 
         return order;
     }
+
+    public List<OrderDailyRevenueResponse> findDailyRevenues(String ownerId, Long storeId) {
+
+        return orderRepository.findDailyRevenues(ownerId, storeId);
+    }
 }

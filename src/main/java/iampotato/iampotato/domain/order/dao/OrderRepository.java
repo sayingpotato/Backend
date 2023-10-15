@@ -1,6 +1,7 @@
 package iampotato.iampotato.domain.order.dao;
 
 import iampotato.iampotato.domain.order.domain.Order;
+import iampotato.iampotato.domain.order.dto.OrderDailyRevenueResponse;
 import iampotato.iampotato.domain.order.dto.OrderDiscountsResponse;
 import iampotato.iampotato.domain.order.dto.OrderRecentDiscountsResponse;
 import lombok.RequiredArgsConstructor;
@@ -64,6 +65,26 @@ public class OrderRepository {
                         "join oi.item.store s " +
                         "where o.customer.id = :userId", OrderRecentDiscountsResponse.class)
                 .setParameter("userId", userId)
+                .getResultList();
+    }
+
+    public List<OrderDailyRevenueResponse> findDailyRevenues(String ownerId, Long storeId) {
+        return em.createQuery(
+                        "select new iampotato.iampotato.domain.order.dto.OrderDailyRevenueResponse( " +
+                                "function('DAYNAME', o.createdDate), " +
+                                "function('DATE_FORMAT', o.createdDate, '%H:00:00'), " +
+                                "COUNT(o.id), " +
+                                "sum(o.totalPrice)) " +
+                                "from Order o " +
+                                "left join o.orderItems oi " +
+                                "join oi.item.store.ownerStores os " +
+                                "where oi.item.store.id = :storeId " +
+                                "and os.owner.id = :ownerId " +
+                                "and oi.itemOption.id = null " +
+                                "group by function('DAYNAME', o.createdDate), function('DATE_FORMAT', o.createdDate, '%H:00:00')" +
+                                "order by function('DAYNAME', o.createdDate), function('DATE_FORMAT', o.createdDate, '%H:00:00')", OrderDailyRevenueResponse.class)
+                .setParameter("storeId", storeId)
+                .setParameter("ownerId", ownerId)
                 .getResultList();
     }
 }

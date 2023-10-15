@@ -78,7 +78,7 @@ public class OwnerApi {
     @Tag(name = "관리자 점주 페이지")
     @Operation(summary = "인증하기", description = "인증되지 않은 점주를 인증할때 사용되는 API 입니다.")
     @PutMapping("/api/v1/owner/authorization")
-    public Result<OwnerAuthorizeResponse> authorizeOwner(OwnerAuthorizeRequest request) {
+    public Result<OwnerAuthorizeResponse> authorizeOwner(@RequestBody OwnerAuthorizeRequest request) {
 
         Owner owner = ownerService.authorizeOwner(request.getId());
         OwnerAuthorizeResponse response = new OwnerAuthorizeResponse(owner);

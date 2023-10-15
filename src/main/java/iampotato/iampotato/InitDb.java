@@ -694,6 +694,46 @@ public class InitDb {
                     .price(7000)
                     .build();
 
+            Item item6 = Item.builder()
+                    .store(store1)
+                    .name("아메리카노")
+                    .category(ItemCategory.COFFEE)
+                    .img("http://dffdf2")
+                    .price(4500)
+                    .build();
+
+            Item item7 = Item.builder()
+                    .store(store1)
+                    .name("바닐라라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("http://dffdf2")
+                    .price(5500)
+                    .build();
+
+            Item item8 = Item.builder()
+                    .store(store1)
+                    .name("드립커피")
+                    .category(ItemCategory.COFFEE)
+                    .img("http://dffdf2")
+                    .price(6000)
+                    .build();
+
+            Item item9 = Item.builder()
+                    .store(store1)
+                    .name("카페라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("http://dffdf2")
+                    .price(5000)
+                    .build();
+
+            Item item10 = Item.builder()
+                    .store(store1)
+                    .name("에스프레소")
+                    .category(ItemCategory.COFFEE)
+                    .img("http://dffdf2")
+                    .price(4000)
+                    .build();
+
             ItemOption itemOption1 = ItemOption.builder()
                     .item(item1)
                     .name("중")
@@ -713,7 +753,7 @@ public class InitDb {
             itemOptions.add(itemOption2);
 
             item1.updateCollection(itemOptions);
-            Items items = new Items(item1, item2, item3, item4, item5);
+            Items items = new Items(item1, item2, item3, item4, item5, item6, item7, item8, item9, item10);
 
             store1.updateCollection(storeOperationHours, storeImages, reviews, discounts, items);
             em.persist(store1);
@@ -921,18 +961,18 @@ public class InitDb {
 
             // 아이템 목록
             List<Item> randomItems = new ArrayList<>();
-            randomItems.add(item1);
-            randomItems.add(item2);
-            randomItems.add(item3);
-            randomItems.add(item4);
-            randomItems.add(item5);
+            randomItems.add(item6);
+            randomItems.add(item7);
+            randomItems.add(item8);
+            randomItems.add(item9);
+            randomItems.add(item10);
 
             for(int i=0; i<1000; i++) {
                 // 2023년 10월 1일부터 2023년 10월 31일까지의 랜덤 시각 생성
                 int year = 2023;
                 int month = 10;
                 int day = random.nextInt(31) + 1; // 1부터 31 중 랜덤한 날짜 선택
-                int hour = random.nextInt(24); // 0부터 23 중 랜덤한 시간 선택
+                int hour = random.nextInt(8) + 13; // 13부터 21 중 랜덤한 시간 선택
                 int minute = random.nextInt(60); // 0부터 59 중 랜덤한 분 선택
                 int second = random.nextInt(60); // 0부터 59 중 랜덤한 초 선택
 
@@ -971,7 +1011,52 @@ public class InitDb {
 
                 order5.updateCollection(orderItems1);
                 em.persist(order5);
+            }
 
+            for(int j=0; j<500; j++) {
+                // 2023년 10월 1일부터 2023년 10월 31일까지의 랜덤 시각 생성
+                int year = 2023;
+                int month = 10;
+                int day = random.nextInt(31) + 1; // 1부터 31 중 랜덤한 날짜 선택
+                int hour = random.nextInt(24); // 0부터 24 중 랜덤한 시간 선택
+                int minute = random.nextInt(60); // 0부터 59 중 랜덤한 분 선택
+                int second = random.nextInt(60); // 0부터 59 중 랜덤한 초 선택
+
+                LocalDateTime time = LocalDateTime.of(year, Month.of(month), day, hour, minute, second);
+
+                // 1000으로 나누어떨어지는 가격 난수 생성
+                int randomPrice = minPrice + step * random.nextInt((maxPrice - minPrice) / step + 1);
+
+                // 랜덤한 사람 수 생성
+                int randomPeople = minPeople + random.nextInt(maxPeople - minPeople + 1);
+
+                int price = randomPrice;
+                int people = randomPeople;
+
+                // 아이템 랜덤 선택
+                Item randomItem = randomItems.get(random.nextInt(randomItems.size()));
+
+                Order order5 = Order.builder()
+                        .customer(customer)
+                        .orderStatus(OrderStatus.ORDER)
+                        .totalPrice(price)
+                        .totalPeople(people)
+                        .review(review3)
+                        .createdDate(time)
+                        .discountPrice(((int)Math.ceil(price*0.1)/100)*100)
+                        .build();
+
+                OrderItem orderItem = OrderItem.builder()
+                        .order(order5)
+                        .item(randomItem)
+                        .totalPrice(price)
+                        .build();
+
+                List<OrderItem> orderItems1 = new ArrayList<>();
+                orderItems1.add(orderItem);
+
+                order5.updateCollection(orderItems1);
+                em.persist(order5);
             }
             em.persist(order1);
             em.persist(order2);

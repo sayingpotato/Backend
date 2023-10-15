@@ -842,7 +842,7 @@ public class InitDb {
                     .orderStatus(OrderStatus.FINISH)
                     .totalPrice(7000)
                     .totalPeople(2)
-                    .createdDate(LocalDateTime.now())
+                    .createdDate(LocalDateTime.now().minusHours(2))
                     .review(review3)
                     .discountPrice(700)
                     .build();
@@ -864,7 +864,7 @@ public class InitDb {
                     .totalPrice(20000)
                     .totalPeople(1)
                     .review(review4)
-                    .createdDate(LocalDateTime.now())
+                    .createdDate(LocalDateTime.now().minusHours(4))
                     .discountPrice(1000)
                     .build();
 

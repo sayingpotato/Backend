@@ -104,4 +104,14 @@ public class OrderApi {
 
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, response);
     }
+
+    @Tag(name = "통계")
+    @Operation(summary = "시간대별 판매량 예측", description = "요일, 시간별로 판매량을 예측한 통계를 반환합니다.")
+    @GetMapping("api/v1/statistics/daily/revenue")
+    public Result<List<OrderDailyRevenueResponse>> getDailyRevenues(OrderDailyRevenueRequest request) {
+
+        List<OrderDailyRevenueResponse> responses = orderService.findDailyRevenues(SecurityUtil.getCurrentUserId(), request.getStoreId());
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, responses);
+    }
 }

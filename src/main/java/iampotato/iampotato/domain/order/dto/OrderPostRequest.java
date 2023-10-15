@@ -1,12 +1,11 @@
 package iampotato.iampotato.domain.order.dto;
 
-import lombok.AllArgsConstructor;
+
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-@AllArgsConstructor
 public class OrderPostRequest {
 
     private Long storeId;
@@ -20,5 +19,14 @@ public class OrderPostRequest {
     private List<Long> itemIds;
 
     private List<Long> itemOptionIds;
+
+    public OrderPostRequest(Long storeId, int totalPrice, int totalPeople, int discountPrice, List<Long> itemIds, List<Long> itemOptionIds) {
+        this.storeId = storeId;
+        this.totalPrice = totalPrice;
+        this.totalPeople = totalPeople;
+        this.discountPrice = discountPrice;
+        this.itemIds = itemIds;
+        this.itemOptionIds = itemOptionIds;
+    }
 }
 

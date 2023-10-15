@@ -23,7 +23,7 @@ public class OrderApi {
     @Operation(summary = "주문 내역 요청", description = "현재 Customer 의 주문내역을 반환합니다.")
     @GetMapping("api/v1/order/detail")
     public Result<List<OrderDetailResponse>> getOrderDetail(@RequestParam(value = "offset", defaultValue = "0") int offset,
-                                                            @RequestParam(value = "limit", defaultValue = "100") int limit) {
+                                                            @RequestParam(value = "limit", defaultValue = "20") int limit) {
 
         List<Order> orderDetails = orderService.getOrderDetail(SecurityUtil.getCurrentUserId(), offset, limit);
 

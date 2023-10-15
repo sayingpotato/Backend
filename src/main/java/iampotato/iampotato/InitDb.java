@@ -543,6 +543,7 @@ public class InitDb {
 
             Store store1 = Store.builder()
                     .name("원두원두")
+                    .storeTodayDiscountThumbnail("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/t1.png")
                     .createdDate(LocalDateTime.now())
                     .outletNum(0)
                     .closedDay(StoreDay.FRI)
@@ -776,6 +777,7 @@ public class InitDb {
             // 임시 가게
             Store store2 = Store.builder()
                     .name("메달론")
+                    .storeTodayDiscountThumbnail("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/t1.png")
                     .createdDate(LocalDateTime.now())
                     .outletNum(0)
                     .closedDay(StoreDay.FRI)

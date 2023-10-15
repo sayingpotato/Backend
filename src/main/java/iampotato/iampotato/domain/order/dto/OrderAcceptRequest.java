@@ -6,4 +6,8 @@ import lombok.Data;
 public class OrderAcceptRequest {
 
     private Long orderId;
+
+    public OrderAcceptRequest(Long orderId) {
+        this.orderId = orderId;
+    }
 }

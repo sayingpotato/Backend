@@ -6,5 +6,5 @@ package iampotato.iampotato.domain.item.domain;
  * PORK : 돼지고기
  */
 public enum ItemCategory {
-    MARATANG, PORK
+    MARATANG, PORK, COFFEE
 }

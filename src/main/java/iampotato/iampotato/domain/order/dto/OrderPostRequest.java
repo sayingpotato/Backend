@@ -1,10 +1,12 @@
 package iampotato.iampotato.domain.order.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
+@AllArgsConstructor
 public class OrderPostRequest {
 
     private Long storeId;

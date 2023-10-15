@@ -1,11 +1,13 @@
 package iampotato.iampotato.domain.store.dto.update;
 
 import iampotato.iampotato.domain.store.domain.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
+@AllArgsConstructor
 public class StoreUpdateRequest {
 
     private Long id;

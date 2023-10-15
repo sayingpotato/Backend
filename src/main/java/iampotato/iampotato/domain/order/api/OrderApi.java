@@ -72,7 +72,7 @@ public class OrderApi {
     @GetMapping("api/v1/order/owner")
     public Result<List<OrderOwnerResponse>> getOrderRequest(OrderOwnerRequest request,
                                                             @RequestParam(value = "offset", defaultValue = "0") int offset,
-                                                            @RequestParam(value = "limit", defaultValue = "100") int limit) {
+                                                            @RequestParam(value = "limit", defaultValue = "20") int limit) {
 
         List<Order> orders = orderService.getOrderRequest(SecurityUtil.getCurrentUserId(), request, offset, limit);
 

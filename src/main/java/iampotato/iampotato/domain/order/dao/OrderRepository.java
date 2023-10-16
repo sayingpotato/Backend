@@ -1,6 +1,7 @@
 package iampotato.iampotato.domain.order.dao;
 
 import iampotato.iampotato.domain.order.domain.Order;
+import iampotato.iampotato.domain.order.dto.OrderDailyItemResponse;
 import iampotato.iampotato.domain.order.dto.OrderDailyRevenueResponse;
 import iampotato.iampotato.domain.order.dto.OrderDiscountsResponse;
 import iampotato.iampotato.domain.order.dto.OrderRecentDiscountsResponse;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -73,18 +75,70 @@ public class OrderRepository {
                         "select new iampotato.iampotato.domain.order.dto.OrderDailyRevenueResponse( " +
                                 "function('DAYNAME', o.createdDate), " +
                                 "function('DATE_FORMAT', o.createdDate, '%H:00:00'), " +
-                                "COUNT(o.id), " +
-                                "sum(o.totalPrice)) " +
+                                "function('ROUND', count(o.id)/4.0), " +
+                                "function('ROUND', sum(o.totalPrice)/4.0)) " +
                                 "from Order o " +
                                 "left join o.orderItems oi " +
                                 "join oi.item.store.ownerStores os " +
                                 "where oi.item.store.id = :storeId " +
                                 "and os.owner.id = :ownerId " +
                                 "and oi.itemOption.id = null " +
+                                "and o.createdDate >= :oneMonthAgo " +
                                 "group by function('DAYNAME', o.createdDate), function('DATE_FORMAT', o.createdDate, '%H:00:00')" +
                                 "order by function('DAYNAME', o.createdDate), function('DATE_FORMAT', o.createdDate, '%H:00:00')", OrderDailyRevenueResponse.class)
                 .setParameter("storeId", storeId)
                 .setParameter("ownerId", ownerId)
+                .setParameter("oneMonthAgo", LocalDateTime.now().minusMonths(1))
+                .getResultList();
+    }
+
+    public List<OrderDailyItemResponse> findDailyItems(String ownerId, Long storeId) {
+        return em.createQuery(
+                        "select new iampotato.iampotato.domain.order.dto.OrderDailyItemResponse( " +
+                                "function('DAYNAME', o.createdDate), " +
+                                "i.id, " +
+                                "i.name, " +
+                                "function('ROUND', count(*)/4.0)) " +
+                                "from Order o " +
+                                "left join o.orderItems oi " +
+                                "join oi.item i " +
+                                "join i.store.ownerStores os " +
+                                "where i.store.id = :storeId " +
+                                "and os.owner.id = :ownerId " +
+                                "and oi.itemOption.id = null " +
+                                "and function('DAYNAME', o.createdDate) = function('DAYNAME', :targetDay)" +
+                                "and o.createdDate >= :oneMonthAgo " +
+                                "group by function('DAYNAME', o.createdDate), i.id, i.name " +
+                                "order by i.id", OrderDailyItemResponse.class)
+                .setParameter("storeId", storeId)
+                .setParameter("ownerId", ownerId)
+                .setParameter("targetDay", LocalDateTime.now())
+                .setParameter("oneMonthAgo", LocalDateTime.now().minusMonths(1))
+                .getResultList();
+    }
+
+    public List<OrderDailyItemResponse> findDailyItemsTomorrow(String ownerId, Long storeId) {
+        return em.createQuery(
+                        "select new iampotato.iampotato.domain.order.dto.OrderDailyItemResponse( " +
+                                "function('DAYNAME', o.createdDate), " +
+                                "i.id, " +
+                                "i.name, " +
+                                "function('ROUND', count(*)/4.0)) " +
+                                "from Order o " +
+                                "left join o.orderItems oi " +
+                                "join oi.item i " +
+                                "join i.store.ownerStores os " +
+                                "where i.store.id = :storeId " +
+                                "and os.owner.id = :ownerId " +
+                                "and oi.itemOption.id = null " +
+                                "and function('DAYNAME', o.createdDate) = function('DAYNAME', :targetDay)" +
+                                "and o.createdDate >= :oneMonthAgo " +
+                                "group by function('DAYNAME', o.createdDate), i.id, i.name " +
+                                "order by i.id", OrderDailyItemResponse.class)
+                .setParameter("storeId", storeId)
+                .setParameter("ownerId", ownerId)
+                .setParameter("targetDay", LocalDateTime.now().plusDays(1))
+                .setParameter("oneMonthAgo", LocalDateTime.now().minusMonths(1))
                 .getResultList();
     }
 }

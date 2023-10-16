@@ -121,4 +121,14 @@ public class OrderService {
 
         return orderRepository.findDailyRevenues(ownerId, storeId);
     }
+
+    public List<OrderDailyItemResponse> findDailyItems(String ownerId, Long storeId) {
+
+        return orderRepository.findDailyItems(ownerId, storeId);
+    }
+
+    public List<OrderDailyItemResponse> findDailyItemsTomorrow(String ownerId, Long storeId) {
+
+        return orderRepository.findDailyItemsTomorrow(ownerId, storeId);
+    }
 }

@@ -106,11 +106,31 @@ public class OrderApi {
     }
 
     @Tag(name = "통계")
-    @Operation(summary = "시간대별 판매량 예측", description = "요일, 시간별로 판매량을 예측한 통계를 반환합니다.")
+    @Operation(summary = "시간대별 수익/주문수 예측", description = "요일, 시간별로 수익/주문수를 예측한 통계를 반환합니다.")
     @GetMapping("api/v1/statistics/daily/revenue")
     public Result<List<OrderDailyRevenueResponse>> getDailyRevenues(OrderDailyRevenueRequest request) {
 
         List<OrderDailyRevenueResponse> responses = orderService.findDailyRevenues(SecurityUtil.getCurrentUserId(), request.getStoreId());
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, responses);
+    }
+
+    @Tag(name = "통계")
+    @Operation(summary = "당일 아이템별 판매량 예측", description = "당일 상품별 판매량 예측 통계를 반환합니다.")
+    @GetMapping("api/v1/statistics/daily/item")
+    public Result<List<OrderDailyItemResponse>> getDailyItems(OrderDailyItemRequest request) {
+
+        List<OrderDailyItemResponse> responses = orderService.findDailyItems(SecurityUtil.getCurrentUserId(), request.getStoreId());
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, responses);
+    }
+
+    @Tag(name = "통계")
+    @Operation(summary = "내일 아이템별 판매량 예측", description = "내일 상품별 판매량 예측 통계를 반환합니다.")
+    @GetMapping("api/v1/statistics/daily/item/tomorrow")
+    public Result<List<OrderDailyItemResponse>> getDailyItemsTomorrow(OrderDailyItemRequest request) {
+
+        List<OrderDailyItemResponse> responses = orderService.findDailyItemsTomorrow(SecurityUtil.getCurrentUserId(), request.getStoreId());
 
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, responses);
     }

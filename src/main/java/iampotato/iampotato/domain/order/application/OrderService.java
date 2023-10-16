@@ -124,11 +124,11 @@ public class OrderService {
 
     public List<OrderDailyItemResponse> findDailyItems(String ownerId, Long storeId) {
 
-        return orderRepository.findDailyItems(ownerId, storeId);
+        return orderRepository.findDailyItemsByWeekly(ownerId, storeId, LocalDateTime.now());
     }
 
     public List<OrderDailyItemResponse> findDailyItemsTomorrow(String ownerId, Long storeId) {
 
-        return orderRepository.findDailyItemsTomorrow(ownerId, storeId);
+        return orderRepository.findDailyItemsByWeekly(ownerId, storeId, LocalDateTime.now().plusDays(1));
     }
 }

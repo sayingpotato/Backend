@@ -92,7 +92,7 @@ public class OrderRepository {
                 .getResultList();
     }
 
-    public List<OrderDailyItemResponse> findDailyItems(String ownerId, Long storeId) {
+    public List<OrderDailyItemResponse> findDailyItemsByWeekly(String ownerId, Long storeId, LocalDateTime time) {
         return em.createQuery(
                         "select new iampotato.iampotato.domain.order.dto.OrderDailyItemResponse( " +
                                 "function('DAYNAME', o.createdDate), " +
@@ -113,32 +113,9 @@ public class OrderRepository {
                 .setParameter("storeId", storeId)
                 .setParameter("ownerId", ownerId)
                 .setParameter("targetDay", LocalDateTime.now())
-                .setParameter("oneMonthAgo", LocalDateTime.now().minusMonths(1))
+                .setParameter("oneMonthAgo", time)
                 .getResultList();
     }
 
-    public List<OrderDailyItemResponse> findDailyItemsTomorrow(String ownerId, Long storeId) {
-        return em.createQuery(
-                        "select new iampotato.iampotato.domain.order.dto.OrderDailyItemResponse( " +
-                                "function('DAYNAME', o.createdDate), " +
-                                "i.id, " +
-                                "i.name, " +
-                                "function('ROUND', count(*)/4.0)) " +
-                                "from Order o " +
-                                "left join o.orderItems oi " +
-                                "join oi.item i " +
-                                "join i.store.ownerStores os " +
-                                "where i.store.id = :storeId " +
-                                "and os.owner.id = :ownerId " +
-                                "and oi.itemOption.id = null " +
-                                "and function('DAYNAME', o.createdDate) = function('DAYNAME', :targetDay)" +
-                                "and o.createdDate >= :oneMonthAgo " +
-                                "group by function('DAYNAME', o.createdDate), i.id, i.name " +
-                                "order by i.id", OrderDailyItemResponse.class)
-                .setParameter("storeId", storeId)
-                .setParameter("ownerId", ownerId)
-                .setParameter("targetDay", LocalDateTime.now().plusDays(1))
-                .setParameter("oneMonthAgo", LocalDateTime.now().minusMonths(1))
-                .getResultList();
-    }
+
 }

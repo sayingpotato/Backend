@@ -1,10 +1,7 @@
 package iampotato.iampotato.domain.order.dao;
 
 import iampotato.iampotato.domain.order.domain.Order;
-import iampotato.iampotato.domain.order.dto.OrderDailyItemResponse;
-import iampotato.iampotato.domain.order.dto.OrderDailyRevenueResponse;
-import iampotato.iampotato.domain.order.dto.OrderDiscountsResponse;
-import iampotato.iampotato.domain.order.dto.OrderRecentDiscountsResponse;
+import iampotato.iampotato.domain.order.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -112,10 +109,50 @@ public class OrderRepository {
                                 "order by i.id", OrderDailyItemResponse.class)
                 .setParameter("storeId", storeId)
                 .setParameter("ownerId", ownerId)
-                .setParameter("targetDay", LocalDateTime.now())
-                .setParameter("oneMonthAgo", time)
+                .setParameter("targetDay", time)
+                .setParameter("oneMonthAgo", LocalDateTime.now().minusMonths(1))
                 .getResultList();
     }
 
+    public OrderProfitResponse findProfitByWeekly(String ownerId, Long storeId, LocalDateTime time) {
+        return em.createQuery(
+                        "select new iampotato.iampotato.domain.order.dto.OrderProfitResponse( " +
+                                "count(o), " +
+                                "function('ROUND', count(*)/4.0), " +
+                                "sum(o.totalPrice), " +
+                                "function('ROUND', sum(o.totalPrice)/4.0)) " +
+                                "from Order o " +
+                                "left join o.orderItems oi " +
+                                "join oi.item i " +
+                                "join i.store.ownerStores os " +
+                                "where i.store.id = :storeId " +
+                                "and os.owner.id = :ownerId " +
+                                "and oi.itemOption.id = null " +
+                                "and function('DAYNAME', o.createdDate) = function('DAYNAME', :targetDay)" +
+                                "and o.createdDate >= :oneMonthAgo ", OrderProfitResponse.class)
+                .setParameter("storeId", storeId)
+                .setParameter("ownerId", ownerId)
+                .setParameter("targetDay", time)
+                .setParameter("oneMonthAgo", LocalDateTime.now().minusMonths(1))
+                .getSingleResult();
+    }
 
+    public OrderProfitByDayResponse findProfitByDay(String ownerId, Long storeId, LocalDateTime time) {
+        return em.createQuery(
+                        "select new iampotato.iampotato.domain.order.dto.OrderProfitByDayResponse(  " +
+                                "count(o), " +
+                                "sum(o.totalPrice)) " +
+                                "from Order o " +
+                                "left join o.orderItems oi " +
+                                "join oi.item i " +
+                                "join i.store.ownerStores os " +
+                                "where i.store.id = :storeId " +
+                                "and os.owner.id = :ownerId " +
+                                "and oi.itemOption.id = null " +
+                                "and function('DATE', o.createdDate) = function('DATE', :targetDay)", OrderProfitByDayResponse.class)
+                .setParameter("storeId", storeId)
+                .setParameter("ownerId", ownerId)
+                .setParameter("targetDay", time.minusDays(1))
+                .getSingleResult();
+    }
 }

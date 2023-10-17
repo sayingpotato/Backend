@@ -174,4 +174,14 @@ public class OrderApi {
 
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, responses);
     }
+
+    @Tag(name = "통계")
+    @Operation(summary = "일주일 아이템 판매량 통계", description = "일주일 아이템 판매에대한 통계를 반환합니다.")
+    @GetMapping("api/v1/statistics/week/item")
+    public Result<List<OrderItemByWeekResponse>> getItemByWeek(OrderItemByWeekRequest request) {
+
+        List<OrderItemByWeekResponse> responses = orderService.findItemByWeek(SecurityUtil.getCurrentUserId(), request.getStoreId());
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, responses);
+    }
 }

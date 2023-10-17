@@ -153,4 +153,11 @@ public class OrderService {
                 profitByWeekly.getTotalPrice(),
                 Math.round((profitByWeekly.getAveragePrice() + profitByDay.getSum())) / 2);
     }
+
+    public List<OrderMonthlyProfitResponse> findMonthlyProfit(String ownerId, Long storeId) {
+
+        return orderRepository.findMonthlyProfit(ownerId, storeId);
+    }
+
+
 }

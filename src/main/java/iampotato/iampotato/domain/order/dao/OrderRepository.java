@@ -155,4 +155,23 @@ public class OrderRepository {
                 .setParameter("targetDay", time.minusDays(1))
                 .getSingleResult();
     }
+
+    public List<OrderMonthlyProfitResponse> findMonthlyProfit(String ownerId, Long storeId) {
+        return em.createQuery(
+                        "select new iampotato.iampotato.domain.order.dto.OrderMonthlyProfitResponse(  " +
+                                "function('DATE_FORMAT', o.createdDate, '%Y-%m'), " +
+                                "sum(o.totalPrice)) " +
+                                "from Order o " +
+                                "left join o.orderItems oi " +
+                                "join oi.item i " +
+                                "join i.store.ownerStores os " +
+                                "where i.store.id = :storeId " +
+                                "and os.owner.id = :ownerId " +
+                                "and oi.itemOption.id = null " +
+                                "group by function('DATE_FORMAT', o.createdDate, '%Y-%m') " +
+                                "order by function('DATE_FORMAT', o.createdDate, '%Y-%m')", OrderMonthlyProfitResponse.class)
+                .setParameter("storeId", storeId)
+                .setParameter("ownerId", ownerId)
+                .getResultList();
+    }
 }

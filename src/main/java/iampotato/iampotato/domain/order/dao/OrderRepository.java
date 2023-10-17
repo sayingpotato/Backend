@@ -197,4 +197,28 @@ public class OrderRepository {
                 .setParameter("oneMonthAgo", LocalDateTime.now().minusMonths(1))
                 .getResultList();
     }
+
+    public List<OrderItemByWeekResponse> findDailyItemsByWeek(String ownerId, Long storeId) {
+        return em.createQuery(
+                        "select new iampotato.iampotato.domain.order.dto.OrderItemByWeekResponse( " +
+                                "function('DATE', o.createdDate), " +
+                                "i.id, " +
+                                "i.name, " +
+                                "count(i)) " +
+                                "from Order o " +
+                                "left join o.orderItems oi " +
+                                "join oi.item i " +
+                                "join i.store.ownerStores os " +
+                                "where i.store.id = :storeId " +
+                                "and os.owner.id = :ownerId " +
+                                "and oi.itemOption.id = null " +
+                                "and o.createdDate >= :oneWeekAgo " +
+                                "and o.createdDate <= CURRENT_DATE " +
+                                "group by function('DATE', o.createdDate), i.id, i.name " +
+                                "order by function('DATE', o.createdDate), i.id", OrderItemByWeekResponse.class)
+                .setParameter("storeId", storeId)
+                .setParameter("ownerId", ownerId)
+                .setParameter("oneWeekAgo", LocalDateTime.now().minusWeeks(1))
+                .getResultList();
+    }
 }

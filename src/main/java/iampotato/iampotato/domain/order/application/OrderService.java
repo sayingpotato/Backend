@@ -163,4 +163,9 @@ public class OrderService {
 
         return orderRepository.findDailyProfit(ownerId, storeId);
     }
+
+    public List<OrderItemByWeekResponse> findItemByWeek(String ownerId, Long storeId) {
+
+        return orderRepository.findDailyItemsByWeek(ownerId, storeId);
+    }
 }

@@ -154,4 +154,14 @@ public class OrderApi {
 
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, response);
     }
+
+    @Tag(name = "통계")
+    @Operation(summary = "월별 수익 통계", description = "월별 수익에 대한 통계를 반환합니다.")
+    @GetMapping("api/v1/statistics/monthly/profit")
+    public Result<List<OrderMonthlyProfitResponse>> getMonthlyProfit(OrderMonthlyProfitRequest request) {
+
+        List<OrderMonthlyProfitResponse> responses = orderService.findMonthlyProfit(SecurityUtil.getCurrentUserId(), request.getStoreId());
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, responses);
+    }
 }

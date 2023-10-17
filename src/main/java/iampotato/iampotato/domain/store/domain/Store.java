@@ -40,7 +40,7 @@ public class Store {
     @Column(name = "store_id")
     private Long id;
 
-    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "store")
     @Builder.Default
     private List<OwnerStore> ownerStores = new ArrayList<>();
 

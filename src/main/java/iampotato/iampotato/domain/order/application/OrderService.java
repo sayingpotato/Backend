@@ -116,4 +116,56 @@ public class OrderService {
 
         return order;
     }
+
+    public List<OrderDailyRevenueResponse> findDailyRevenues(String ownerId, Long storeId) {
+
+        return orderRepository.findDailyRevenues(ownerId, storeId);
+    }
+
+    public List<OrderDailyItemResponse> findDailyItems(String ownerId, Long storeId) {
+
+        return orderRepository.findDailyItemsByWeekly(ownerId, storeId, LocalDateTime.now());
+    }
+
+    public List<OrderDailyItemResponse> findDailyItemsTomorrow(String ownerId, Long storeId) {
+
+        return orderRepository.findDailyItemsByWeekly(ownerId, storeId, LocalDateTime.now().plusDays(1));
+    }
+
+    public OrderProfitResponse findProfit(String ownerId, Long storeId) {
+
+        OrderProfitResponse profitByWeekly = orderRepository.findProfitByWeekly(ownerId, storeId, LocalDateTime.now());
+        OrderProfitByDayResponse profitByDay = orderRepository.findProfitByDay(ownerId, storeId, LocalDateTime.now());
+
+        return new OrderProfitResponse(profitByWeekly.getTotalCount(),
+                Math.round((profitByWeekly.getAverageCount() + profitByDay.getCount()) / 2),
+                profitByWeekly.getTotalPrice(),
+                Math.round((profitByWeekly.getAveragePrice() + profitByDay.getSum())) / 2);
+    }
+
+    public OrderProfitResponse findProfitTomorrow(String ownerId, Long storeId) {
+
+        OrderProfitResponse profitByWeekly = orderRepository.findProfitByWeekly(ownerId, storeId, LocalDateTime.now().minusDays(1));
+        OrderProfitByDayResponse profitByDay = orderRepository.findProfitByDay(ownerId, storeId, LocalDateTime.now().minusDays(1));
+
+        return new OrderProfitResponse(profitByWeekly.getTotalCount(),
+                Math.round((profitByWeekly.getAverageCount() + profitByDay.getCount()) / 2),
+                profitByWeekly.getTotalPrice(),
+                Math.round((profitByWeekly.getAveragePrice() + profitByDay.getSum())) / 2);
+    }
+
+    public List<OrderMonthlyProfitResponse> findMonthlyProfit(String ownerId, Long storeId) {
+
+        return orderRepository.findMonthlyProfit(ownerId, storeId);
+    }
+
+    public List<OrderDailyProfitResponse> findDailyProfit(String ownerId, Long storeId) {
+
+        return orderRepository.findDailyProfit(ownerId, storeId);
+    }
+
+    public List<OrderItemByWeekResponse> findItemByWeek(String ownerId, Long storeId) {
+
+        return orderRepository.findDailyItemsByWeek(ownerId, storeId);
+    }
 }

@@ -104,4 +104,84 @@ public class OrderApi {
 
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, response);
     }
+
+    @Tag(name = "통계")
+    @Operation(summary = "시간대별 수익/주문수 통계", description = "요일, 시간별로 수익/주문수를 예측한 통계를 반환합니다.")
+    @GetMapping("api/v1/statistics/daily/revenue")
+    public Result<List<OrderDailyRevenueResponse>> getDailyRevenues(OrderDailyRevenueRequest request) {
+
+        List<OrderDailyRevenueResponse> responses = orderService.findDailyRevenues(SecurityUtil.getCurrentUserId(), request.getStoreId());
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, responses);
+    }
+
+    @Tag(name = "예측")
+    @Operation(summary = "당일 아이템별 판매량 예측", description = "당일 상품별 판매량 예측 통계를 반환합니다.")
+    @GetMapping("api/v1/statistics/daily/item")
+    public Result<List<OrderDailyItemResponse>> getDailyItems(OrderDailyItemRequest request) {
+
+        List<OrderDailyItemResponse> responses = orderService.findDailyItems(SecurityUtil.getCurrentUserId(), request.getStoreId());
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, responses);
+    }
+
+    @Tag(name = "예측")
+    @Operation(summary = "내일 아이템별 판매량 예측", description = "내일 상품별 판매량 예측 통계를 반환합니다.")
+    @GetMapping("api/v1/statistics/daily/item/tomorrow")
+    public Result<List<OrderDailyItemResponse>> getDailyItemsTomorrow(OrderDailyItemRequest request) {
+
+        List<OrderDailyItemResponse> responses = orderService.findDailyItemsTomorrow(SecurityUtil.getCurrentUserId(), request.getStoreId());
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, responses);
+    }
+
+    @Tag(name = "예측")
+    @Operation(summary = "당일 수익/주문 예측", description = "당일 수익/주문에 대한 예측 통계를 반환합니다.")
+    @GetMapping("api/v1/statistics/profit")
+    public Result<OrderProfitResponse> getProfit(OrderDailyItemRequest request) {
+
+        OrderProfitResponse response = orderService.findProfit(SecurityUtil.getCurrentUserId(), request.getStoreId());
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, response);
+    }
+
+    @Tag(name = "예측")
+    @Operation(summary = "내일 수익/주문 예측", description = "내일 수익/주문에 대한 예측 통계를 반환합니다.")
+    @GetMapping("api/v1/statistics/profit/tomorrow")
+    public Result<OrderProfitResponse> getProfitTomorrow(OrderDailyItemRequest request) {
+
+        OrderProfitResponse response = orderService.findProfitTomorrow(SecurityUtil.getCurrentUserId(), request.getStoreId());
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, response);
+    }
+
+    @Tag(name = "통계")
+    @Operation(summary = "월별 수익 통계", description = "월별 수익에 대한 통계를 반환합니다.")
+    @GetMapping("api/v1/statistics/monthly/profit")
+    public Result<List<OrderMonthlyProfitResponse>> getMonthlyProfit(OrderMonthlyProfitRequest request) {
+
+        List<OrderMonthlyProfitResponse> responses = orderService.findMonthlyProfit(SecurityUtil.getCurrentUserId(), request.getStoreId());
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, responses);
+    }
+
+    @Tag(name = "통계")
+    @Operation(summary = "일별 수익 통계", description = "일별 수익에 대한 통계를 반환합니다.")
+    @GetMapping("api/v1/statistics/daily/profit")
+    public Result<List<OrderDailyProfitResponse>> getDailyProfit(OrderDailyProfitRequest request) {
+
+        List<OrderDailyProfitResponse> responses = orderService.findDailyProfit(SecurityUtil.getCurrentUserId(), request.getStoreId());
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, responses);
+    }
+
+    @Tag(name = "통계")
+    @Operation(summary = "일주일 아이템 판매량 통계", description = "일주일 아이템 판매에대한 통계를 반환합니다.")
+    @GetMapping("api/v1/statistics/week/item")
+    public Result<List<OrderItemByWeekResponse>> getItemByWeek(OrderItemByWeekRequest request) {
+
+        List<OrderItemByWeekResponse> responses = orderService.findItemByWeek(SecurityUtil.getCurrentUserId(), request.getStoreId());
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, responses);
+    }
 }

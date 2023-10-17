@@ -174,4 +174,27 @@ public class OrderRepository {
                 .setParameter("ownerId", ownerId)
                 .getResultList();
     }
+
+    public List<OrderDailyProfitResponse> findDailyProfit(String ownerId, Long storeId) {
+        return em.createQuery(
+                        "select new iampotato.iampotato.domain.order.dto.OrderDailyProfitResponse(  " +
+                                "function('DATE', o.createdDate), " +
+                                "sum(o.totalPrice), " +
+                                "count(*)) " +
+                                "from Order o " +
+                                "left join o.orderItems oi " +
+                                "join oi.item i " +
+                                "join i.store.ownerStores os " +
+                                "where i.store.id = :storeId " +
+                                "and os.owner.id = :ownerId " +
+                                "and oi.itemOption.id = null " +
+                                "and o.createdDate >= :oneMonthAgo " +
+                                "and o.createdDate <= CURRENT_DATE " +
+                                "group by function('DATE', o.createdDate) " +
+                                "order by function('DATE', o.createdDate)", OrderDailyProfitResponse.class)
+                .setParameter("storeId", storeId)
+                .setParameter("ownerId", ownerId)
+                .setParameter("oneMonthAgo", LocalDateTime.now().minusMonths(1))
+                .getResultList();
+    }
 }

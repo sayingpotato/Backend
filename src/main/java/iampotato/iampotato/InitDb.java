@@ -35,8 +35,10 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Component
 @RequiredArgsConstructor
@@ -1030,117 +1032,163 @@ public class InitDb {
             order4.updateCollection(orderItems4);
 
 
-//            // Random 객체 생성
-//            Random random = new Random();
-//
-//            // 5000에서 20000 사이의 랜덤한 값을 얻기
-//            int minPrice = 5000;
-//            int maxPrice = 40000;
-//            int step = 1000;
-//
-//            // 1에서 4 사이의 랜덤한 사람 값을 얻기
-//            int minPeople = 1;
-//            int maxPeople = 4;
-//
-//            // 아이템 목록
-//            List<Item> randomItems = new ArrayList<>();
-//            randomItems.add(item6);
-//            randomItems.add(item7);
-//            randomItems.add(item8);
-//            randomItems.add(item9);
-//            randomItems.add(item10);
-//
-//            for(int i=0; i<1000; i++) {
-//                // 2023년 10월 1일부터 2023년 10월 31일까지의 랜덤 시각 생성
-//                int year = 2023;
-//                int month = 10;
-//                int day = random.nextInt(31) + 1; // 1부터 31 중 랜덤한 날짜 선택
-//                int hour = random.nextInt(8) + 13; // 13부터 21 중 랜덤한 시간 선택
-//                int minute = random.nextInt(60); // 0부터 59 중 랜덤한 분 선택
-//                int second = random.nextInt(60); // 0부터 59 중 랜덤한 초 선택
-//
-//                LocalDateTime time = LocalDateTime.of(year, Month.of(month), day, hour, minute, second);
-//
-//                // 1000으로 나누어떨어지는 가격 난수 생성
-//                int randomPrice = minPrice + step * random.nextInt((maxPrice - minPrice) / step + 1);
-//
-//                // 랜덤한 사람 수 생성
-//                int randomPeople = minPeople + random.nextInt(maxPeople - minPeople + 1);
-//
-//                int price = randomPrice;
-//                int people = randomPeople;
-//
-//                // 아이템 랜덤 선택
-//                Item randomItem = randomItems.get(random.nextInt(randomItems.size()));
-//
-//                Order order5 = Order.builder()
-//                        .customer(customer)
-//                        .orderStatus(OrderStatus.FINISH)
-//                        .totalPrice(price)
-//                        .totalPeople(people)
-//                        .review(review3)
-//                        .createdDate(time)
-//                        .discountPrice(((int)Math.ceil(price*0.1)/100)*100)
-//                        .build();
-//
-//                OrderItem orderItem = OrderItem.builder()
-//                        .order(order5)
-//                        .item(randomItem)
-//                        .totalPrice(price)
-//                        .build();
-//
-//                List<OrderItem> orderItems1 = new ArrayList<>();
-//                orderItems1.add(orderItem);
-//
-//                order5.updateCollection(orderItems1);
-//                em.persist(order5);
-//            }
-//
-//            for(int j=0; j<500; j++) {
-//                // 2023년 10월 1일부터 2023년 10월 31일까지의 랜덤 시각 생성
-//                int year = 2023;
-//                int month = 10;
-//                int day = random.nextInt(31) + 1; // 1부터 31 중 랜덤한 날짜 선택
-//                int hour = random.nextInt(24); // 0부터 24 중 랜덤한 시간 선택
-//                int minute = random.nextInt(60); // 0부터 59 중 랜덤한 분 선택
-//                int second = random.nextInt(60); // 0부터 59 중 랜덤한 초 선택
-//
-//                LocalDateTime time = LocalDateTime.of(year, Month.of(month), day, hour, minute, second);
-//
-//                // 1000으로 나누어떨어지는 가격 난수 생성
-//                int randomPrice = minPrice + step * random.nextInt((maxPrice - minPrice) / step + 1);
-//
-//                // 랜덤한 사람 수 생성
-//                int randomPeople = minPeople + random.nextInt(maxPeople - minPeople + 1);
-//
-//                int price = randomPrice;
-//                int people = randomPeople;
-//
-//                // 아이템 랜덤 선택
-//                Item randomItem = randomItems.get(random.nextInt(randomItems.size()));
-//
-//                Order order5 = Order.builder()
-//                        .customer(customer)
-//                        .orderStatus(OrderStatus.ORDER)
-//                        .totalPrice(price)
-//                        .totalPeople(people)
-//                        .review(review3)
-//                        .createdDate(time)
-//                        .discountPrice(((int)Math.ceil(price*0.1)/100)*100)
-//                        .build();
-//
-//                OrderItem orderItem = OrderItem.builder()
-//                        .order(order5)
-//                        .item(randomItem)
-//                        .totalPrice(price)
-//                        .build();
-//
-//                List<OrderItem> orderItems1 = new ArrayList<>();
-//                orderItems1.add(orderItem);
-//
-//                order5.updateCollection(orderItems1);
-//                em.persist(order5);
-//            }
+            // Random 객체 생성
+            Random random = new Random();
+
+            // 5000에서 20000 사이의 랜덤한 값을 얻기
+            int minPrice = 5000;
+            int maxPrice = 40000;
+            int step = 1000;
+
+            // 1에서 4 사이의 랜덤한 사람 값을 얻기
+            int minPeople = 1;
+            int maxPeople = 4;
+
+            // 아이템 목록
+            List<Item> randomItems = new ArrayList<>();
+            randomItems.add(item6);
+            randomItems.add(item7);
+            randomItems.add(item8);
+            randomItems.add(item9);
+            randomItems.add(item10);
+
+            for(int i=0; i<1000; i++) {
+                // 2023년 10월 1일부터 2023년 10월 31일까지의 랜덤 시각 생성
+                int year = 2023;
+                int month = 10;
+                int day = random.nextInt(31) + 1; // 1부터 31 중 랜덤한 날짜 선택
+                int hour = random.nextInt(8) + 13; // 13부터 21 중 랜덤한 시간 선택
+                int minute = random.nextInt(60); // 0부터 59 중 랜덤한 분 선택
+                int second = random.nextInt(60); // 0부터 59 중 랜덤한 초 선택
+
+                LocalDateTime time = LocalDateTime.of(year, Month.of(month), day, hour, minute, second);
+
+                // 1000으로 나누어떨어지는 가격 난수 생성
+                int randomPrice = minPrice + step * random.nextInt((maxPrice - minPrice) / step + 1);
+
+                // 랜덤한 사람 수 생성
+                int randomPeople = minPeople + random.nextInt(maxPeople - minPeople + 1);
+
+                int price = randomPrice;
+                int people = randomPeople;
+
+                // 아이템 랜덤 선택
+                Item randomItem = randomItems.get(random.nextInt(randomItems.size()));
+
+                Order order5 = Order.builder()
+                        .customer(customer)
+                        .orderStatus(OrderStatus.FINISH)
+                        .totalPrice(price)
+                        .totalPeople(people)
+                        .review(review3)
+                        .createdDate(time)
+                        .discountPrice(((int)Math.ceil(price*0.1)/100)*100)
+                        .build();
+
+                OrderItem orderItem = OrderItem.builder()
+                        .order(order5)
+                        .item(randomItem)
+                        .totalPrice(price)
+                        .build();
+
+                List<OrderItem> orderItems1 = new ArrayList<>();
+                orderItems1.add(orderItem);
+
+                order5.updateCollection(orderItems1);
+                em.persist(order5);
+            }
+
+            for(int j=0; j<500; j++) {
+                // 2023년 10월 1일부터 2023년 10월 31일까지의 랜덤 시각 생성
+                int year = 2023;
+                int month = 10;
+                int day = random.nextInt(31) + 1; // 1부터 31 중 랜덤한 날짜 선택
+                int hour = random.nextInt(24); // 0부터 24 중 랜덤한 시간 선택
+                int minute = random.nextInt(60); // 0부터 59 중 랜덤한 분 선택
+                int second = random.nextInt(60); // 0부터 59 중 랜덤한 초 선택
+
+                LocalDateTime time = LocalDateTime.of(year, Month.of(month), day, hour, minute, second);
+
+                // 1000으로 나누어떨어지는 가격 난수 생성
+                int randomPrice = minPrice + step * random.nextInt((maxPrice - minPrice) / step + 1);
+
+                // 랜덤한 사람 수 생성
+                int randomPeople = minPeople + random.nextInt(maxPeople - minPeople + 1);
+
+                int price = randomPrice;
+                int people = randomPeople;
+
+                // 아이템 랜덤 선택
+                Item randomItem = randomItems.get(random.nextInt(randomItems.size()));
+
+                Order order5 = Order.builder()
+                        .customer(customer)
+                        .orderStatus(OrderStatus.ORDER)
+                        .totalPrice(price)
+                        .totalPeople(people)
+                        .review(review3)
+                        .createdDate(time)
+                        .discountPrice(((int)Math.ceil(price*0.1)/100)*100)
+                        .build();
+
+                OrderItem orderItem = OrderItem.builder()
+                        .order(order5)
+                        .item(randomItem)
+                        .totalPrice(price)
+                        .build();
+
+                List<OrderItem> orderItems1 = new ArrayList<>();
+                orderItems1.add(orderItem);
+
+                order5.updateCollection(orderItems1);
+                em.persist(order5);
+            }
+
+            for(int j=0; j<500; j++) {
+                // 2023년 10월 1일부터 2023년 10월 31일까지의 랜덤 시각 생성
+                int year = 2023;
+                int month = 9;
+                int day = random.nextInt(30) + 1; // 1부터 31 중 랜덤한 날짜 선택
+                int hour = random.nextInt(24); // 0부터 24 중 랜덤한 시간 선택
+                int minute = random.nextInt(60); // 0부터 59 중 랜덤한 분 선택
+                int second = random.nextInt(60); // 0부터 59 중 랜덤한 초 선택
+
+                LocalDateTime time = LocalDateTime.of(year, Month.of(month), day, hour, minute, second);
+
+                // 1000으로 나누어떨어지는 가격 난수 생성
+                int randomPrice = minPrice + step * random.nextInt((maxPrice - minPrice) / step + 1);
+
+                // 랜덤한 사람 수 생성
+                int randomPeople = minPeople + random.nextInt(maxPeople - minPeople + 1);
+
+                int price = randomPrice;
+                int people = randomPeople;
+
+                // 아이템 랜덤 선택
+                Item randomItem = randomItems.get(random.nextInt(randomItems.size()));
+
+                Order order5 = Order.builder()
+                        .customer(customer)
+                        .orderStatus(OrderStatus.ORDER)
+                        .totalPrice(price)
+                        .totalPeople(people)
+                        .review(review3)
+                        .createdDate(time)
+                        .discountPrice(((int)Math.ceil(price*0.1)/100)*100)
+                        .build();
+
+                OrderItem orderItem = OrderItem.builder()
+                        .order(order5)
+                        .item(randomItem)
+                        .totalPrice(price)
+                        .build();
+
+                List<OrderItem> orderItems1 = new ArrayList<>();
+                orderItems1.add(orderItem);
+
+                order5.updateCollection(orderItems1);
+                em.persist(order5);
+            }
             em.persist(order1);
             em.persist(order2);
             em.persist(order3);

@@ -159,5 +159,8 @@ public class OrderService {
         return orderRepository.findMonthlyProfit(ownerId, storeId);
     }
 
+    public List<OrderDailyProfitResponse> findDailyProfit(String ownerId, Long storeId) {
 
+        return orderRepository.findDailyProfit(ownerId, storeId);
+    }
 }

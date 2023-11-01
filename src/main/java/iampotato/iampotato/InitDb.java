@@ -268,6 +268,62 @@ public class InitDb {
                     .price(4000)
                     .build();
 
+            Item item5 = Item.builder()
+                    .store(store1)
+                    .name("고구마라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c8.png")
+                    .price(4000)
+                    .build();
+
+            Item item6 = Item.builder()
+                    .store(store1)
+                    .name("흑당라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c7.png")
+                    .price(4000)
+                    .build();
+
+            Item item7 = Item.builder()
+                    .store(store1)
+                    .name("토피넛라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c6.png")
+                    .price(4000)
+                    .build();
+
+            Item item8 = Item.builder()
+                    .store(store1)
+                    .name("헤이즐넛라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c5.png")
+                    .price(4000)
+                    .build();
+
+            Item item9 = Item.builder()
+                    .store(store1)
+                    .name("바닐라라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c3.png")
+                    .price(4000)
+                    .build();
+
+            Item item10 = Item.builder()
+                    .store(store1)
+                    .name("드립커피")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c2.png")
+                    .price(4000)
+                    .build();
+
+            Item item11 = Item.builder()
+                    .store(store1)
+                    .name("에스프레소")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c1.png")
+                    .price(4000)
+                    .build();
+
             ItemOption itemOption1 = ItemOption.builder()
                     .item(item1)
                     .name("톨")
@@ -376,7 +432,7 @@ public class InitDb {
             itemOptions.add(itemOption12);
             item4.updateCollection(itemOptions4);
 
-            Items items = new Items(item1, item2, item3, item4);
+            Items items = new Items(item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11);
 
             store1.updateCollection(storeOperationHours, storeImages, reviews, discounts, items);
 
@@ -545,10 +601,90 @@ public class InitDb {
                     .name("아메리카노")
                     .category(ItemCategory.COFFEE)
                     .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/b1.png")
-                    .price(3000)
+                    .price(5000)
                     .build();
 
-            Items items = new Items(item1);
+            Item item2 = Item.builder()
+                    .store(store1)
+                    .name("자몽허니블랙티")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/b2.png")
+                    .price(10000)
+                    .build();
+
+            Item item3 = Item.builder()
+                    .store(store1)
+                    .name("카페라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/b3.png")
+                    .price(7000)
+                    .build();
+
+            Item item4 = Item.builder()
+                    .store(store1)
+                    .name("핫초코")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/b4.png")
+                    .price(4000)
+                    .build();
+
+            Item item5 = Item.builder()
+                    .store(store1)
+                    .name("고구마라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c8.png")
+                    .price(4000)
+                    .build();
+
+            Item item6 = Item.builder()
+                    .store(store1)
+                    .name("흑당라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c7.png")
+                    .price(4000)
+                    .build();
+
+            Item item7 = Item.builder()
+                    .store(store1)
+                    .name("토피넛라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c6.png")
+                    .price(4000)
+                    .build();
+
+            Item item8 = Item.builder()
+                    .store(store1)
+                    .name("헤이즐넛라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c5.png")
+                    .price(4000)
+                    .build();
+
+            Item item9 = Item.builder()
+                    .store(store1)
+                    .name("바닐라라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c3.png")
+                    .price(4000)
+                    .build();
+
+            Item item10 = Item.builder()
+                    .store(store1)
+                    .name("드립커피")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c2.png")
+                    .price(4000)
+                    .build();
+
+            Item item11 = Item.builder()
+                    .store(store1)
+                    .name("에스프레소")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c1.png")
+                    .price(4000)
+                    .build();
+
+            Items items = new Items(item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11);
 
             store1.updateCollection(storeOperationHours, storeImages, reviews, discounts, items);
 
@@ -694,7 +830,7 @@ public class InitDb {
                     .build();
 
             Discount discount5 = Discount.builder()
-                    .discountDay(DiscountDay.TUE)
+                    .discountDay(DiscountDay.WED)
                     .discountRatio(10)
                     .people(4)
                     .store(store1)
@@ -714,41 +850,41 @@ public class InitDb {
 
             Item item1 = Item.builder()
                     .store(store1)
-                    .name("돼지불고기")
-                    .category(ItemCategory.PORK)
-                    .img("http://dffdf")
+                    .name("고구마라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c8.png")
                     .price(5000)
                     .build();
 
             Item item2 = Item.builder()
                     .store(store1)
-                    .name("대창")
-                    .category(ItemCategory.PORK)
-                    .img("http://dffdf2")
+                    .name("흑당라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c7.png")
                     .price(10000)
                     .build();
 
             Item item3 = Item.builder()
                     .store(store1)
-                    .name("야채곱창")
-                    .category(ItemCategory.PORK)
-                    .img("http://dffdf2")
+                    .name("토피넛라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c6.png")
                     .price(9000)
                     .build();
 
             Item item4 = Item.builder()
                     .store(store1)
-                    .name("순대곱창")
-                    .category(ItemCategory.PORK)
-                    .img("http://dffdf2")
+                    .name("헤이즐넛라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c5.png")
                     .price(10000)
                     .build();
 
             Item item5 = Item.builder()
                     .store(store1)
-                    .name("돼지껍데기")
-                    .category(ItemCategory.PORK)
-                    .img("http://dffdf2")
+                    .name("카푸치노")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c4.png")
                     .price(7000)
                     .build();
 
@@ -756,7 +892,7 @@ public class InitDb {
                     .store(store1)
                     .name("아메리카노")
                     .category(ItemCategory.COFFEE)
-                    .img("http://dffdf2")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/b1.png")
                     .price(4500)
                     .build();
 
@@ -764,7 +900,7 @@ public class InitDb {
                     .store(store1)
                     .name("바닐라라떼")
                     .category(ItemCategory.COFFEE)
-                    .img("http://dffdf2")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c3.png")
                     .price(5500)
                     .build();
 
@@ -772,7 +908,7 @@ public class InitDb {
                     .store(store1)
                     .name("드립커피")
                     .category(ItemCategory.COFFEE)
-                    .img("http://dffdf2")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c2.png")
                     .price(6000)
                     .build();
 
@@ -780,7 +916,7 @@ public class InitDb {
                     .store(store1)
                     .name("카페라떼")
                     .category(ItemCategory.COFFEE)
-                    .img("http://dffdf2")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/b3.png")
                     .price(5000)
                     .build();
 
@@ -788,7 +924,7 @@ public class InitDb {
                     .store(store1)
                     .name("에스프레소")
                     .category(ItemCategory.COFFEE)
-                    .img("http://dffdf2")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c1.png")
                     .price(4000)
                     .build();
 
@@ -875,7 +1011,7 @@ public class InitDb {
             StoreImage storeImage3 = StoreImage.builder()
                     .store(store2)
                     .creatTime(LocalDateTime.now())
-                    .storeImg("default:1213")
+                    .storeImg("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a4.png")
                     .build();
             StoreImages storeImages2 = new StoreImages(storeImage3);
 
@@ -1391,13 +1527,93 @@ public class InitDb {
 
             Item item1 = Item.builder()
                     .store(store1)
-                    .name("카라멜마끼아또")
+                    .name("아메리카노")
                     .category(ItemCategory.COFFEE)
-                    .img("http://dffdf")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/b1.png")
+                    .price(5000)
+                    .build();
+
+            Item item2 = Item.builder()
+                    .store(store1)
+                    .name("자몽허니블랙티")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/b2.png")
+                    .price(10000)
+                    .build();
+
+            Item item3 = Item.builder()
+                    .store(store1)
+                    .name("카페라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/b3.png")
                     .price(7000)
                     .build();
 
-            Items items = new Items(item1);
+            Item item4 = Item.builder()
+                    .store(store1)
+                    .name("핫초코")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/b4.png")
+                    .price(4000)
+                    .build();
+
+            Item item5 = Item.builder()
+                    .store(store1)
+                    .name("고구마라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c8.png")
+                    .price(4000)
+                    .build();
+
+            Item item6 = Item.builder()
+                    .store(store1)
+                    .name("흑당라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c7.png")
+                    .price(4000)
+                    .build();
+
+            Item item7 = Item.builder()
+                    .store(store1)
+                    .name("토피넛라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c6.png")
+                    .price(4000)
+                    .build();
+
+            Item item8 = Item.builder()
+                    .store(store1)
+                    .name("헤이즐넛라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c5.png")
+                    .price(4000)
+                    .build();
+
+            Item item9 = Item.builder()
+                    .store(store1)
+                    .name("바닐라라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c3.png")
+                    .price(4000)
+                    .build();
+
+            Item item10 = Item.builder()
+                    .store(store1)
+                    .name("드립커피")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c2.png")
+                    .price(4000)
+                    .build();
+
+            Item item11 = Item.builder()
+                    .store(store1)
+                    .name("에스프레소")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c1.png")
+                    .price(4000)
+                    .build();
+
+            Items items = new Items(item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11);
 
             store1.updateCollection(storeOperationHours, storeImages, reviews, discounts, items);
 
@@ -1534,17 +1750,65 @@ public class InitDb {
             Item item1 = Item.builder()
                     .store(store1)
                     .name("BLT")
-                    .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a2.png")
+                    .category(ItemCategory.PORK)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z3.png")
                     .price(12000)
                     .build();
 
             Item item2 = Item.builder()
                     .store(store1)
-                    .name("치킨 데리야끼")
-                    .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a3.png")
+                    .name("치킨데리야끼")
+                    .category(ItemCategory.PORK)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z4.png")
                     .price(10000)
+                    .build();
+
+            Item item3 = Item.builder()
+                    .store(store1)
+                    .name("에그마요")
+                    .category(ItemCategory.PORK)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z5.png")
+                    .price(9000)
+                    .build();
+
+            Item item4 = Item.builder()
+                    .store(store1)
+                    .name("스테이크앤치즈")
+                    .category(ItemCategory.PORK)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z6.png")
+                    .price(8000)
+                    .build();
+
+            Item item5 = Item.builder()
+                    .store(store1)
+                    .name("풀드포크바비큐")
+                    .category(ItemCategory.PORK)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z7.png")
+                    .price(7000)
+                    .build();
+
+            Item item6 = Item.builder()
+                    .store(store1)
+                    .name("바비큐치킨")
+                    .category(ItemCategory.PORK)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z8.png")
+                    .price(10000)
+                    .build();
+
+            Item item7 = Item.builder()
+                    .store(store1)
+                    .name("쉬림프")
+                    .category(ItemCategory.PORK)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z9.png")
+                    .price(7000)
+                    .build();
+
+            Item item8 = Item.builder()
+                    .store(store1)
+                    .name("스파이시이탈리안")
+                    .category(ItemCategory.PORK)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z10.png")
+                    .price(11000)
                     .build();
 
             ItemOption itemOption1 = ItemOption.builder()
@@ -1566,7 +1830,7 @@ public class InitDb {
             itemOptions.add(itemOption2);
 
             item1.updateCollection(itemOptions);
-            Items items = new Items(item1, item2);
+            Items items = new Items(item1, item2, item3, item4, item5, item6, item7, item8);
 
             store1.updateCollection(storeOperationHours, storeImages, reviews, discounts, items);
             em.persist(store1);
@@ -1574,7 +1838,8 @@ public class InitDb {
 
         public void dbStores6() throws ParseException {
             Store store1 = Store.builder()
-                    .name("황궁쟁반짜장")
+                    .name("황궁짜장")
+                    .storeTodayDiscountThumbnail("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/th1.jpg")
                     .createdDate(LocalDateTime.now())
                     .outletNum(0)
                     .closedDay(StoreDay.SAT)
@@ -1601,12 +1866,12 @@ public class InitDb {
             StoreImage storeImage1 = StoreImage.builder()
                     .store(store1)
                     .creatTime(LocalDateTime.now())
-                    .storeImg("default:1212")
+                    .storeImg("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/y1.jpg")
                     .build();
             StoreImage storeImage2 = StoreImage.builder()
                     .store(store1)
                     .creatTime(LocalDateTime.now())
-                    .storeImg("default:1213")
+                    .storeImg("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/y2.jpg")
                     .build();
             StoreImages storeImages = new StoreImages(storeImage1, storeImage2);
 
@@ -1703,16 +1968,16 @@ public class InitDb {
             Item item1 = Item.builder()
                     .store(store1)
                     .name("짜장면")
-                    .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a2.png")
+                    .category(ItemCategory.PORK)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z1.jpg")
                     .price(7000)
                     .build();
 
             Item item2 = Item.builder()
                     .store(store1)
                     .name("짬뽕")
-                    .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a3.png")
+                    .category(ItemCategory.PORK)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z2.png")
                     .price(5000)
                     .build();
 
@@ -1725,7 +1990,7 @@ public class InitDb {
 
             ItemOption itemOption2 = ItemOption.builder()
                     .item(item1)
-                    .name("맛있게")
+                    .name("곱빼기")
                     .price(0)
                     .category(ItemOptionCategory.SPICY)
                     .build();

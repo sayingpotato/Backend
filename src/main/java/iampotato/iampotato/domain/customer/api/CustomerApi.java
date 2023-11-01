@@ -89,6 +89,17 @@ public class CustomerApi {
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, response);
     }
 
+    @PutMapping("/api/v1/profile")
+    public Result<Boolean> updateProfile(@RequestBody CustomerUpdateProfileRequest request) {
+
+        Customer customer = customerRepository.findOne(SecurityUtil.getCurrentUserId());
+
+        customer.updateProfile(request.getNickname());
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, true);
+    }
+
+
     @GetMapping(value = "/image/view", produces = {"image/jpeg", "image/png", "image/gif"})
     public byte[] getImage(@RequestParam("customerStoredImage") String customerStoredImage) throws IOException {
         FileInputStream fis = null; //파일로부터 바이트로 입력받기

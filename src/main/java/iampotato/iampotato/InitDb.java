@@ -1977,7 +1977,7 @@ public class InitDb {
                     .store(store1)
                     .name("짬뽕")
                     .category(ItemCategory.PORK)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z2.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z2.jpg")
                     .price(5000)
                     .build();
 

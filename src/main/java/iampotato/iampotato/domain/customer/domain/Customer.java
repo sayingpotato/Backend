@@ -168,4 +168,8 @@ public class Customer implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public void updateProfile(String nickname) {
+        this.nickname = nickname;
+    }
 }

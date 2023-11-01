@@ -62,7 +62,9 @@ public class OrderRepository {
         return em.createQuery("select distinct new iampotato.iampotato.domain.order.dto.OrderRecentDiscountsResponse(o.discountPrice, s.name, o.createdDate) from Order o " +
                         "left join o.orderItems oi " +
                         "join oi.item.store s " +
-                        "where o.customer.id = :userId", OrderRecentDiscountsResponse.class)
+                        "where o.customer.id = :userId " +
+                        "order by o.createdDate DESC " +
+                        "limit 6", OrderRecentDiscountsResponse.class)
                 .setParameter("userId", userId)
                 .getResultList();
     }

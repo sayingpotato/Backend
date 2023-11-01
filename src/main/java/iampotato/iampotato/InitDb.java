@@ -231,7 +231,14 @@ public class InitDb {
                     .store(store1)
                     .build();
 
-            Discounts discounts = new Discounts(discount1, discount2, discount3, discount4, discount5, discount6);
+            Discount discount7 = Discount.builder()
+                    .discountDay(DiscountDay.WED)
+                    .discountRatio(10)
+                    .people(4)
+                    .store(store1)
+                    .build();
+
+            Discounts discounts = new Discounts(discount1, discount2, discount3, discount4, discount5, discount6, discount7);
 //            em.persist(storeImage1);
 //            em.persist(storeImage2);
 //            em.persist(storeOperationHour1);

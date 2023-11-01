@@ -99,7 +99,7 @@ public class InitDb {
                     .address(new Address("충북 청주시 서원구 1순환로 6720길 64", "h2", "h3", "h4"))
                     .category(StoreCategory.CAFE)
                     .location((Point) new WKTReader().read(String.format("POINT(%s %s)", 127.455409, 36.625170)))
-                    .phone("01012345678")
+                    .phone("010-1234-5678")
                     .paymentType(StorePaymentType.PREPAID)
                     .salesType(StoreSalesType.HALL)
                     .description("11가지 원두를 쓰는 카페입니다")
@@ -218,7 +218,7 @@ public class InitDb {
             Item item1 = Item.builder()
                     .store(store1)
                     .name("아메리카노")
-                    .category(ItemCategory.PORK)
+                    .category(ItemCategory.COFFEE)
                     .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/b1.png")
                     .price(5000)
                     .build();
@@ -226,7 +226,7 @@ public class InitDb {
             Item item2 = Item.builder()
                     .store(store1)
                     .name("자몽허니블랙티")
-                    .category(ItemCategory.PORK)
+                    .category(ItemCategory.COFFEE)
                     .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/b2.png")
                     .price(10000)
                     .build();
@@ -234,7 +234,7 @@ public class InitDb {
             Item item3 = Item.builder()
                     .store(store1)
                     .name("카페라떼")
-                    .category(ItemCategory.PORK)
+                    .category(ItemCategory.COFFEE)
                     .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/b3.png")
                     .price(7000)
                     .build();
@@ -242,7 +242,7 @@ public class InitDb {
             Item item4 = Item.builder()
                     .store(store1)
                     .name("핫초코")
-                    .category(ItemCategory.PORK)
+                    .category(ItemCategory.COFFEE)
                     .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/b4.png")
                     .price(4000)
                     .build();
@@ -390,18 +390,18 @@ public class InitDb {
                     .build();
 
             Store store1 = Store.builder()
-                    .name("착한원두")
+                    .name("메가커피")
                     .storeTodayDiscountThumbnail("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/t2.png")
                     .createdDate(LocalDateTime.now())
                     .outletNum(0)
                     .closedDay(StoreDay.FRI)
-                    .address(new Address("h1", "h2", "h3", "h4"))
+                    .address(new Address("충북 청주시 흥덕구 신율로180번길 52", "h2", "h3", "h4"))
                     .category(StoreCategory.CAFE)
                     .location((Point) new WKTReader().read(String.format("POINT(%s %s)", 127.454209, 36.625170)))
-                    .phone("01012345679")
+                    .phone("010-6254-1859")
                     .paymentType(StorePaymentType.PREPAID)
                     .salesType(StoreSalesType.HALL)
-                    .description("11가지 원두를 쓰는 카페입니다")
+                    .description("대용량 커피를 저렴한 가격에 드실 수 있는 커피할인점")
                     .discountInfo(StoreDiscountInfo.TODAY_DISCOUNT)
                     .storeStatus(StoreStatus.OPEN)
                     .storeMapThumbnail(storeMapThumbnail)
@@ -421,12 +421,12 @@ public class InitDb {
             StoreImage storeImage1 = StoreImage.builder()
                     .store(store1)
                     .creatTime(LocalDateTime.now())
-                    .storeImg("default:1212")
+                    .storeImg("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a2.png")
                     .build();
             StoreImage storeImage2 = StoreImage.builder()
                     .store(store1)
                     .creatTime(LocalDateTime.now())
-                    .storeImg("default:1213")
+                    .storeImg("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a3.png")
                     .build();
             StoreImages storeImages = new StoreImages(storeImage1, storeImage2);
 
@@ -500,10 +500,10 @@ public class InitDb {
 
             Item item1 = Item.builder()
                     .store(store1)
-                    .name("돼지불고기")
-                    .category(ItemCategory.PORK)
-                    .img("http://dffdf")
-                    .price(5000)
+                    .name("아메리카노")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/b1.png")
+                    .price(3000)
                     .build();
 
             Items items = new Items(item1);
@@ -541,18 +541,18 @@ public class InitDb {
                     .build();
 
             Store store1 = Store.builder()
-                    .name("원두원두")
+                    .name("투썸플레잇스")
                     .storeTodayDiscountThumbnail("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/t1.png")
                     .createdDate(LocalDateTime.now())
                     .outletNum(0)
                     .closedDay(StoreDay.FRI)
-                    .address(new Address("h1", "h2", "h3", "h4"))
+                    .address(new Address("충북 청주시 흥덕구 성봉로279번길 3", "h2", "h3", "h4"))
                     .category(StoreCategory.CAFE)
                     .location((Point) new WKTReader().read(String.format("POINT(%s %s)", 127.456209, 36.624170)))
-                    .phone("01012345678")
+                    .phone("010-2525-2424")
                     .paymentType(StorePaymentType.PREPAID)
                     .salesType(StoreSalesType.HALL)
-                    .description("11가지 원두를 쓰는 카페입니다")
+                    .description("최고급 커피를 맛볼 수 있는 커피전문점")
                     .discountInfo(StoreDiscountInfo.NONE)
                     .storeStatus(StoreStatus.OPEN)
                     .storeMapThumbnail(storeMapThumbnail)
@@ -572,12 +572,12 @@ public class InitDb {
             StoreImage storeImage1 = StoreImage.builder()
                     .store(store1)
                     .creatTime(LocalDateTime.now())
-                    .storeImg("default:1212")
+                    .storeImg("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a2.png")
                     .build();
             StoreImage storeImage2 = StoreImage.builder()
                     .store(store1)
                     .creatTime(LocalDateTime.now())
-                    .storeImg("default:1213")
+                    .storeImg("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a3.png")
                     .build();
             StoreImages storeImages = new StoreImages(storeImage1, storeImage2);
 
@@ -773,6 +773,19 @@ public class InitDb {
                     .build();
             em.persist(customer);
 
+            Customer customer1 = Customer.builder()
+                    .loginId("hi2")
+                    .password("123")
+                    .nickname("goodCoffee")
+                    .customerNumber("2017038001")
+                    .customerDept("소프트웨어학과")
+                    .customerCollege("충북대학교")
+                    .customerGrade("4학년")
+                    .customerStatus(CustomerStatus.COMPLETE)
+                    .createdDate(LocalDateTime.now())
+                    .build();
+            em.persist(customer1);
+
             // 임시 가게
             Store store2 = Store.builder()
                     .name("메달론")
@@ -832,39 +845,39 @@ public class InitDb {
 //            em.persist(storeOperationHour1);
 
             Item item11 = Item.builder()
-                    .store(store2)
-                    .name("돼지불고기")
-                    .category(ItemCategory.PORK)
-                    .img("http://dffdf")
+                    .store(store1)
+                    .name("아메리카노")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/b1.png")
                     .price(5000)
                     .build();
 
             Item item12 = Item.builder()
-                    .store(store2)
-                    .name("대창")
-                    .category(ItemCategory.PORK)
-                    .img("http://dffdf2")
+                    .store(store1)
+                    .name("자몽허니블랙티")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/b2.png")
                     .price(10000)
                     .build();
 
             Item item13 = Item.builder()
-                    .store(store2)
-                    .name("야채곱창")
-                    .category(ItemCategory.PORK)
-                    .img("http://dffdf2")
-                    .price(9000)
+                    .store(store1)
+                    .name("카페라떼")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/b3.png")
+                    .price(7000)
                     .build();
 
             ItemOption itemOption3 = ItemOption.builder()
                     .item(item11)
-                    .name("중")
+                    .name("라지")
                     .price(3000)
                     .category(ItemOptionCategory.SIZE)
                     .build();
 
             ItemOption itemOption4 = ItemOption.builder()
                     .item(item11)
-                    .name("맵게")
+                    .name("연하게")
                     .price(0)
                     .category(ItemOptionCategory.SPICY)
                     .build();
@@ -1200,15 +1213,15 @@ public class InitDb {
                     .name("스타벅스")
                     .storeTodayDiscountThumbnail("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/t3.png")
                     .createdDate(LocalDateTime.now())
-                    .outletNum(0)
+                    .outletNum(3)
                     .closedDay(StoreDay.FRI)
-                    .address(new Address("h1", "h2", "h3", "h4"))
+                    .address(new Address("충북 청주시 서원구 내수동로 113", "h2", "h3", "h4"))
                     .category(StoreCategory.CAFE)
                     .location((Point) new WKTReader().read(String.format("POINT(%s %s)", 127.455412, 36.629170)))
-                    .phone("01012345670")
+                    .phone("043-268-7466")
                     .paymentType(StorePaymentType.PREPAID)
                     .salesType(StoreSalesType.HALL)
-                    .description("맥북만 입장가능")
+                    .description("고객을 우선시하는, 고객을 위한 커피전문점")
                     .discountInfo(StoreDiscountInfo.TODAY_DISCOUNT)
                     .storeStatus(StoreStatus.OPEN)
                     .build();
@@ -1225,12 +1238,12 @@ public class InitDb {
             StoreImage storeImage1 = StoreImage.builder()
                     .store(store1)
                     .creatTime(LocalDateTime.now())
-                    .storeImg("default:1212")
+                    .storeImg("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a2.png")
                     .build();
             StoreImage storeImage2 = StoreImage.builder()
                     .store(store1)
                     .creatTime(LocalDateTime.now())
-                    .storeImg("default:1213")
+                    .storeImg("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a3.png")
                     .build();
             StoreImages storeImages = new StoreImages(storeImage1, storeImage2);
 
@@ -1302,7 +1315,7 @@ public class InitDb {
             Item item1 = Item.builder()
                     .store(store1)
                     .name("카라멜마끼아또")
-                    .category(ItemCategory.PORK)
+                    .category(ItemCategory.COFFEE)
                     .img("http://dffdf")
                     .price(7000)
                     .build();
@@ -1321,10 +1334,10 @@ public class InitDb {
                     .createdDate(LocalDateTime.now())
                     .outletNum(0)
                     .closedDay(StoreDay.SUN)
-                    .address(new Address("h1", "h2", "h3", "h4"))
+                    .address(new Address("충북 청주시 서원구 1순환로 676", "h2", "h3", "h4"))
                     .category(StoreCategory.FOOD)
                     .location((Point) new WKTReader().read(String.format("POINT(%s %s)", 129.455449, 34.625160)))
-                    .phone("01012345678")
+                    .phone("0507-1411-7580")
                     .paymentType(StorePaymentType.PREPAID)
                     .salesType(StoreSalesType.HALL)
                     .description("신선한 야채 서브웨이")
@@ -1344,12 +1357,12 @@ public class InitDb {
             StoreImage storeImage1 = StoreImage.builder()
                     .store(store1)
                     .creatTime(LocalDateTime.now())
-                    .storeImg("default:1212")
+                    .storeImg("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a2.png")
                     .build();
             StoreImage storeImage2 = StoreImage.builder()
                     .store(store1)
                     .creatTime(LocalDateTime.now())
-                    .storeImg("default:1213")
+                    .storeImg("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a3.png")
                     .build();
             StoreImages storeImages = new StoreImages(storeImage1, storeImage2);
 
@@ -1423,16 +1436,16 @@ public class InitDb {
             Item item1 = Item.builder()
                     .store(store1)
                     .name("BLT")
-                    .category(ItemCategory.PORK)
-                    .img("http://dffdf")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a2.png")
                     .price(12000)
                     .build();
 
             Item item2 = Item.builder()
                     .store(store1)
                     .name("치킨 데리야끼")
-                    .category(ItemCategory.PORK)
-                    .img("http://dffdf2")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a3.png")
                     .price(10000)
                     .build();
 
@@ -1467,13 +1480,13 @@ public class InitDb {
                     .createdDate(LocalDateTime.now())
                     .outletNum(0)
                     .closedDay(StoreDay.SAT)
-                    .address(new Address("h1", "h2", "h3", "h4"))
+                    .address(new Address("충북 청주시 서원구 1순환로694번길 4 1층", "h2", "h3", "h4"))
                     .category(StoreCategory.FOOD)
                     .location((Point) new WKTReader().read(String.format("POINT(%s %s)", 127.455449, 36.623165)))
-                    .phone("01012345658")
+                    .phone("0507-1396-4655")
                     .paymentType(StorePaymentType.PREPAID)
                     .salesType(StoreSalesType.HALL)
-                    .description("신속한 배달")
+                    .description("신속한 배달!!!")
                     .discountInfo(StoreDiscountInfo.TODAY_DISCOUNT)
                     .storeStatus(StoreStatus.OPEN)
                     .build();
@@ -1571,16 +1584,16 @@ public class InitDb {
             Item item1 = Item.builder()
                     .store(store1)
                     .name("짜장면")
-                    .category(ItemCategory.PORK)
-                    .img("http://dffdf")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a2.png")
                     .price(7000)
                     .build();
 
             Item item2 = Item.builder()
                     .store(store1)
                     .name("짬뽕")
-                    .category(ItemCategory.PORK)
-                    .img("http://dffdf2")
+                    .category(ItemCategory.COFFEE)
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/a3.png")
                     .price(5000)
                     .build();
 

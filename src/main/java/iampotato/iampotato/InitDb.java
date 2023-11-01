@@ -272,7 +272,7 @@ public class InitDb {
                     .store(store1)
                     .name("고구마라떼")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c8.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c8.jpg")
                     .price(4000)
                     .build();
 
@@ -280,7 +280,7 @@ public class InitDb {
                     .store(store1)
                     .name("흑당라떼")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c7.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c7.jpg")
                     .price(4000)
                     .build();
 
@@ -288,7 +288,7 @@ public class InitDb {
                     .store(store1)
                     .name("토피넛라떼")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c6.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c6.jpg")
                     .price(4000)
                     .build();
 
@@ -296,7 +296,7 @@ public class InitDb {
                     .store(store1)
                     .name("헤이즐넛라떼")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c5.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c5.jpg")
                     .price(4000)
                     .build();
 
@@ -304,7 +304,7 @@ public class InitDb {
                     .store(store1)
                     .name("바닐라라떼")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c3.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c3.jpg")
                     .price(4000)
                     .build();
 
@@ -312,7 +312,7 @@ public class InitDb {
                     .store(store1)
                     .name("드립커피")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c2.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c2.jpg")
                     .price(4000)
                     .build();
 
@@ -320,7 +320,7 @@ public class InitDb {
                     .store(store1)
                     .name("에스프레소")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c1.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c1.jpg")
                     .price(4000)
                     .build();
 
@@ -632,7 +632,7 @@ public class InitDb {
                     .store(store1)
                     .name("고구마라떼")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c8.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c8.jpg")
                     .price(4000)
                     .build();
 
@@ -640,7 +640,7 @@ public class InitDb {
                     .store(store1)
                     .name("흑당라떼")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c7.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c7.jpg")
                     .price(4000)
                     .build();
 
@@ -648,7 +648,7 @@ public class InitDb {
                     .store(store1)
                     .name("토피넛라떼")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c6.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c6.jpg")
                     .price(4000)
                     .build();
 
@@ -656,7 +656,7 @@ public class InitDb {
                     .store(store1)
                     .name("헤이즐넛라떼")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c5.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c5.jpg")
                     .price(4000)
                     .build();
 
@@ -664,7 +664,7 @@ public class InitDb {
                     .store(store1)
                     .name("바닐라라떼")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c3.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c3.jpg")
                     .price(4000)
                     .build();
 
@@ -672,7 +672,7 @@ public class InitDb {
                     .store(store1)
                     .name("드립커피")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c2.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c2.jpg")
                     .price(4000)
                     .build();
 
@@ -680,7 +680,7 @@ public class InitDb {
                     .store(store1)
                     .name("에스프레소")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c1.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c1.jpg")
                     .price(4000)
                     .build();
 
@@ -852,7 +852,7 @@ public class InitDb {
                     .store(store1)
                     .name("고구마라떼")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c8.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c8.jpg")
                     .price(5000)
                     .build();
 
@@ -860,7 +860,7 @@ public class InitDb {
                     .store(store1)
                     .name("흑당라떼")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c7.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c7.jpg")
                     .price(10000)
                     .build();
 
@@ -868,7 +868,7 @@ public class InitDb {
                     .store(store1)
                     .name("토피넛라떼")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c6.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c6.jpg")
                     .price(9000)
                     .build();
 
@@ -876,7 +876,7 @@ public class InitDb {
                     .store(store1)
                     .name("헤이즐넛라떼")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c5.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c5.jpg")
                     .price(10000)
                     .build();
 
@@ -884,7 +884,7 @@ public class InitDb {
                     .store(store1)
                     .name("카푸치노")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c4.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c4.jpg")
                     .price(7000)
                     .build();
 
@@ -900,7 +900,7 @@ public class InitDb {
                     .store(store1)
                     .name("바닐라라떼")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c3.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c3.jpg")
                     .price(5500)
                     .build();
 
@@ -908,7 +908,7 @@ public class InitDb {
                     .store(store1)
                     .name("드립커피")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c2.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c2.jpg")
                     .price(6000)
                     .build();
 
@@ -924,7 +924,7 @@ public class InitDb {
                     .store(store1)
                     .name("에스프레소")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c1.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c1.jpg")
                     .price(4000)
                     .build();
 
@@ -1561,7 +1561,7 @@ public class InitDb {
                     .store(store1)
                     .name("고구마라떼")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c8.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c8.jpg")
                     .price(4000)
                     .build();
 
@@ -1569,7 +1569,7 @@ public class InitDb {
                     .store(store1)
                     .name("흑당라떼")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c7.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c7.jpg")
                     .price(4000)
                     .build();
 
@@ -1577,7 +1577,7 @@ public class InitDb {
                     .store(store1)
                     .name("토피넛라떼")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c6.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c6.jpg")
                     .price(4000)
                     .build();
 
@@ -1585,7 +1585,7 @@ public class InitDb {
                     .store(store1)
                     .name("헤이즐넛라떼")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c5.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c5.jpg")
                     .price(4000)
                     .build();
 
@@ -1593,7 +1593,7 @@ public class InitDb {
                     .store(store1)
                     .name("바닐라라떼")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c3.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c3.jpg")
                     .price(4000)
                     .build();
 
@@ -1601,7 +1601,7 @@ public class InitDb {
                     .store(store1)
                     .name("드립커피")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c2.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c2.jpg")
                     .price(4000)
                     .build();
 
@@ -1609,7 +1609,7 @@ public class InitDb {
                     .store(store1)
                     .name("에스프레소")
                     .category(ItemCategory.COFFEE)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c1.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/c1.jpg")
                     .price(4000)
                     .build();
 
@@ -1751,7 +1751,7 @@ public class InitDb {
                     .store(store1)
                     .name("BLT")
                     .category(ItemCategory.PORK)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z3.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z3.jpg")
                     .price(12000)
                     .build();
 
@@ -1759,7 +1759,7 @@ public class InitDb {
                     .store(store1)
                     .name("치킨데리야끼")
                     .category(ItemCategory.PORK)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z4.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z4.jpg")
                     .price(10000)
                     .build();
 
@@ -1767,7 +1767,7 @@ public class InitDb {
                     .store(store1)
                     .name("에그마요")
                     .category(ItemCategory.PORK)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z5.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z5.jpg")
                     .price(9000)
                     .build();
 
@@ -1775,7 +1775,7 @@ public class InitDb {
                     .store(store1)
                     .name("스테이크앤치즈")
                     .category(ItemCategory.PORK)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z6.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z6.jpg")
                     .price(8000)
                     .build();
 
@@ -1783,7 +1783,7 @@ public class InitDb {
                     .store(store1)
                     .name("풀드포크바비큐")
                     .category(ItemCategory.PORK)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z7.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z7.jpg")
                     .price(7000)
                     .build();
 
@@ -1791,7 +1791,7 @@ public class InitDb {
                     .store(store1)
                     .name("바비큐치킨")
                     .category(ItemCategory.PORK)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z8.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z8.jpg")
                     .price(10000)
                     .build();
 
@@ -1799,7 +1799,7 @@ public class InitDb {
                     .store(store1)
                     .name("쉬림프")
                     .category(ItemCategory.PORK)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z9.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z9.jpg")
                     .price(7000)
                     .build();
 
@@ -1807,7 +1807,7 @@ public class InitDb {
                     .store(store1)
                     .name("스파이시이탈리안")
                     .category(ItemCategory.PORK)
-                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z10.png")
+                    .img("https://ootdzip.s3.ap-northeast-2.amazonaws.com/potatoimg/z10.jpg")
                     .price(11000)
                     .build();
 

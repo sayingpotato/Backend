@@ -211,7 +211,7 @@ public class InitDb {
                     .build();
 
             Discount discount4 = Discount.builder()
-                    .discountDay(DiscountDay.WEN)
+                    .discountDay(DiscountDay.WED)
                     .discountRatio(5)
                     .people(2)
                     .store(store1)
@@ -515,7 +515,7 @@ public class InitDb {
                     .build();
 
             Discount discount4 = Discount.builder()
-                    .discountDay(DiscountDay.WEN)
+                    .discountDay(DiscountDay.WED)
                     .discountRatio(5)
                     .people(2)
                     .store(store1)
@@ -1364,7 +1364,7 @@ public class InitDb {
                     .build();
 
             Discount discount4 = Discount.builder()
-                    .discountDay(DiscountDay.WEN)
+                    .discountDay(DiscountDay.WED)
                     .discountRatio(5)
                     .people(2)
                     .store(store1)
@@ -1506,7 +1506,7 @@ public class InitDb {
                     .build();
 
             Discount discount4 = Discount.builder()
-                    .discountDay(DiscountDay.WEN)
+                    .discountDay(DiscountDay.WED)
                     .discountRatio(5)
                     .people(2)
                     .store(store1)
@@ -1675,7 +1675,7 @@ public class InitDb {
                     .build();
 
             Discount discount4 = Discount.builder()
-                    .discountDay(DiscountDay.WEN)
+                    .discountDay(DiscountDay.WED)
                     .discountRatio(5)
                     .people(2)
                     .store(store1)

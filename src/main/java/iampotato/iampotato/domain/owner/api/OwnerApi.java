@@ -85,4 +85,15 @@ public class OwnerApi {
 
         return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, response);
     }
+
+    @Tag(name = "점주")
+    @Operation(summary = "점주 마이페이지 정보 가져오기", description = "마이페이지에서 점주의 정보를 가져올때 사용되는 API 입니다.")
+    @GetMapping("/api/v1/owner/unauthorization")
+    public Result<List<OwnerUnauthorizedResponse>> getOwnerInformation() {
+
+        Owner owner = ownerService.getOwner(SecurityUtil.getCurrentUserId());
+
+        return new Result<>(Result.CODE_SUCCESS, Result.MESSAGE_OK, responses);
+    }
+
 }

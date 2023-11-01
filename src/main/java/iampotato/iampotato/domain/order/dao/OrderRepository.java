@@ -63,9 +63,9 @@ public class OrderRepository {
                         "left join o.orderItems oi " +
                         "join oi.item.store s " +
                         "where o.customer.id = :userId " +
-                        "order by o.createdDate DESC " +
-                        "limit 6", OrderRecentDiscountsResponse.class)
+                        "order by o.createdDate desc", OrderRecentDiscountsResponse.class)
                 .setParameter("userId", userId)
+                .setMaxResults(6)
                 .getResultList();
     }
 

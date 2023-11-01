@@ -190,27 +190,48 @@ public class InitDb {
             Reviews reviews = new Reviews(review1, review2, review3);
 
             Discount discount1 = Discount.builder()
-                    .discountDay(DiscountDay.MON)
+                    .discountDay(DiscountDay.FRI)
                     .discountRatio(5)
                     .people(2)
                     .store(store1)
                     .build();
 
             Discount discount2 = Discount.builder()
-                    .discountDay(DiscountDay.MON)
+                    .discountDay(DiscountDay.FRI)
                     .discountRatio(10)
                     .people(4)
                     .store(store1)
                     .build();
 
             Discount discount3 = Discount.builder()
-                    .discountDay(DiscountDay.SUN)
+                    .discountDay(DiscountDay.MON)
                     .discountRatio(5)
                     .people(2)
                     .store(store1)
                     .build();
 
-            Discounts discounts = new Discounts(discount1, discount2, discount3);
+            Discount discount4 = Discount.builder()
+                    .discountDay(DiscountDay.WEN)
+                    .discountRatio(5)
+                    .people(2)
+                    .store(store1)
+                    .build();
+
+            Discount discount5 = Discount.builder()
+                    .discountDay(DiscountDay.TUE)
+                    .discountRatio(10)
+                    .people(4)
+                    .store(store1)
+                    .build();
+
+            Discount discount6 = Discount.builder()
+                    .discountDay(DiscountDay.THU)
+                    .discountRatio(5)
+                    .people(2)
+                    .store(store1)
+                    .build();
+
+            Discounts discounts = new Discounts(discount1, discount2, discount3, discount4, discount5, discount6);
 //            em.persist(storeImage1);
 //            em.persist(storeImage2);
 //            em.persist(storeOperationHour1);
@@ -473,14 +494,14 @@ public class InitDb {
             Reviews reviews = new Reviews(review1, review2, review3);
 
             Discount discount1 = Discount.builder()
-                    .discountDay(DiscountDay.MON)
+                    .discountDay(DiscountDay.FRI)
                     .discountRatio(5)
                     .people(2)
                     .store(store1)
                     .build();
 
             Discount discount2 = Discount.builder()
-                    .discountDay(DiscountDay.MON)
+                    .discountDay(DiscountDay.FRI)
                     .discountRatio(10)
                     .people(4)
                     .store(store1)
@@ -493,7 +514,28 @@ public class InitDb {
                     .store(store1)
                     .build();
 
-            Discounts discounts = new Discounts(discount1, discount2, discount3);
+            Discount discount4 = Discount.builder()
+                    .discountDay(DiscountDay.WEN)
+                    .discountRatio(5)
+                    .people(2)
+                    .store(store1)
+                    .build();
+
+            Discount discount5 = Discount.builder()
+                    .discountDay(DiscountDay.TUE)
+                    .discountRatio(10)
+                    .people(4)
+                    .store(store1)
+                    .build();
+
+            Discount discount6 = Discount.builder()
+                    .discountDay(DiscountDay.THU)
+                    .discountRatio(5)
+                    .people(2)
+                    .store(store1)
+                    .build();
+
+            Discounts discounts = new Discounts(discount1, discount2, discount3, discount4, discount5, discount6);
 //            em.persist(storeImage1);
 //            em.persist(storeImage2);
 //            em.persist(storeOperationHour1);
@@ -631,27 +673,41 @@ public class InitDb {
             Reviews reviews = new Reviews(review1, review2, review3, review4);
 
             Discount discount1 = Discount.builder()
-                    .discountDay(DiscountDay.MON)
+                    .discountDay(DiscountDay.FRI)
                     .discountRatio(5)
                     .people(2)
                     .store(store1)
                     .build();
 
             Discount discount2 = Discount.builder()
-                    .discountDay(DiscountDay.MON)
+                    .discountDay(DiscountDay.FRI)
                     .discountRatio(10)
                     .people(4)
                     .store(store1)
                     .build();
 
             Discount discount3 = Discount.builder()
-                    .discountDay(DiscountDay.SUN)
+                    .discountDay(DiscountDay.MON)
                     .discountRatio(5)
                     .people(2)
                     .store(store1)
                     .build();
 
-            Discounts discounts = new Discounts(discount1, discount2, discount3);
+            Discount discount5 = Discount.builder()
+                    .discountDay(DiscountDay.TUE)
+                    .discountRatio(10)
+                    .people(4)
+                    .store(store1)
+                    .build();
+
+            Discount discount6 = Discount.builder()
+                    .discountDay(DiscountDay.THU)
+                    .discountRatio(5)
+                    .people(2)
+                    .store(store1)
+                    .build();
+
+            Discounts discounts = new Discounts(discount1, discount2, discount3, discount5, discount6);
 //            em.persist(storeImage1);
 //            em.persist(storeImage2);
 //            em.persist(storeOperationHour1);
@@ -1287,27 +1343,48 @@ public class InitDb {
             Reviews reviews = new Reviews(review1, review2, review3);
 
             Discount discount1 = Discount.builder()
-                    .discountDay(DiscountDay.MON)
+                    .discountDay(DiscountDay.FRI)
                     .discountRatio(5)
                     .people(2)
                     .store(store1)
                     .build();
 
             Discount discount2 = Discount.builder()
-                    .discountDay(DiscountDay.MON)
+                    .discountDay(DiscountDay.FRI)
                     .discountRatio(10)
                     .people(4)
                     .store(store1)
                     .build();
 
             Discount discount3 = Discount.builder()
-                    .discountDay(DiscountDay.SUN)
+                    .discountDay(DiscountDay.MON)
                     .discountRatio(5)
                     .people(2)
                     .store(store1)
                     .build();
 
-            Discounts discounts = new Discounts(discount1, discount2, discount3);
+            Discount discount4 = Discount.builder()
+                    .discountDay(DiscountDay.WEN)
+                    .discountRatio(5)
+                    .people(2)
+                    .store(store1)
+                    .build();
+
+            Discount discount5 = Discount.builder()
+                    .discountDay(DiscountDay.TUE)
+                    .discountRatio(10)
+                    .people(4)
+                    .store(store1)
+                    .build();
+
+            Discount discount6 = Discount.builder()
+                    .discountDay(DiscountDay.THU)
+                    .discountRatio(5)
+                    .people(2)
+                    .store(store1)
+                    .build();
+
+            Discounts discounts = new Discounts(discount1, discount2, discount3, discount4, discount5, discount6);
 //            em.persist(storeImage1);
 //            em.persist(storeImage2);
 //            em.persist(storeOperationHour1);
@@ -1408,27 +1485,48 @@ public class InitDb {
             Reviews reviews = new Reviews(review1, review2, review3);
 
             Discount discount1 = Discount.builder()
-                    .discountDay(DiscountDay.MON)
+                    .discountDay(DiscountDay.FRI)
                     .discountRatio(5)
                     .people(2)
                     .store(store1)
                     .build();
 
             Discount discount2 = Discount.builder()
-                    .discountDay(DiscountDay.MON)
+                    .discountDay(DiscountDay.FRI)
                     .discountRatio(10)
                     .people(4)
                     .store(store1)
                     .build();
 
             Discount discount3 = Discount.builder()
-                    .discountDay(DiscountDay.SUN)
+                    .discountDay(DiscountDay.MON)
                     .discountRatio(5)
                     .people(2)
                     .store(store1)
                     .build();
 
-            Discounts discounts = new Discounts(discount1, discount2, discount3);
+            Discount discount4 = Discount.builder()
+                    .discountDay(DiscountDay.WEN)
+                    .discountRatio(5)
+                    .people(2)
+                    .store(store1)
+                    .build();
+
+            Discount discount5 = Discount.builder()
+                    .discountDay(DiscountDay.TUE)
+                    .discountRatio(10)
+                    .people(4)
+                    .store(store1)
+                    .build();
+
+            Discount discount6 = Discount.builder()
+                    .discountDay(DiscountDay.THU)
+                    .discountRatio(5)
+                    .people(2)
+                    .store(store1)
+                    .build();
+
+            Discounts discounts = new Discounts(discount1, discount2, discount3, discount4, discount5, discount6);
 //            em.persist(storeImage1);
 //            em.persist(storeImage2);
 //            em.persist(storeOperationHour1);
@@ -1563,7 +1661,7 @@ public class InitDb {
                     .build();
 
             Discount discount2 = Discount.builder()
-                    .discountDay(DiscountDay.TUE)
+                    .discountDay(DiscountDay.MON)
                     .discountRatio(10)
                     .people(4)
                     .store(store1)
@@ -1576,7 +1674,28 @@ public class InitDb {
                     .store(store1)
                     .build();
 
-            Discounts discounts = new Discounts(discount1, discount2, discount3);
+            Discount discount4 = Discount.builder()
+                    .discountDay(DiscountDay.WEN)
+                    .discountRatio(5)
+                    .people(2)
+                    .store(store1)
+                    .build();
+
+            Discount discount5 = Discount.builder()
+                    .discountDay(DiscountDay.SUN)
+                    .discountRatio(10)
+                    .people(4)
+                    .store(store1)
+                    .build();
+
+            Discount discount6 = Discount.builder()
+                    .discountDay(DiscountDay.THU)
+                    .discountRatio(5)
+                    .people(2)
+                    .store(store1)
+                    .build();
+
+            Discounts discounts = new Discounts(discount1, discount2, discount3, discount4, discount5, discount6);
 //            em.persist(storeImage1);
 //            em.persist(storeImage2);
 //            em.persist(storeOperationHour1);

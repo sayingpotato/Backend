@@ -1143,7 +1143,7 @@ public class InitDb {
 
             owner.addOwnerStores(ownerStore1);
             owner.addOwnerStores(ownerStore1);
-            em.persist(owner);
+
             em.persist(owner2);
 
             Order order1 = Order.builder()
@@ -2045,6 +2045,7 @@ public class InitDb {
                     .owner(owner)
                     .build();
             owner.addOwnerStores(ownerStore);
+            em.persist(owner);
         }
     }
 }

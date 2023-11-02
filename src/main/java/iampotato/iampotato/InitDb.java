@@ -1141,7 +1141,7 @@ public class InitDb {
                     .ssn("133340")
                     .build();
 
-            owner.addOwnerStores(ownerStore1);
+            owner.addOwnerStores(ownerStore);
             owner.addOwnerStores(ownerStore1);
 
             em.persist(owner2);

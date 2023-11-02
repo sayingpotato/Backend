@@ -48,6 +48,7 @@ public class InitDb {
 
     @PostConstruct
     public void init() throws ParseException {
+        initService.postOwner();
         initService.dbStores1();
         initService.dbStores2();
         initService.dbStores3();
@@ -62,6 +63,19 @@ public class InitDb {
     static class InitService {
 
         private final EntityManager em;
+
+        Owner owner;
+
+        public void postOwner() {
+            owner = Owner.builder()
+                    .loginId("owner1")
+                    .password("123")
+                    .nickname("CafeMaster")
+                    .ownerStatus(OwnerStatus.COMPLETE)
+                    .ownerBusinessNumber("773-49-00806")
+                    .ssn("934920")
+                    .build();
+        }
 
         public void dbStores1() throws ParseException {
 
@@ -444,6 +458,12 @@ public class InitDb {
             store1.updateCollection(storeOperationHours, storeImages, reviews, discounts, items);
 
             em.persist(store1);
+
+            OwnerStore ownerStore = OwnerStore.builder()
+                    .store(store1)
+                    .owner(owner)
+                    .build();
+            owner.addOwnerStores(ownerStore);
         }
 
         public void dbStores2() throws ParseException {
@@ -696,6 +716,11 @@ public class InitDb {
             store1.updateCollection(storeOperationHours, storeImages, reviews, discounts, items);
 
             em.persist(store1);
+            OwnerStore ownerStore = OwnerStore.builder()
+                    .store(store1)
+                    .owner(owner)
+                    .build();
+            owner.addOwnerStores(ownerStore);
         }
 
         public void dbStores3() throws ParseException {
@@ -1091,14 +1116,7 @@ public class InitDb {
             store1.updateCollection(storeOperationHours2, storeImages2, reviews2, discounts2, items2);
             em.persist(store2);
 
-            Owner owner = Owner.builder()
-                    .loginId("owner1")
-                    .password("123")
-                    .nickname("CafeMaster")
-                    .ownerStatus(OwnerStatus.COMPLETE)
-                    .ownerBusinessNumber("773-49-00806")
-                    .ssn("934920")
-                    .build();
+
 
             OwnerStore ownerStore = OwnerStore.builder()
                     .store(store1)
@@ -1123,7 +1141,8 @@ public class InitDb {
                     .ssn("133340")
                     .build();
 
-            owner.updateOwnerStores(ownerStores);
+            owner.addOwnerStores(ownerStore1);
+            owner.addOwnerStores(ownerStore1);
             em.persist(owner);
             em.persist(owner2);
 
@@ -1264,7 +1283,7 @@ public class InitDb {
             randomItems.add(item9);
             randomItems.add(item10);
 
-            for(int i=0; i<1000; i++) {
+            for(int i=0; i<6000; i++) {
                 // 2023년 10월 1일부터 2023년 10월 31일까지의 랜덤 시각 생성
                 int year = 2023;
                 int month = 10;
@@ -1310,7 +1329,7 @@ public class InitDb {
                 em.persist(order5);
             }
 
-            for(int j=0; j<500; j++) {
+            for(int j=0; j<3000; j++) {
                 // 2023년 10월 1일부터 2023년 10월 31일까지의 랜덤 시각 생성
                 int year = 2023;
                 int month = 10;
@@ -1356,7 +1375,7 @@ public class InitDb {
                 em.persist(order5);
             }
 
-            for(int j=0; j<500; j++) {
+            for(int j=0; j<3000; j++) {
                 // 2023년 10월 1일부터 2023년 10월 31일까지의 랜덤 시각 생성
                 int year = 2023;
                 int month = 9;
@@ -1625,6 +1644,11 @@ public class InitDb {
             store1.updateCollection(storeOperationHours, storeImages, reviews, discounts, items);
 
             em.persist(store1);
+            OwnerStore ownerStore = OwnerStore.builder()
+                    .store(store1)
+                    .owner(owner)
+                    .build();
+            owner.addOwnerStores(ownerStore);
         }
 
         public void dbStores5() throws ParseException {
@@ -1841,6 +1865,11 @@ public class InitDb {
 
             store1.updateCollection(storeOperationHours, storeImages, reviews, discounts, items);
             em.persist(store1);
+            OwnerStore ownerStore = OwnerStore.builder()
+                    .store(store1)
+                    .owner(owner)
+                    .build();
+            owner.addOwnerStores(ownerStore);
         }
 
         public void dbStores6() throws ParseException {
@@ -2011,6 +2040,11 @@ public class InitDb {
 
             store1.updateCollection(storeOperationHours, storeImages, reviews, discounts, items);
             em.persist(store1);
+            OwnerStore ownerStore = OwnerStore.builder()
+                    .store(store1)
+                    .owner(owner)
+                    .build();
+            owner.addOwnerStores(ownerStore);
         }
     }
 }

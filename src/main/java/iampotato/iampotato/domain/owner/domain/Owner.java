@@ -60,6 +60,10 @@ public class Owner implements UserDetails {
         this.ownerStores = ownerStores;
     }
 
+    public void addOwnerStores(OwnerStore ownerStores) {
+        this.ownerStores.add(ownerStores);
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.emptyList();

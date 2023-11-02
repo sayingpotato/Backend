@@ -16,7 +16,7 @@ import java.util.List;
  * Order -> Customer = N : 1
  */
 @Entity
-@Table(name = "orders")
+@Table(name = "orders", indexes = {@Index(name = "i_orders", columnList = "createdDate")})
 @Builder
 @AllArgsConstructor
 @Getter
